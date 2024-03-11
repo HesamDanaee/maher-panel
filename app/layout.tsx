@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "../src/styles/globals.css";
+import { SWRConfig } from "swr";
 
 const ravi = localFont({ src: "../public/fonts/Ravi-VF.ttf" });
 
@@ -16,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={ravi.className}>{children}</body>
+      <body className={ravi.className}>
+        <SWRConfig>{children}</SWRConfig>
+      </body>
     </html>
   );
 }
