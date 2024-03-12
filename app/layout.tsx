@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SWRProvider from "@/src/components/providers/SWRProvider";
 import localFont from "next/font/local";
 import "../src/styles/globals.css";
+import { ThemeProvider } from "@/src/components/providers/ThemeProvider";
 
 const ravi = localFont({ src: "../public/fonts/Ravi-VF.ttf" });
 
@@ -18,7 +19,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={ravi.className}>
-        <SWRProvider>{children}</SWRProvider>
+        <SWRProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </SWRProvider>
       </body>
     </html>
   );
