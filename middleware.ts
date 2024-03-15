@@ -1,13 +1,17 @@
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  // const currentUser = request.cookies.get("currentUser")?.value;
+  const token = request.cookies.get("token")?.value;
 
-  // if (currentUser && !request.nextUrl.pathname.startsWith("/dashboard")) {
+  // if (token && request.nextUrl.pathname.endsWith("/auth/login")) {
+  //   return Response.redirect(new URL("/panel/dashboard", request.url));
+  // }
+
+  // if (token && !request.nextUrl.pathname.startsWith("/dashboard")) {
   //   return Response.redirect(new URL("/dashboard", request.url));
   // }
 
-  // if (!currentUser && !request.nextUrl.pathname.startsWith("/login")) {
+  // if (!token && !request.nextUrl.pathname.startsWith("/login")) {
   //   return Response.redirect(new URL("/login", request.url));
   // }
 }

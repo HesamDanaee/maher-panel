@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import "../src/styles/globals.css";
 import { ThemeProvider } from "@/src/components/providers/ThemeProvider";
 
-const ravi = localFont({ src: "../public/fonts/Ravi-VF.ttf" });
+const yekanBakh = localFont({ src: "../public/fonts/YekanBakhFaNum-VF.ttf" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,11 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={ravi.className}>
+      <body className={yekanBakh.className}>
         <SWRProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
+            defaultTheme="light"
             enableSystem
             disableTransitionOnChange
           >

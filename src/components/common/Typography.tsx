@@ -3,7 +3,7 @@ import { HTMLAttributes } from "react";
 
 interface TypographyProps extends HTMLAttributes<HTMLHeadingElement> {
   variant?: "h1" | "h2" | "h3" | "h4" | "p" | "blockquote";
-  className: string;
+  className?: string;
 }
 
 export default function Typography({
@@ -49,15 +49,10 @@ export default function Typography({
       ></h4>
     ),
 
-    p: (
-      <p
-        {...props}
-        className={cn("leading-7 [&:not(:first-child)]:mt-6", className)}
-      ></p>
-    ),
+    p: <p {...props} className={cn("text-sm leading-7", className)}></p>,
     blockquote: (
       <blockquote
-        className={cn("mt-6 border-l-2 pl-6 italic", className)}
+        className={cn("border-l-2 pl-6 italic", className)}
       ></blockquote>
     ),
   };

@@ -8,16 +8,9 @@
       "title": " ثبت نام کنید",
       "inputs": [
         {
-          "title": "نام",
+          "title": "نام و نام خانوادگی",
           "name": "name",
-          "placeholder": "نام",
-          "required": "1",
-          "type": "text"
-        },
-        {
-          "title": "نام خانوادگی",
-          "name": "lastName",
-          "placeholder": "نام خانوادگی",
+          "placeholder": "نام و نام خانوادگی",
           "required": "1",
           "type": "text"
         },

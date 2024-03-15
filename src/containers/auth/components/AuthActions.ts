@@ -16,9 +16,9 @@ export async function login(formData: FormData) {
 
     if (res.ok) {
       cookies().set("token", data.access_token, { maxAge: data.expires_in });
+    } else {
+      throw new Error(data.error);
     }
-
-    if (!res.ok) throw new Error(data.error);
   } catch (err) {
     return {
       message: (err as { message: string }).message,
@@ -50,5 +50,5 @@ export async function signup(formData: FormData) {
     };
   }
 
-  redirect("/panel/dashboard");
+  redirect("/auth/login");
 }
