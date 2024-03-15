@@ -17,7 +17,7 @@ export default function Navs() {
             <li>
               <Typography
                 variant="p"
-                className="hover:cursor-pointer text-primary hover:text-foreground font-[300]"
+                className="hover:cursor-pointer text-primary hover:text-foreground font-[400]"
               >
                 {text}
               </Typography>
