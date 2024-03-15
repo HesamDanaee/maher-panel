@@ -14,3 +14,5 @@ const APIS = (() => {
     addGoodsByFile: base + "/panel/goods/addByFile",
   };
 })();
+
+export default APIS;

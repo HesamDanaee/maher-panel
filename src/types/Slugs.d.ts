@@ -1,4 +1,6 @@
-type PanelSlugs = "invoice" | "customers" | "taxpayers" | "goods";
+type PanelSlugs = "dashboard" | "setting";
+type DashboardSlugs = "invoice" | "customers" | "taxpayers" | "goods";
+
 type PanelInvoice = ["invoice", "manual", "file"];
 type RegisterSlugs = [
   "signup" | "uniqueIdentifier" | "services" | "finalStep",

@@ -26,7 +26,7 @@
           "name": "mobile",
           "placeholder": "شماره موبایل",
           "required": "1",
-          "type": "string"
+          "type": "text"
         },
         {
           "title": "رمز عبور",
@@ -65,7 +65,7 @@
           "name": "mobile",
           "placeholder": "شماره موبایل",
           "required": "1",
-          "type": "string"
+          "type": "text"
         },
         {
           "title": "رمز عبور",
