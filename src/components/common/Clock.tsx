@@ -14,13 +14,17 @@ export default function Clock() {
   return (
     <Grid className="!w-[140px] grid-cols-9 items-center">
       <GridCol className="col-span-4">
-        <Typography variant="p">{time}</Typography>
+        <Typography variant="p" suppressHydrationWarning>
+          {time}
+        </Typography>
       </GridCol>
       <GridCol className="col-span-1">
         <Separator orientation="vertical" className="h-5 bg-secondary" />
       </GridCol>
       <GridCol className="col-span-4">
-        <Typography variant="p">{format(d, "yyyy/MM")}</Typography>
+        <Typography variant="p" suppressHydrationWarning>
+          {format(d, "yyyy/MM")}
+        </Typography>
       </GridCol>
     </Grid>
   );

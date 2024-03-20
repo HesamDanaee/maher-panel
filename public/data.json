@@ -116,18 +116,22 @@
       "navbar": [
         {
           "text": "فاکتورهای من",
+          "mobileText": "فاکتورها",
           "href": "invoice"
         },
         {
           "text": "مشتریان (خریداران)",
+          "mobileText": "مشتریان",
           "href": "customers"
         },
         {
           "text": "مدیریت مؤدیان",
+          "mobileText": "مؤدیان",
           "href": "taxpayers"
         },
         {
           "text": "مدیریت کالا و خدمات",
+          "mobileText": "کالا و خدمات",
           "href": "goods"
         }
       ],

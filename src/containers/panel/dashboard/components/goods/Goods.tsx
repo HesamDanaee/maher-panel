@@ -1,6 +1,7 @@
 import Grid, { GridCol } from "@/src/components/common/Grid";
 import { invoiceColumns } from "@/src/constants/tabledata/invoiceTable";
 import { DataTable } from "@/src/components/shadcn/datatable/DataTable";
+import TabsLayout from "@/src/components/layouts/TabsLayout";
 
 const invoices: InvoiceTable[] = [
   {
@@ -63,10 +64,8 @@ const invoices: InvoiceTable[] = [
 
 export default function Invoice() {
   return (
-    <Grid className="w-full h-full grid-cols-12 grid-rows-8 gap-0">
-      <GridCol className="col-start-3 col-end-11 row-start-3 row-end-6">
-        <DataTable columns={invoiceColumns} data={invoices} />
-      </GridCol>
-    </Grid>
+    <TabsLayout>
+      <DataTable columns={invoiceColumns} data={invoices} />
+    </TabsLayout>
   );
 }

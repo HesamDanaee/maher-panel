@@ -16,10 +16,10 @@ export default function Navs() {
   const params = useParams<{ slug: DashboardSlugs }>();
 
   return (
-    <nav className="h-full">
+    <nav className="h-full max-lg:hidden">
       <ul className="h-full flex items-center gap-x-6">
-        {navbar.map(({ href, text }) => (
-          <Link href={href}>
+        {navbar.map(({ href, text }, x) => (
+          <Link href={href} key={`nav${x}`}>
             <li>
               <Typography
                 variant="p"

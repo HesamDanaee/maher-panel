@@ -90,7 +90,7 @@ export default function NewInvoice({ trigger }: NewInvoiceProps) {
 
         <DialogFooter>
           <Button
-            className="w-full bg-background text-accent hover:bg-background hover:text-foreground border-[1px] border-accent hover:border-foreground"
+            className="w-full bg-accent text-foreground hover:bg-background hover:text-foreground border-[1px] border-accent"
             variant={"default"}
           >
             {button}

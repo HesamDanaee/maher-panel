@@ -9,8 +9,7 @@ interface Props {
 export default function layout({ children }: Props) {
   return (
     <article className="w-full h-full">
-      <Header />
-      <main className="h-[93vh]">{children}</main>
+      <main>{children}</main>
     </article>
   );
 }
