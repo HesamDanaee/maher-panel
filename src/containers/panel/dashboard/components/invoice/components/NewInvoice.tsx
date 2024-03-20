@@ -43,7 +43,7 @@ export default function NewInvoice({ trigger }: NewInvoiceProps) {
     <Dialog>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
 
-      <DialogContent className="pt-14">
+      <DialogContent className="pt-14 max-sm:w-[95%]">
         <DialogHeader>
           <DialogTitle>
             <Typography
@@ -64,7 +64,7 @@ export default function NewInvoice({ trigger }: NewInvoiceProps) {
         </DialogHeader>
 
         <Grid className="max-sm:grid-cols-1 max-sm:grid-rows-2 py-4">
-          <GridCol className="border-[1px] border-foreground hover:border-accent hover:cursor-pointer rounded-md p-2 group transition-all duration-100 ease-out">
+          <GridCol className="max-sm:row-span-1 border-[1px] border-foreground hover:border-accent hover:cursor-pointer rounded-md p-2 group transition-all duration-100 ease-out">
             <Flex className="items-center gap-x-2">
               <PiFileCsvLight className="w-8 h-8 group-hover:fill-accent transition-all duration-100 ease-out" />
               <Flex className="flex-col">
@@ -77,7 +77,7 @@ export default function NewInvoice({ trigger }: NewInvoiceProps) {
               </Flex>
             </Flex>
           </GridCol>
-          <GridCol className="border-[1px] border-foreground hover:border-accent hover:cursor-pointer rounded-md p-2 group transition-all duration-100 ease-out">
+          <GridCol className="max-sm:row-span-1 border-[1px] border-foreground hover:border-accent hover:cursor-pointer rounded-md p-2 group transition-all duration-100 ease-out">
             <Flex className="items-center gap-x-2">
               <PiPenNib className="w-8 h-8 group-hover:fill-accent transition-all duration-100 ease-out" />
               <Flex className="flex-col">
