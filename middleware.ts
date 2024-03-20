@@ -1,4 +1,5 @@
-import type { NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
+import { redirect } from "next/navigation";
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
@@ -14,8 +15,12 @@ export function middleware(request: NextRequest) {
   // if (!token && !request.nextUrl.pathname.startsWith("/login")) {
   //   return Response.redirect(new URL("/login", request.url));
   // }
+
+  return NextResponse.redirect(
+    new URL("/panel/dashboard/customers", request.url),
+  );
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
+  matcher: "/",
 };

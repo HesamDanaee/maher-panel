@@ -43,7 +43,10 @@ body {
     --input: 0, 0%, 0%, 0.3;
     --ring: 0, 0%, 5%, 1;
 
-    --radius: 0.5rem;
+    --radius: 0.35rem;
+    --radius2: 0.5rem;
+    --radius3: 0.75rem;
+    --radius4: 1rem;
   }
 
   .dark {
@@ -90,4 +93,22 @@ body {
 
 .bgTransition {
   transition: background-color 0.05s ease-in-out;
+}
+
+/*  - - - Default styles - - -  */
+
+/* 
+ * Buttons
+*/
+
+.btn1 {
+  background-color: hsl(var(--accent));
+  border-radius: var(--radius);
+  font-weight: 500;
+  border: 1px solid hsl(var(--accent));
+}
+
+.btn1:hover {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
 }

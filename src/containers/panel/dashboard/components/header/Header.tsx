@@ -1,11 +1,17 @@
+import Flex from "@/src/components/common/Flex";
 import Navs from "./components/Navs";
 import Profile from "./components/Profile";
 
+import Clock from "@/src/components/common/Clock";
+
 export default function Header() {
   return (
-    <header className="w-full flex justify-between items-center border-b-[1px] border-muted py-3 px-20">
+    <header className="w-full h-[7vh] flex justify-between items-center border-b-[1px] border-muted px-20">
       <Profile />
-      <Navs />
+      <Flex className="!w-auto gap-x-10">
+        <Navs />
+        <Clock />
+      </Flex>
     </header>
   );
 }

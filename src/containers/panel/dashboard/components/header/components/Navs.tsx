@@ -1,3 +1,7 @@
+"use client";
+
+import { useParams } from "next/navigation";
+
 import data from "@/public/data.json";
 import Typography from "@/src/components/common/Typography";
 import Link from "next/link";
@@ -9,15 +13,19 @@ export default function Navs() {
     },
   } = data;
 
+  const params = useParams<{ slug: DashboardSlugs }>();
+
   return (
-    <nav>
-      <ul className="flex items-center gap-x-6">
+    <nav className="h-full">
+      <ul className="h-full flex items-center gap-x-6">
         {navbar.map(({ href, text }) => (
           <Link href={href}>
             <li>
               <Typography
                 variant="p"
-                className="hover:cursor-pointer text-primary hover:text-foreground font-[400]"
+                className={`hover:cursor-pointer ${
+                  params.slug === href ? "text-foreground" : "text-primary"
+                } hover:text-foreground font-[400]`}
               >
                 {text}
               </Typography>

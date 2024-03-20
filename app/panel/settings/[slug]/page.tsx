@@ -1,4 +1,5 @@
 import Panel from "@/src/containers/panel/Panel";
+import Setting from "@/src/containers/panel/settings/Setting";
 
 interface PanelProps {
   params: {
@@ -7,5 +8,5 @@ interface PanelProps {
 }
 
 export default function PanelPage({ params }: PanelProps) {
-  return <Panel params={params} />;
+  return <Setting />;
 }

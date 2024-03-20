@@ -25,7 +25,7 @@ export async function login(formData: FormData) {
     };
   }
 
-  redirect("/panel/dashboard");
+  redirect("/panel/dashboard/invoice");
 }
 
 export async function signup(formData: FormData) {
