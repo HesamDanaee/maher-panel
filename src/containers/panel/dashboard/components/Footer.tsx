@@ -2,7 +2,7 @@
 import Grid, { GridCol } from "@/src/components/common/Grid";
 import Typography from "@/src/components/common/Typography";
 import { useIsMobile } from "@/src/hooks/useIsMobile";
-import data from "@/public/data.json";
+import data from "@/public/data/data.json";
 import Link from "next/link";
 
 import { PiFiles, PiUsersThree, PiPackage } from "react-icons/pi";

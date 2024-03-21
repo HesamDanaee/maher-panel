@@ -1,4 +1,4 @@
-import { invoiceColumns } from "@/src/constants/tabledata/invoiceTable";
+import { invoiceColumns } from "@/src/constants/dataTables/invoiceTable";
 import { DataTable } from "@/src/components/shadcn/datatable/DataTable";
 import TabsLayout from "@/src/components/layouts/TabsLayout";
 

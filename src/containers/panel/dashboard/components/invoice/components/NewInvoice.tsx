@@ -10,7 +10,7 @@ import {
 } from "@/src/components/shadcn/dialog";
 import { ReactNode } from "react";
 
-import data from "@/public/data.json";
+import data from "@/public/data/data.json";
 import { Button } from "@/src/components/shadcn/button";
 import Flex from "@/src/components/common/Flex";
 import Typography from "@/src/components/common/Typography";

@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 
-import data from "@/public/data.json";
+import data from "@/public/data/data.json";
 import Typography from "@/src/components/common/Typography";
 import Link from "next/link";
 

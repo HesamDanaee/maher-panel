@@ -1,0 +1,90 @@
+{
+  "customers": [
+    {
+      "accessorKey": "name",
+      "header": "نام"
+    },
+    {
+      "accessorKey": "mobile",
+      "header": "موبایل"
+    },
+    {
+      "accessorKey": "nationalId1",
+      "header": "شناسه ملی"
+    },
+    {
+      "accessorKey": "nationalId2",
+      "header": "کد ملی"
+    },
+    {
+      "accessorKey": "postCode",
+      "header": "کد پستی"
+    }
+  ],
+  "goods": [
+    {
+      "accessorKey": "goodsUnit",
+      "header": "واحد کالا"
+    },
+    {
+      "accessorKey": "goodsName",
+      "header": "نام کالا"
+    },
+    {
+      "accessorKey": "price",
+      "header": "قیمت"
+    },
+    {
+      "accessorKey": "taxPercent",
+      "header": "درصد مالیات"
+    },
+    {
+      "accessorKey": "taxStatus",
+      "header": "وضعیت مالیات"
+    }
+  ],
+  "invoice": [
+    {
+      "accessorKey": "tier",
+      "header": "ردیف"
+    },
+    {
+      "accessorKey": "creationDate",
+      "header": "تاریخ و ساعت ایجاد"
+    },
+    {
+      "accessorKey": "uniqueTaxId",
+      "header": "شماره منحصر به فرد مالیاتی"
+    },
+    {
+      "accessorKey": "billIssue",
+      "header": "نوع صورتحساب"
+    },
+    {
+      "accessorKey": "shippingStatus",
+      "header": "موضوع صورتحساب"
+    },
+    {
+      "accessorKey": "action",
+      "header": "وضعیت ارسال"
+    }
+  ],
+  "taxpayers": [
+    {
+      "accessorKey": "name",
+      "header": "نام مودی"
+    },
+    {
+      "accessorKey": "kind",
+      "header": "نام شخصیت"
+    },
+    {
+      "accessorKey": "nationalId",
+      "header": "کد ملی"
+    },
+    {
+      "accessorKey": "status",
+      "header": "وضعیت"
+    }
+  ]
+}
