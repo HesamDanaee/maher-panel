@@ -4,7 +4,6 @@ import { DataTable } from "@/src/components/shadcn/datatable/DataTable";
 import { Input } from "@/src/components/shadcn/input";
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
@@ -18,21 +17,10 @@ import data from "@/public/data/data.json";
 import dataTables from "@/public/data/dataTables.json";
 import NewInvoice from "./components/NewInvoice";
 import TabsLayout from "@/src/components/layouts/TabsLayout";
+import { MoreHorizontal } from "lucide-react";
 
-import { PiCaretDown } from "react-icons/pi";
-
-import {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
+import { ColumnDef } from "@tanstack/react-table";
+import { DataTableColumnHeader } from "@/src/components/shadcn/datatable/DataTableColumnHeader";
 
 const invoices: InvoiceTable[] = [
   {
@@ -40,6 +28,7 @@ const invoices: InvoiceTable[] = [
     billIssue: "sdff",
     creationDate: "hazzz",
     shippingStatus: "zxgs",
+    billType: "dsklfjds",
     tier: 1,
     uniqueTaxId: "xcdss",
   },
@@ -48,7 +37,8 @@ const invoices: InvoiceTable[] = [
     billIssue: "sdff",
     creationDate: "hazzz",
     shippingStatus: "zxgs",
-    tier: 2,
+    billType: "dsklfjds",
+    tier: 1,
     uniqueTaxId: "xcdss",
   },
   {
@@ -56,7 +46,8 @@ const invoices: InvoiceTable[] = [
     billIssue: "sdff",
     creationDate: "hazzz",
     shippingStatus: "zxgs",
-    tier: 3,
+    billType: "dsklfjds",
+    tier: 1,
     uniqueTaxId: "xcdss",
   },
   {
@@ -64,7 +55,8 @@ const invoices: InvoiceTable[] = [
     billIssue: "sdff",
     creationDate: "hazzz",
     shippingStatus: "zxgs",
-    tier: 4,
+    billType: "dsklfjds",
+    tier: 1,
     uniqueTaxId: "xcdss",
   },
   {
@@ -72,7 +64,8 @@ const invoices: InvoiceTable[] = [
     billIssue: "sdff",
     creationDate: "hazzz",
     shippingStatus: "zxgs",
-    tier: 5,
+    billType: "dsklfjds",
+    tier: 1,
     uniqueTaxId: "xcdss",
   },
   {
@@ -80,7 +73,8 @@ const invoices: InvoiceTable[] = [
     billIssue: "sdff",
     creationDate: "hazzz",
     shippingStatus: "zxgs",
-    tier: 6,
+    billType: "dsklfjds",
+    tier: 1,
     uniqueTaxId: "xcdss",
   },
   {
@@ -88,30 +82,156 @@ const invoices: InvoiceTable[] = [
     billIssue: "sdff",
     creationDate: "hazzz",
     shippingStatus: "zxgs",
-    tier: 7,
+    billType: "dsklfjds",
+    tier: 1,
+    uniqueTaxId: "xcdss",
+  },
+  {
+    action: "sdf",
+    billIssue: "sdff",
+    creationDate: "hazzz",
+    shippingStatus: "zxgs",
+    billType: "dsklfjds",
+    tier: 1,
+    uniqueTaxId: "xcdss",
+  },
+  {
+    action: "sdf",
+    billIssue: "sdff",
+    creationDate: "hazzz",
+    shippingStatus: "zxgs",
+    billType: "dsklfjds",
+    tier: 1,
+    uniqueTaxId: "xcdss",
+  },
+  {
+    action: "sdf",
+    billIssue: "sdff",
+    creationDate: "hazzz",
+    shippingStatus: "zxgs",
+    billType: "dsklfjds",
+    tier: 1,
+    uniqueTaxId: "xcdss",
+  },
+  {
+    action: "sdf",
+    billIssue: "sdff",
+    creationDate: "hazzz",
+    shippingStatus: "zxgs",
+    billType: "dsklfjds",
+    tier: 1,
+    uniqueTaxId: "xcdss",
+  },
+  {
+    action: "sdf",
+    billIssue: "sdff",
+    creationDate: "hazzz",
+    shippingStatus: "zxgs",
+    billType: "dsklfjds",
+    tier: 1,
+    uniqueTaxId: "xcdss",
+  },
+  {
+    action: "sdf",
+    billIssue: "sdff",
+    creationDate: "hazzz",
+    shippingStatus: "zxgs",
+    billType: "dsklfjds",
+    tier: 1,
+    uniqueTaxId: "xcdss",
+  },
+  {
+    action: "sdf",
+    billIssue: "sdff",
+    creationDate: "hazzz",
+    shippingStatus: "zxgs",
+    billType: "dsklfjds",
+    tier: 1,
+    uniqueTaxId: "xcdss",
+  },
+  {
+    action: "sdf",
+    billIssue: "sdff",
+    creationDate: "hazzz",
+    shippingStatus: "zxgs",
+    billType: "dsklfjds",
+    tier: 1,
+    uniqueTaxId: "xcdss",
+  },
+  {
+    action: "sdf",
+    billIssue: "sdff",
+    creationDate: "hazzz",
+    shippingStatus: "zxgs",
+    billType: "dsklfjds",
+    tier: 1,
+    uniqueTaxId: "xcdss",
+  },
+  {
+    action: "sdf",
+    billIssue: "sdff",
+    creationDate: "hazzz",
+    shippingStatus: "zxgs",
+    billType: "dsklfjds",
+    tier: 1,
+    uniqueTaxId: "xcdss",
+  },
+  {
+    action: "sdf",
+    billIssue: "sdff",
+    creationDate: "hazzz",
+    shippingStatus: "zxgs",
+    billType: "dsklfjds",
+    tier: 1,
     uniqueTaxId: "xcdss",
   },
 ];
 
 export default function Invoice() {
-  // const table = useReactTable({
-  //   data,
-  //   columns,
-  //   onSortingChange: setSorting,
-  //   onColumnFiltersChange: setColumnFilters,
-  //   getCoreRowModel: getCoreRowModel(),
-  //   getPaginationRowModel: getPaginationRowModel(),
-  //   getSortedRowModel: getSortedRowModel(),
-  //   getFilteredRowModel: getFilteredRowModel(),
-  //   onColumnVisibilityChange: setColumnVisibility,
-  //   onRowSelectionChange: setRowSelection,
-  //   state: {
-  //     sorting,
-  //     columnFilters,
-  //     columnVisibility,
-  //     rowSelection,
-  //   },
-  // });
+  const invoiceColumns: ColumnDef<InvoiceTable>[] = dataTables.invoice
+    .map((col) =>
+      col.accessorKey === "action"
+        ? {
+            id: "actions",
+            cell: ({ row }) => {
+              const invoice = row.original;
+
+              return (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      className="h-8 w-8 p-0 hover:bg-secondary"
+                    >
+                      <span className="sr-only">Open menu</span>
+                      <MoreHorizontal className="h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                    <DropdownMenuItem
+                      onClick={() =>
+                        navigator.clipboard.writeText(invoice.billIssue)
+                      }
+                    >
+                      Copy payment ID
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>View customer</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              );
+            },
+          }
+        : col
+    )
+    .map((col) => ({
+      ...col,
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title={col.header} />
+      ),
+    }));
+
   const {
     panel: {
       invoice: {
@@ -123,14 +243,12 @@ export default function Invoice() {
     },
   } = data;
 
-  const invoiceColumns: ColumnDef<InvoiceTable>[] = dataTables.invoice;
-
   return (
     <TabsLayout>
       {/* filter input and new invoice button */}
       <Flex className="w-auto max-sm:flex-col-reverse max-sm:gap-y-3 !h-auto justify-between">
         <Input
-          className="w-1/3 max-lg:w-2/3 max-sm:w-full placeholder:text-secondary placeholder:font-light"
+          className="w-1/3 max-lg:w-2/3 max-sm:w-full placeholder:text-secondary placeholder:font-light sm:hidden"
           placeholder={placeholder}
         />
         {/* <DropdownMenu>
@@ -163,6 +281,7 @@ export default function Invoice() {
       </Flex>
 
       {/* Invoice data table */}
+
       <DataTable columns={invoiceColumns} data={invoices} />
     </TabsLayout>
   );
