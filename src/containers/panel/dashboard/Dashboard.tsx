@@ -20,7 +20,7 @@ const panelSections = {
 
 export default function Dashboard({ params }: DashboardProps) {
   return (
-    <main className="w-full h-[93vh] relative">
+    <main className="w-full h-[93vh] max-sm:h-[100vh] relative">
       <Header />
       {panelSections[params.slug]}
       <Footer params={params} />

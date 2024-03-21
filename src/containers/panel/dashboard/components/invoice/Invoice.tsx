@@ -22,170 +22,9 @@ import { MoreHorizontal } from "lucide-react";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "@/src/components/shadcn/datatable/DataTableColumnHeader";
 
-const invoices: InvoiceTable[] = [
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-  {
-    action: "sdf",
-    billIssue: "sdff",
-    creationDate: "hazzz",
-    shippingStatus: "zxgs",
-    billType: "dsklfjds",
-    tier: 1,
-    uniqueTaxId: "xcdss",
-  },
-];
+import { invoices } from "@/src/constants/mockData";
+import DataCard from "@/src/components/common/DataCard";
+import InvoicesDataCard from "./components/InvoicesDataCard";
 
 export default function Invoice() {
   const invoiceColumns: ColumnDef<InvoiceTable>[] = dataTables.invoice
@@ -246,43 +85,19 @@ export default function Invoice() {
   return (
     <TabsLayout>
       {/* filter input and new invoice button */}
-      <Flex className="w-auto max-sm:flex-col-reverse max-sm:gap-y-3 !h-auto justify-between">
+      <Flex className="w-auto basis-1/6 max-sm:flex-col-reverse max-sm:gap-y-3 !h-auto justify-between">
         <Input
           className="w-1/3 max-lg:w-2/3 max-sm:w-full placeholder:text-secondary placeholder:font-light sm:hidden"
           placeholder={placeholder}
         />
-        {/* <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns <PiCaretDown className="ml-2 h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {invoiceColumns
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu> */}
         <NewInvoice trigger={<Button className="btn1">{button}</Button>} />
       </Flex>
 
       {/* Invoice data table */}
 
       <DataTable columns={invoiceColumns} data={invoices} />
+
+      <InvoicesDataCard />
     </TabsLayout>
   );
 }
