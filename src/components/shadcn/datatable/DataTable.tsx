@@ -53,7 +53,7 @@ export function DataTable<TData, TValue>({
     <>
       {!isMobile && (
         <Flex className="flex-col space-y-4">
-          <Flex>
+          <Flex className="!h-auto">
             <DataTableViewOptions table={table} />
 
             <Input

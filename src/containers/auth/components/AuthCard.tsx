@@ -13,8 +13,7 @@ import Flex from "@/src/components/common/Flex";
 import Typography from "@/src/components/common/Typography";
 import AuthForm from "./AuthForm";
 import { login, signup } from "./AuthActions";
-import data from "@/public/data.json";
-
+import data from "@/public/data/data.json";
 interface AuthCardProps {
   slug: "login" | "signup";
 }

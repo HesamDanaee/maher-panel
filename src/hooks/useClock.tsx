@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { format } from "date-fns";
+import { format } from "date-fns-jalali";
 
 // Define type for the formatted time string
 type FormattedTime = string;
@@ -23,5 +23,5 @@ export function useClock(): FormattedTime {
 
 function getFormattedTime(): FormattedTime {
   const now = new Date();
-  return format(now, "hh:mm:ss");
+  return format(now, "h:mm:ss");
 }
