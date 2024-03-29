@@ -24,7 +24,7 @@ export default function Invoice() {
   return (
     <TabsLayout>
       {/* filter input and new invoice button */}
-      <Flex className="w-auto basis-1/6 max-sm:flex-col-reverse max-sm:gap-y-3 !h-auto justify-between">
+      <Flex className="w-auto basis-1/6 max-sm:flex-col-reverse gap-y-2 !h-auto sm:justify-between">
         <Input
           className="w-1/3 max-lg:w-2/3 max-sm:w-full placeholder:text-secondary placeholder:font-light sm:hidden"
           placeholder={placeholder}
@@ -36,7 +36,7 @@ export default function Invoice() {
 
       <InvoiceTable />
 
-      {/* <InvoicesDataCard /> */}
+      <InvoicesDataCard />
     </TabsLayout>
   );
 }

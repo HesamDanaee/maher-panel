@@ -12,7 +12,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 
 interface DataTableColumnActionsProps {
-  dataTable: ColumnDef<{ [key: string]: string | number }>[];
+  dataTable: ColumnDef<any>[];
 }
 
 export default function DataTableColumnActions({
