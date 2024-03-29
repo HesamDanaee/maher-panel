@@ -6,7 +6,7 @@ export const useIsMobile = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      const isMobileQuery = window.matchMedia("(max-width: 768px)"); // Adjust breakpoint as needed
+      const isMobileQuery = window.matchMedia("(max-width: 640px)"); // Adjust breakpoint as needed
       setIsMobile(isMobileQuery.matches);
     };
 

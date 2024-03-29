@@ -12,7 +12,7 @@ export default function Clock() {
   const d = new Date();
 
   return (
-    <Grid className="w-fit grid-cols-9 items-center justify-items-center">
+    <Grid className="w-[180px] grid-cols-9 items-center justify-items-center">
       <GridCol className="col-span-4">
         <Typography variant="p" suppressHydrationWarning>
           {time}

@@ -35,7 +35,7 @@ export default function Footer({ params }: FooterProps) {
   return (
     <>
       {isMobile && (
-        <Grid className="w-full !h-auto py-2 px-3 grid-cols-4 place-items-center sticky bottom-0 left-0 border-t-[1px] border-secondary bg-background">
+        <Grid className="w-full !h-auto py-4 px-3 grid-cols-4 place-items-center fixed bottom-0 left-0 border-t-[1px] border-secondary bg-background">
           {navbar.map(({ mobileText, href }) => (
             <GridCol
               key={`nav-${mobileText}`}

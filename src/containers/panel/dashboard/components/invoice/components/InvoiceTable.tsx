@@ -22,6 +22,7 @@ import { useIsMobile } from "@/src/hooks/useIsMobile";
 
 export default function InvoiceTable() {
   const isMobile = useIsMobile();
+
   const invoiceColumns: ColumnDef<InvoiceTable>[] = dataTables.invoice
     .map((col) =>
       col.accessorKey === "action"
@@ -62,8 +63,9 @@ export default function InvoiceTable() {
     .map((col) => ({
       ...col,
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={col.header} />
+        <DataTableColumnHeader column={column} title={col.header!} />
       ),
     }));
+
   return !isMobile && <DataTable columns={invoiceColumns} data={invoices} />;
 }
