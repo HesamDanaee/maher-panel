@@ -32,7 +32,7 @@ export default function AuthCard({ slug }: AuthCardProps) {
   } = data;
 
   return (
-    <Card className="xl:w-2/3 max-xl:w-full flex flex-col justify-between pt-4 border-none">
+    <Card className="xl:w-2/3 max-xl:w-3/4 max-lg:w-1/2 max-md:w-2/3 max-sm:w-full flex flex-col justify-between pt-4 border-none">
       <CardHeader className="text-center">
         <CardTitle>{slug === "login" ? title : sTitle}</CardTitle>
         <CardDescription></CardDescription>
@@ -53,7 +53,7 @@ export default function AuthCard({ slug }: AuthCardProps) {
             <Separator orientation="horizontal" className="relative my-3">
               <Typography
                 variant="p"
-                className="max-md:w-2/3 flex justify-center items-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-2"
+                className="max-md:w-2/3 text-foreground flex justify-center items-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-2"
               >
                 {slug === "signup" ? sNotif[1] : notif[1]}
               </Typography>

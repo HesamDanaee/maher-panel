@@ -16,7 +16,7 @@ export default function Typography({
       <h1
         {...props}
         className={cn(
-          "scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl",
+          "scroll-m-20 text-foreground text-4xl font-extrabold tracking-tight lg:text-5xl",
           className
         )}
       ></h1>
@@ -25,7 +25,7 @@ export default function Typography({
       <h2
         {...props}
         className={cn(
-          "scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0",
+          "scroll-m-20 text-foreground border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0",
           className
         )}
       ></h2>
@@ -34,7 +34,7 @@ export default function Typography({
       <h3
         {...props}
         className={cn(
-          "scroll-m-20 text-2xl font-semibold tracking-tight",
+          "scroll-m-20 text-foreground text-2xl font-semibold tracking-tight",
           className
         )}
       ></h3>
@@ -43,16 +43,21 @@ export default function Typography({
       <h4
         {...props}
         className={cn(
-          "scroll-m-20 text-xl font-semibold tracking-tight",
+          "scroll-m-20 text-foreground text-xl font-semibold tracking-tight",
           className
         )}
       ></h4>
     ),
 
-    p: <p {...props} className={cn("text-sm leading-7", className)}></p>,
+    p: (
+      <p
+        {...props}
+        className={cn("text-foreground text-sm leading-7", className)}
+      ></p>
+    ),
     blockquote: (
       <blockquote
-        className={cn("border-l-2 pl-6 italic", className)}
+        className={cn("text-foreground border-l-2 pl-6 italic", className)}
       ></blockquote>
     ),
   };
