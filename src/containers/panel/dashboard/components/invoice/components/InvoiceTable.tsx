@@ -28,7 +28,7 @@ export default function InvoiceTable() {
       col.accessorKey === "action"
         ? {
             id: "actions",
-            cell: ({ row }) => {
+            cell: ({ row }: any) => {
               const invoice = row.original;
 
               return (
@@ -63,7 +63,7 @@ export default function InvoiceTable() {
     .map((col) => ({
       ...col,
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title={col.header!} />
+        <DataTableColumnHeader column={column} title={(col as any).header!} />
       ),
     }));
 

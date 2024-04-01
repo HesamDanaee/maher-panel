@@ -12,7 +12,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 
 interface DataTableColumnActionsProps {
-  dataTable: ColumnDef<any>[];
+  dataTable: ColumnDef<{ [key: string]: string }>[];
 }
 
 export default function DataTableColumnActions({
@@ -22,10 +22,10 @@ export default function DataTableColumnActions({
     <>
       {dataTable
         .map((col) =>
-          col.accessorKey === "action"
+          (col as any).accessorKey === "action"
             ? {
                 id: "actions",
-                cell: ({ row }) => {
+                cell: ({ row }: any) => {
                   const invoice = row.original;
 
                   return (
@@ -59,8 +59,11 @@ export default function DataTableColumnActions({
         )
         .map((col) => ({
           ...col,
-          header: ({ column }) => (
-            <DataTableColumnHeader column={column} title={col.header!} />
+          header: ({ column }: any) => (
+            <DataTableColumnHeader
+              column={column}
+              title={(col as any).header}
+            />
           ),
         }))}
     </>

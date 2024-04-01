@@ -25,7 +25,7 @@ export default async function Auth({ params: { slug } }: AuthProps) {
 
   // This path should only be available for this two slugs
   if (slug !== "signup" && slug !== "login" && slug !== "verify") {
-    redirect("/auth/login");
+    redirect("/auth/signup");
   }
 
   return (
