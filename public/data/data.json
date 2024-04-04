@@ -100,7 +100,11 @@
     "slider": {
       "nav": {
         "title": "پروفایل",
-        "navs": ["اعلانات", "تنظیمات", "حساب کاربری"]
+        "navs": [
+          "اعلانات",
+          "تنظیمات",
+          "حساب کاربری"
+        ]
       },
       "tab": {
         "title": "پنل",
@@ -190,7 +194,13 @@
         "newTaxPayer": "ایجاد مؤدی جدید"
       },
       "table": {
-        "thData": ["", "وضعیت", "کدملی/شناسه ملی", "نوع شخصیت", "نام مؤدی"]
+        "thData": [
+          "",
+          "وضعیت",
+          "کدملی/شناسه ملی",
+          "نوع شخصیت",
+          "نام مؤدی"
+        ]
       }
     },
     "invoice": {
@@ -239,19 +249,28 @@
                     "title": "نوع صورتحساب",
                     "name": "billType",
                     "type": "select",
-                    "options": ["نوع اول", "نوع دوم"]
+                    "options": [
+                      "نوع اول",
+                      "نوع دوم"
+                    ]
                   },
                   {
                     "title": "الگو صورتحساب",
                     "name": "Invoice template",
                     "type": "select",
-                    "options": ["فروش", "صورت حساب ط"]
+                    "options": [
+                      "فروش",
+                      "صورت حساب ط"
+                    ]
                   },
                   {
                     "title": "روش تسویه",
                     "name": "settlement method",
                     "type": "select",
-                    "options": ["نقدی", ""]
+                    "options": [
+                      "نقدی",
+                      ""
+                    ]
                   }
                 ],
                 "level2": [
@@ -293,7 +312,9 @@
                 },
                 {
                   "name": "",
-                  "options": ["عدد"],
+                  "options": [
+                    "عدد"
+                  ],
                   "title": "",
                   "type": "select"
                 },
@@ -374,7 +395,18 @@
             "وضعیت",
             "عملیات"
           ],
-          "body": [["", "", "", "", "", "", "", ""]],
+          "body": [
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ]
+          ],
           "modal": {
             "option1": "چاپ فاکتور",
             "option2": "تاریخچه فاکتور"
@@ -390,8 +422,14 @@
         "button": "ثبت مشتری جدید",
         "modal": {
           "inputs": {
-            "options": ["حقیقی", "حقوقی"],
-            "enTitles": ["individual", "legalEnteties"],
+            "options": [
+              "حقیقی",
+              "حقوقی"
+            ],
+            "enTitles": [
+              "individual",
+              "legalEnteties"
+            ],
             "individual": [
               {
                 "placeholder": "نام و نام خانوادگی",
@@ -408,31 +446,26 @@
               {
                 "placeholder": "کد اقتصادی",
                 "name": "ecCode",
-
                 "type": "string"
               },
               {
                 "placeholder": "کد پستی",
                 "name": "postCode",
-
                 "type": "string"
               },
               {
                 "placeholder": "عدد شروع فاکتور",
                 "name": "invoice",
-
                 "type": "string"
               },
               {
                 "placeholder": "تاریخ تولد",
                 "name": "birthdate",
-
                 "type": "string"
               },
               {
                 "placeholder": "آدرس",
                 "name": "address",
-
                 "type": "string"
               }
             ],
@@ -440,43 +473,36 @@
               {
                 "placeholder": "نام شرکت",
                 "name": "companyName",
-
                 "type": "string"
               },
               {
                 "placeholder": "شماره ثبت شرکت",
                 "name": "companyRegistrationNumber",
-
                 "type": "string"
               },
               {
                 "placeholder": "کد اقتصادی",
                 "name": "ecCode",
-
                 "type": "string"
               },
               {
                 "placeholder": "کد پستی",
                 "name": "postCode",
-
                 "type": "string"
               },
               {
                 "placeholder": "عدد شروع فاکتور",
                 "name": "invoice",
-
                 "type": "string"
               },
               {
                 "placeholder": "تاریخ ثبت شرکت",
                 "name": "companyRegistrationDate",
-
                 "type": "string"
               },
               {
                 "placeholder": "آدرس",
                 "name": "address",
-
                 "type": "string"
               }
             ],
@@ -486,7 +512,14 @@
       },
       "table": {
         "noDataText": "فاکتور ثبت شده ای موجود نمی باشد.",
-        "thData": ["", "کد پستی", "کد ملی", "شناسه ملی", "موبایل", "نام"]
+        "thData": [
+          "",
+          "کد پستی",
+          "کد ملی",
+          "شناسه ملی",
+          "موبایل",
+          "نام"
+        ]
       }
     },
     "goods": {
@@ -546,7 +579,13 @@
           ],
           "addButton": "افزودن کالا",
           "table": {
-            "thData": ["عملیات", "شناسه کالا", "قیمت", "واحد کالا", "نام کالا"]
+            "thData": [
+              "عملیات",
+              "شناسه کالا",
+              "قیمت",
+              "واحد کالا",
+              "نام کالا"
+            ]
           },
           "submit": "ثبت نهایی"
         }
@@ -582,8 +621,14 @@
       "title": "ثبت اطلاعات مؤدی",
       "button": "مرحله بعد",
       "inputs": {
-        "titles": ["حقیقی", "حقوقی"],
-        "enTitles": ["individual", "legalEnteties"],
+        "titles": [
+          "حقیقی",
+          "حقوقی"
+        ],
+        "enTitles": [
+          "individual",
+          "legalEnteties"
+        ],
         "individual": [
           {
             "placeholder": "نام و نام خانوادگی",
@@ -734,12 +779,19 @@
         }
       ]
     },
-
     "steps": {
-      "1": "ثبت نام",
-      "2": "شناسه یکتا",
-      "3": "گروه کالا و خدمات",
-      "4": "پایان"
+      "stepsCount": [
+        "مرحله اول",
+        "مرحله دوم",
+        "مرحله سوم",
+        "مرحله چهام"
+      ],
+      "stepsName": [
+        "ثبت نام",
+        "شناسه یکتا",
+        "گروه کالا و خدمات",
+        "پایان"
+      ]
     }
   },
   "404": {

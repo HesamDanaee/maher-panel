@@ -10,6 +10,7 @@ import Box from "@/src/components/common/Box";
 import Typography from "@/src/components/common/Typography";
 import { Separator } from "@/src/components/shadcn/Separator";
 import Flex from "@/src/components/common/Flex";
+import Stepper from "@/src/components/common/stepper/Stepper";
 
 type Steps = "signup" | "uniqueIdentifier" | "services";
 
@@ -36,9 +37,9 @@ export default function Register({ params: { slug } }: RegisterProps) {
   }
 
   return (
-    <Grid className="grid-cols-6 grid-rows-12">
-      <GridCol className="col-span-10 row-start-3 row-end-5">
-        <List
+    <Grid className="grid-cols-8 grid-rows-12">
+      <GridCol className="col-start-2 col-end-8 row-start-3 row-end-5">
+        {/* <List
           className="!flex-row !h-auto items-center justify-center gap-x-1"
           list={Object.values(steps)}
           render={(step, x) => (
@@ -63,7 +64,9 @@ export default function Register({ params: { slug } }: RegisterProps) {
               )}
             </Flex>
           )}
-        />
+        /> */}
+
+        <Stepper currentStep={4} numberOfSteps={4} />
       </GridCol>
 
       {/* Step */}
