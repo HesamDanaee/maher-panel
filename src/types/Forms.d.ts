@@ -7,7 +7,7 @@ interface IRegisterFormIndividual {
   birthdate: string;
   address: string;
 }
-type IRegisterFormIndividNames =
+type IRegisterFormIndividualNames =
   | "invoice"
   | "fullName"
   | "naCode"
@@ -41,6 +41,24 @@ interface IServicesForm {
   unitOfGoods: string;
   price: string;
 }
+
+type IServicesFormNames =
+  | "productCode"
+  | "productName"
+  | "unitOfGoods"
+  | "price";
+
+interface IUniqueIdentifierForm {
+  UniqueTaxIdentifier: string;
+  publicKey: string;
+  personalKey: string;
+  ElecSigCertificate: string;
+}
+type TUniqueIdentifierNames =
+  | "UniqueTaxIdentifier"
+  | "publicKey"
+  | "personalKey"
+  | "ElecSigCertificate";
 
 interface IRegisterForm {
   UniqueTaxIdentifier: string;

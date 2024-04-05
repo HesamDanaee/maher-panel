@@ -9,7 +9,7 @@ interface ListProps<X> {
 
 export default function List<X>({ list, className, render }: ListProps<X>) {
   return (
-    <ul>
+    <ul className="w-full">
       <Flex className={`flex-col space-y-2 ${className}`}>
         {list.map(render)}
       </Flex>

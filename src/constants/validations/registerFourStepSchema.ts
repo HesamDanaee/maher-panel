@@ -1,4 +1,4 @@
-import { ObjectSchema, object, string, number } from "yup";
+import { ObjectSchema, string, InferType } from "yup";
 
 const postalCodeRegex = /\b(?!(\d)\1{3})[13-9]{4}[1346-9][013-9]{5}\b/;
 const naCodeRegex = /^\d{10}$/;
@@ -20,6 +20,10 @@ const signupFormIndividualSchema = new ObjectSchema({
   address: string().required("فیلد آدرس الزامی می باشد"),
 });
 
+export type TSignupFormIndividualSchema = InferType<
+  typeof signupFormIndividualSchema
+>;
+
 const signupFormLegalEntetiesSchema = new ObjectSchema({
   companyName: string().required("فیلد نام و نام شرکت الزامی می باشد"),
   companyRegistrationNumber: string()
@@ -36,6 +40,10 @@ const signupFormLegalEntetiesSchema = new ObjectSchema({
   address: string().required("فیلد آدرس الزامی می باشد"),
 });
 
+export type TSignupFormLegalEntetiesSchema = InferType<
+  typeof signupFormLegalEntetiesSchema
+>;
+
 // - - - - uniqueIdentifier form Schema - - - - //
 
 const uniqueIdentifierSchema = new ObjectSchema({
@@ -48,7 +56,7 @@ const uniqueIdentifierSchema = new ObjectSchema({
     "فیلد گواهی امضا الکترونیک الزامی می باشد"
   ),
 });
-
+export type TUniqueIdentifierSchema = InferType<typeof uniqueIdentifierSchema>;
 // - - - - services form Schema - - - - //
 
 const servicesSchema = new ObjectSchema({
@@ -59,7 +67,7 @@ const servicesSchema = new ObjectSchema({
   unitOfGoods: string().required("فیلد کلید خصوصی الزامی می باشد"),
   price: string().required("فیلد گواهی امضا الکترونیک الزامی می باشد"),
 });
-
+export type TServicesSchema = InferType<typeof servicesSchema>;
 export {
   signupFormIndividualSchema,
   signupFormLegalEntetiesSchema,

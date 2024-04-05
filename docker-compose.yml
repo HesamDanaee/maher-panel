@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  dependencies:
+    build:
+      context: .
+      dockerfile: Dockerfile.dependencies
+
+  builder:
+    build:
+      context: .
+      dockerfile: Dockerfile.builder
+    depends_on:
+      - dependencies
+
+  runner:
+    build:
+      context: .
+      dockerfile: Dockerfile.runner
+    depends_on:
+      - builder
+    ports:
+      - "3003:3003"

@@ -1,9 +1,11 @@
-import Grid from "@/src/components/common/Grid";
 import Register from "@/src/containers/register/Register";
+
+type Steps = "signup" | "uniqueIdentifier" | "services";
+type Taxpayer = "individual" | "legalEnteties";
 
 interface RegisterPageProps {
   params: {
-    slug: "signup" | "uniqueIdentifier" | "services";
+    slug: [Steps, Taxpayer];
   };
 }
 
