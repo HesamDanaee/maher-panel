@@ -19,7 +19,7 @@
           "name": "mobile",
           "placeholder": "شماره موبایل",
           "required": "1",
-          "type": "string"
+          "type": "number"
         },
         {
           "title": "رمز عبور",
@@ -48,7 +48,10 @@
         "2": "وارد شوید.",
         "3": "رمز عبور خود را فراموش کرده اید؟"
       },
-      "button": "ثبت نام"
+      "button": "ثبت نام",
+      "errors": {
+        "unauthorized": "شماره موبایل یا رمز عبور اشتباه می باشد"
+      }
     },
     "login": {
       "title": "وارد حساب کاربری تان شوید",
@@ -58,7 +61,7 @@
           "name": "mobile",
           "placeholder": "شماره موبایل",
           "required": "1",
-          "type": "text"
+          "type": "number"
         },
         {
           "title": "رمز عبور",

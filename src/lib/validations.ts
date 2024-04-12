@@ -1,11 +1,14 @@
 // import { object, string, number } from "yup";
-import { object, string, number } from "yup";
+import { object, string } from "yup";
 const passPattern =
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
 const namePattern = /^.{4,21}$/;
 
 const loginSchema = object({
-  mobile: number().min(10).max(11).required(""),
+  mobile: string()
+    .min(10, "شماره موبایل باید حداقل 10 کاراکتر باشد")
+    .max(11, "شماره موبایل باید حداکثر 11 کاراکتر باشد")
+    .required("شماره موبایل الزامی می باشد"),
   password: string()
     .matches(
       passPattern,
@@ -19,8 +22,8 @@ const signupSchema = object().shape({
     .matches(namePattern, "نام کاربری باید حداقل 4 و حداکثر 22 کاراکتر باشد")
     .required("نام کاربری ضروری می باشد."),
   mobile: string()
-    .min(10, "")
-    .max(11, "")
+    .min(10, "شماره موبایل باید حداقل 10 کاراکتر باشد")
+    .max(11, "شماره موبایل باید حداکثر 11 کاراکتر باشد")
     .required("شماره موبایل الزامی می باشد"),
   password: string()
     .matches(

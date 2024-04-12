@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useFormState } from "react-dom";
-import { useForm } from "react-hook-form";
+import { useFormState, useFormStatus } from "react-dom";
 import {
   Card,
   CardContent,
@@ -19,47 +18,45 @@ import AuthForm from "./AuthForm";
 import { login, signup } from "./AuthActions";
 import data from "@/public/data/data.json";
 import { useToast } from "@/src/components/shadcn/use-toast";
-import { signupSchema, loginSchema } from "@/src/lib/validations";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect } from "react";
+import { redirect } from "next/navigation";
 
 interface AuthCardProps {
   slug: "login" | "signup" | "verify";
 }
 
 export default function AuthCard({ slug }: AuthCardProps) {
-  const [loginState, dispatchLogin] = useFormState(login, {
-    message: "",
-    error: null,
-  });
+  const { pending } = useFormStatus();
 
-  const [signUpstate, dispatchSignup] = useFormState(signup, {
-    message: "",
+  const [loginState, dispatchLogin] = useFormState(login, {
+    error: "",
     success: false,
   });
 
-  const loginForm = useForm({
-    resolver: yupResolver(loginSchema),
+  const [signUpstate, dispatchSignup] = useFormState(signup, {
+    error: "",
+    success: false,
   });
-
-  const {
-    control: loginControl,
-    handleSubmit,
-    register: loginRegister,
-    formState: { errors: loginErrors },
-  } = loginForm;
-
-  const signupForm = useForm({
-    resolver: yupResolver(signupSchema),
-  });
-
-  const {
-    control: signupControl,
-    handleSubmit: sHandleSubmit,
-    register: signupRegister,
-    formState: { errors: signupErrors },
-  } = signupForm;
 
   const { toast } = useToast();
+
+  useEffect(() => {
+    if (signUpstate?.signupMessage) {
+      toast({
+        description: signUpstate.signupMessage,
+      });
+    }
+    if (signUpstate.success) redirect("/auth/login");
+  }, [signUpstate, toast]);
+
+  useEffect(() => {
+    if (loginState?.signupMessage) {
+      toast({
+        description: loginState.signupMessage,
+      });
+    }
+    if (loginState.success) redirect("/panel/dashboard/invoice");
+  }, [loginState, toast]);
 
   const {
     auth: {
@@ -87,15 +84,10 @@ export default function AuthCard({ slug }: AuthCardProps) {
         </CardTitle>
         <CardDescription>{slug === "verify" && vSubtitle}</CardDescription>
       </CardHeader>
-      <form
-        action={slug === "login" ? dispatchLogin : dispatchSignup}
-        {...(slug === "login" ? loginForm : signupForm)}
-      >
+      <form action={slug === "login" ? dispatchLogin : dispatchSignup}>
         <CardContent className="py-0">
           {slug === "login" && (
             <AuthForm
-              register={loginRegister}
-              errors={loginErrors}
               inputs={
                 inputs as {
                   title: string;
@@ -109,8 +101,6 @@ export default function AuthCard({ slug }: AuthCardProps) {
           )}
           {slug === "signup" && (
             <AuthForm
-              register={signupRegister}
-              errors={signupErrors}
               inputs={
                 sInputs as {
                   title: string;
@@ -123,8 +113,12 @@ export default function AuthCard({ slug }: AuthCardProps) {
             />
           )}
           <Flex className="py-2">
-            <Typography variant="p" className="font-extralight leading-5">
-              {signUpstate.message}
+            <Typography
+              variant="p"
+              className="font-extralight leading-5 text-destructive"
+            >
+              {signUpstate.error}
+              {loginState.error}
             </Typography>
           </Flex>
         </CardContent>
@@ -159,6 +153,7 @@ export default function AuthCard({ slug }: AuthCardProps) {
                   <Button
                     className="w-full bg-background hover:bg-foreground text-foreground hover:text-background border-[1px] border-foreground font-bold"
                     variant={"default"}
+                    disabled={pending}
                   >
                     {slug === "signup" ? button : sButton}
                   </Button>
