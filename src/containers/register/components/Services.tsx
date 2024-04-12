@@ -21,7 +21,11 @@ export default function Services() {
     },
   } = data;
 
-  const { control, handleSubmit } = useForm<TServicesSchema>({
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<TServicesSchema>({
     resolver: yupResolver(servicesSchema),
   });
 
@@ -38,16 +42,39 @@ export default function Services() {
           <Flex className="flex-col space-y-3">
             <List
               className="space-y-3"
-              list={inputs}
+              list={
+                inputs as {
+                  placeholder: string;
+                  name: IServicesFormNames;
+                  required: string;
+                  type: string;
+                }[]
+              }
               render={({ name, type, placeholder }, x) => (
                 <Controller
                   control={control}
-                  name={name as IServicesFormNames}
+                  name={name}
                   render={(field) => (
                     <Input
                       {...field}
-                      className="placeholder:text-secondary"
-                      placeholder={placeholder}
+                      placeholder={
+                        errors[name]
+                          ? (errors[name]?.message as string)
+                          : placeholder
+                      }
+                      aria-invalid={errors[name] ? "true" : "false"}
+                      autoComplete="on"
+                      className={`placeholder:text-secondary text-primary ${
+                        type === "checkbox"
+                          ? "checkbox checkbox-primary checkbox-xs"
+                          : `input ${
+                              errors[name] &&
+                              "input-error placeholder:text-destructive"
+                            } w-full`
+                      }  
+                 
+                ${errors[name]}
+                `}
                     />
                   )}
                 />

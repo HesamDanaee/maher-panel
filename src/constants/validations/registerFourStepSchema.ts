@@ -60,12 +60,10 @@ export type TUniqueIdentifierSchema = InferType<typeof uniqueIdentifierSchema>;
 // - - - - services form Schema - - - - //
 
 const servicesSchema = new ObjectSchema({
-  productCode: string()
-    .matches(taxRegex, "شناسه یکتای وارد شده صحیح نمی باشد")
-    .required("شناسه یکتای مالیاتی الزامی می باشد"),
-  productName: string().required("فیلد کلید عمومی الزامی می باشد"),
-  unitOfGoods: string().required("فیلد کلید خصوصی الزامی می باشد"),
-  price: string().required("فیلد گواهی امضا الکترونیک الزامی می باشد"),
+  productCode: string().required("فیلد کد کالا الزامی می باشد"),
+  productName: string().required("فیلد نام کالا الزامی می باشد"),
+  unitOfGoods: string().required("فیلد واحد کالا الزامی می باشد"),
+  price: string().required("فیلد قیمت الزامی می باشد"),
 });
 export type TServicesSchema = InferType<typeof servicesSchema>;
 export {

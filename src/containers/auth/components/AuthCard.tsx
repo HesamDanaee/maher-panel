@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { useFormState } from "react-dom";
+import { useForm } from "react-hook-form";
 import {
   Card,
   CardContent,
@@ -14,11 +18,49 @@ import Typography from "@/src/components/common/Typography";
 import AuthForm from "./AuthForm";
 import { login, signup } from "./AuthActions";
 import data from "@/public/data/data.json";
+import { useToast } from "@/src/components/shadcn/use-toast";
+import { signupSchema, loginSchema } from "@/src/lib/validations";
+import { yupResolver } from "@hookform/resolvers/yup";
+
 interface AuthCardProps {
   slug: "login" | "signup" | "verify";
 }
 
 export default function AuthCard({ slug }: AuthCardProps) {
+  const [loginState, dispatchLogin] = useFormState(login, {
+    message: "",
+    error: null,
+  });
+
+  const [signUpstate, dispatchSignup] = useFormState(signup, {
+    message: "",
+    success: false,
+  });
+
+  const loginForm = useForm({
+    resolver: yupResolver(loginSchema),
+  });
+
+  const {
+    control: loginControl,
+    handleSubmit,
+    register: loginRegister,
+    formState: { errors: loginErrors },
+  } = loginForm;
+
+  const signupForm = useForm({
+    resolver: yupResolver(signupSchema),
+  });
+
+  const {
+    control: signupControl,
+    handleSubmit: sHandleSubmit,
+    register: signupRegister,
+    formState: { errors: signupErrors },
+  } = signupForm;
+
+  const { toast } = useToast();
+
   const {
     auth: {
       login: { button, title, notif, inputs },
@@ -45,17 +87,46 @@ export default function AuthCard({ slug }: AuthCardProps) {
         </CardTitle>
         <CardDescription>{slug === "verify" && vSubtitle}</CardDescription>
       </CardHeader>
-      <form action={slug === "login" ? login : signup}>
+      <form
+        action={slug === "login" ? dispatchLogin : dispatchSignup}
+        {...(slug === "login" ? loginForm : signupForm)}
+      >
         <CardContent className="py-0">
-          <AuthForm
-            inputs={
-              slug === "login"
-                ? inputs
-                : slug === "signup"
-                ? sInputs
-                : [vInputs]
-            }
-          />
+          {slug === "login" && (
+            <AuthForm
+              register={loginRegister}
+              errors={loginErrors}
+              inputs={
+                inputs as {
+                  title: string;
+                  placeholder: string;
+                  name: TLoginForm;
+                  required: string;
+                  type: string;
+                }[]
+              }
+            />
+          )}
+          {slug === "signup" && (
+            <AuthForm
+              register={signupRegister}
+              errors={signupErrors}
+              inputs={
+                sInputs as {
+                  title: string;
+                  placeholder: string;
+                  name: TSignupForm;
+                  required: string;
+                  type: string;
+                }[]
+              }
+            />
+          )}
+          <Flex className="py-2">
+            <Typography variant="p" className="font-extralight leading-5">
+              {signUpstate.message}
+            </Typography>
+          </Flex>
         </CardContent>
         <CardFooter>
           <Flex className={`flex-col gap-y-4 items-center`}>

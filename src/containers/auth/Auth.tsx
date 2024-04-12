@@ -1,11 +1,8 @@
 import { redirect } from "next/navigation";
 
 import Grid, { GridCol } from "@/src/components/common/Grid";
-import Box from "@/components/common/Box";
-
 import Image from "next/image";
 import AuthCard from "./components/AuthCard";
-
 import Typography from "@/src/components/common/Typography";
 import data from "@/public/data/data.json";
 import Flex from "@/src/components/common/Flex";

@@ -19,7 +19,7 @@
           "name": "mobile",
           "placeholder": "شماره موبایل",
           "required": "1",
-          "type": "text"
+          "type": "string"
         },
         {
           "title": "رمز عبور",
@@ -30,7 +30,7 @@
         },
         {
           "title": "تکرار رمز عبور",
-          "name": "password2",
+          "name": "confirmPassword",
           "placeholder": "تکرار رمز عبور",
           "required": "1",
           "type": "password"

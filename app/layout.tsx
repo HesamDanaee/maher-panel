@@ -3,6 +3,7 @@ import SWRProvider from "@/src/components/providers/SWRProvider";
 import localFont from "next/font/local";
 import "../src/styles/globals.css";
 import { ThemeProvider } from "@/src/components/providers/ThemeProvider";
+import { Toaster } from "@/src/components/shadcn/toaster";
 
 const yekanBakh = localFont({ src: "../public/fonts/YekanBakhFaNum-VF.ttf" });
 
@@ -25,7 +26,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SWRProvider>{children}</SWRProvider>
+          <SWRProvider>
+            <Toaster />
+            {children}
+          </SWRProvider>
         </ThemeProvider>
       </body>
     </html>

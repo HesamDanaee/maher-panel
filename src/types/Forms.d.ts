@@ -1,3 +1,17 @@
+interface ISignupForm {
+  name: string;
+  mobile: number;
+  password: string;
+  confirmPassword: string;
+}
+type TSignupForm = "name" | "mobile" | "password" | "confirmPassword";
+
+interface ILoginForm {
+  mobile: number;
+  password: string;
+}
+type TLoginForm = "mobile" | "password";
+
 interface IRegisterFormIndividual {
   fullName: string;
   naCode: string;

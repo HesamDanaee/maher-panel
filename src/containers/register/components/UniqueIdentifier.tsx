@@ -32,8 +32,6 @@ export default function UniqueIdentifier() {
 
   const submitForm = (data: TUniqueIdentifierSchema) => {};
 
-  console.log(errors);
-
   return (
     <Flex className="flex-col items-center space-y-14">
       <Typography variant="h3" className="font-normal">
@@ -45,16 +43,39 @@ export default function UniqueIdentifier() {
           <Flex className="flex-col space-y-3">
             <List
               className="space-y-3"
-              list={inputs}
-              render={({ name, placeholder }, x) => (
+              list={
+                inputs as {
+                  placeholder: string;
+                  name: TUniqueIdentifierNames;
+                  required: string;
+                  type: string;
+                }[]
+              }
+              render={({ name, type, placeholder }, x) => (
                 <Controller
                   control={control}
-                  name={name as TUniqueIdentifierNames}
+                  name={name}
                   render={(field) => (
                     <Input
                       {...field}
-                      className="placeholder:text-secondary"
-                      placeholder={placeholder}
+                      placeholder={
+                        errors[name]
+                          ? (errors[name]?.message as string)
+                          : placeholder
+                      }
+                      aria-invalid={errors[name] ? "true" : "false"}
+                      autoComplete="on"
+                      className={`placeholder:text-secondary text-primary ${
+                        type === "checkbox"
+                          ? "checkbox checkbox-primary checkbox-xs"
+                          : `input ${
+                              errors[name] &&
+                              "input-error placeholder:text-destructive"
+                            } w-full`
+                      }  
+                 
+                ${errors[name]}
+                `}
                     />
                   )}
                 />

@@ -1,28 +1,21 @@
-FROM node:18-alpine AS dependencies
-RUN apk add --no-cache libc6-compat
-WORKDIR /app
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm i
+# Use an official Node.js runtime as a parent image
+FROM node:20
 
-# BUILDER ---------------------------------------------------------------------
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-FROM node:18-alpine AS builder
-WORKDIR /app
-COPY --from=dependencies /app/node_modules ./node_modules
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+
+RUN npm install
+
+# Bundle app source
 COPY . .
-ENV NEXT_TELEMETRY_DISABLED 1
-ARG NODE_ENV
-ENV NODE_ENV="${NODE_ENV}"
+
+# Build your Next.js app for production
 RUN npm run build
 
-# RUNNER ----------------------------------------------------------------------
-FROM mhart/alpine-node:slim-14 AS runner
-WORKDIR /app
-ENV NEXT_TELEMETRY_DISABLED 1
-COPY --from=builder /app/.next/standalone ./standalone
-COPY --from=builder /app/public /app/standalone/public
-COPY --from=builder /app/.next/static /app/standalone/.next/static
-EXPOSE 3003
-ENV PORT 3003
-CMD ["node", "./standalone/server.js"]
+# Start the application
+CMD ["npm", "start"]
