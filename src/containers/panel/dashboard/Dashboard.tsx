@@ -14,9 +14,9 @@ interface DashboardProps {
 export default function Dashboard({ params }: DashboardProps) {
   const panelSections = {
     invoice: <Invoice tab={params.slug} />,
-    customers: <Customers />,
-    taxpayers: <Taxpayers />,
-    goods: <Goods />,
+    customers: <Customers tab={params.slug} />,
+    taxpayers: <Taxpayers tab={params.slug} />,
+    goods: <Goods tab={params.slug} />,
   };
 
   return (

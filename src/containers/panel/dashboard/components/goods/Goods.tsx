@@ -1,119 +1,134 @@
 "use client";
 
-import { DataTable } from "@/src/components/shadcn/datatable/DataTable";
 import { Input } from "@/src/components/shadcn/input";
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/src/components/shadcn/Dropdown-menu";
 import Flex from "@/src/components/common/Flex";
 import { Button } from "@/src/components/shadcn/button";
-
 import data from "@/public/data/data.json";
-import dataTables from "@/public/data/dataTables.json";
-
-import TabsLayout from "@/src/components/layouts/TabsLayout";
-
-import { PiCaretDown } from "react-icons/pi";
 
 import {
   ColumnDef,
   ColumnFiltersState,
-  SortingState,
-  VisibilityState,
-  flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
-  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 
-const goods: GoodsTable[] = [
-  {
-    goodsName: "",
-    goodsUnit: "",
-    price: "",
-    taxPercent: "",
-    taxStatus: "",
-  },
-];
+import { PiPlus, PiFile } from "react-icons/pi";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/src/components/shadcn/card";
 
-export default function Goods() {
-  // const table = useReactTable({
-  //   data,
-  //   columns,
-  //   onSortingChange: setSorting,
-  //   onColumnFiltersChange: setColumnFilters,
-  //   getCoreRowModel: getCoreRowModel(),
-  //   getPaginationRowModel: getPaginationRowModel(),
-  //   getSortedRowModel: getSortedRowModel(),
-  //   getFilteredRowModel: getFilteredRowModel(),
-  //   onColumnVisibilityChange: setColumnVisibility,
-  //   onRowSelectionChange: setRowSelection,
-  //   state: {
-  //     sorting,
-  //     columnFilters,
-  //     columnVisibility,
-  //     rowSelection,
-  //   },
-  // });
+import { DataTableViewOptions } from "@/src/components/shadcn/datatable/DataTableViewOptions";
+
+import dataTables from "@/public/data/dataTables.json";
+import { goods } from "@/src/constants/mockData";
+import { useState } from "react";
+import DashboardLayout from "@/src/components/layouts/DashboardLayout";
+import Typography from "@/src/components/common/Typography";
+import Box from "@/src/components/common/Box";
+import { GridCol } from "@/src/components/common/Grid";
+import { DataTable } from "@/src/components/shadcn/datatable/DataTable";
+import CreateNewModal from "@/src/components/common/CreateNewModal";
+
+interface GoodsProps {
+  tab: DashboardSlugs;
+}
+
+export default function Goods({ tab }: GoodsProps) {
   const {
     panel: {
-      invoice: {
-        main: {
-          searchInput: { placeholder },
-          newInvoice: { button },
-        },
+      header: { navbar },
+      goods: {
+        exportBtn,
+        input: { placeholder },
+        newGood: { button, modal, modal2 },
+        table: { thData },
       },
     },
   } = data;
 
-  const goodsColumn: ColumnDef<GoodsTable>[] = dataTables.goods;
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+
+  const column: ColumnDef<GoodsTable>[] = dataTables.goods;
+
+  const table = useReactTable({
+    data: goods,
+    columns: column,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    onColumnFiltersChange: setColumnFilters,
+    getFilteredRowModel: getFilteredRowModel(),
+    state: {
+      columnFilters,
+    },
+  });
 
   return (
-    <TabsLayout>
-      {/* filter input and new invoice button */}
-      <Flex className="w-auto max-sm:flex-col-reverse max-sm:gap-y-3 !h-auto justify-between">
-        <Input
-          className="w-1/3 max-lg:w-2/3 max-sm:w-full placeholder:text-secondary placeholder:font-light"
-          placeholder={placeholder}
-        />
-        {/* <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns <PiCaretDown className="ml-2 h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {invoiceColumns
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu> */}
-      </Flex>
+    <DashboardLayout>
+      {/* Tabs list */}
 
-      {/* Invoice data table */}
-      <DataTable columns={goodsColumn} data={goods} />
-    </TabsLayout>
+      <GridCol className="col-span-full row-start-1 row-end-2">
+        <Flex className="items-center row-span-1">
+          <Flex className="!w-auto ml-auto flex items-center gap-2">
+            <Input
+              placeholder={placeholder}
+              value={
+                (table.getColumn("creationDate")?.getFilterValue() as string) ??
+                ""
+              }
+              onChange={(event) =>
+                table
+                  .getColumn("creationDate")
+                  ?.setFilterValue(event.target.value)
+              }
+              className="md:min-w-[400px] max-sm:w-full placeholder:text-secondary placeholder:font-light text-end"
+            />
+
+            <DataTableViewOptions table={table} />
+
+            <Button size="sm" variant="outline" className="h-8 gap-1">
+              <PiFile className="h-3.5 w-3.5" />
+              <Box className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                {exportBtn}
+              </Box>
+            </Button>
+
+            <CreateNewModal
+              trigger={
+                <Button size="sm" className="h-8 gap-1">
+                  <PiPlus className="h-3.5 w-3.5" />
+                  <Typography className="text-background sr-only sm:not-sr-only sm:whitespace-nowrap">
+                    {button}
+                  </Typography>
+                </Button>
+              }
+              data={modal}
+            />
+          </Flex>
+        </Flex>
+      </GridCol>
+
+      {/* Tabs content */}
+      <GridCol className="col-span-full row-start-2 row-end-13">
+        <Card x-chunk="dashboard-06-chunk-0 h-full">
+          <CardHeader className="text-end">
+            <CardTitle>
+              {navbar.find(({ href }) => href === tab)?.mobileText}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <DataTable
+              table={table}
+              columns={table._getColumnDefs()}
+              data={goods}
+            />
+          </CardContent>
+        </Card>
+      </GridCol>
+    </DashboardLayout>
   );
 }

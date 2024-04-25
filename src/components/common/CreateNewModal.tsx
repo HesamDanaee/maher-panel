@@ -1,6 +1,5 @@
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -9,34 +8,37 @@ import {
   DialogTrigger,
 } from "@/src/components/shadcn/dialog";
 import { ReactNode } from "react";
-
-import data from "@/public/data/data.json";
 import { Button } from "@/src/components/shadcn/button";
 import Flex from "@/src/components/common/Flex";
 import Typography from "@/src/components/common/Typography";
-import { PiFileCsvLight, PiPenNib, PiX } from "react-icons/pi";
+import { PiFileCsvLight, PiPenNib } from "react-icons/pi";
 import Grid, { GridCol } from "@/src/components/common/Grid";
 
 interface NewInvoiceProps {
   trigger: ReactNode;
+  data: {
+    title: string;
+    description: string;
+    btns: {
+      btn1: {
+        title: string;
+        description: string;
+      };
+      btn2: {
+        title: string;
+        description: string;
+      };
+    };
+    submit: string;
+  };
 }
 
-export default function NewInvoice({ trigger }: NewInvoiceProps) {
+export default function CreateNewModal({ trigger, data }: NewInvoiceProps) {
   const {
-    panel: {
-      invoice: {
-        main: {
-          newInvoice: {
-            modal: {
-              Title,
-              description,
-              button,
-              buttons: { file, manual },
-            },
-          },
-        },
-      },
-    },
+    title,
+    description,
+    submit,
+    btns: { btn1, btn2 },
   } = data;
 
   return (
@@ -50,14 +52,11 @@ export default function NewInvoice({ trigger }: NewInvoiceProps) {
               variant="h4"
               className="text-start text-foreground font-light"
             >
-              {Title}
+              {title}
             </Typography>
           </DialogTitle>
           <DialogDescription>
-            <Typography
-              variant="p"
-              className="text-start text-secondary font-thin"
-            >
+            <Typography variant="p" className="text-start text-ghost font-thin">
               {description}
             </Typography>
           </DialogDescription>
@@ -66,23 +65,25 @@ export default function NewInvoice({ trigger }: NewInvoiceProps) {
         <Grid className="max-sm:grid-cols-1 max-sm:grid-rows-2 py-4">
           <GridCol className="max-sm:row-span-1 border-[1px] border-foreground hover:border-accent hover:cursor-pointer rounded-md p-2 group transition-all duration-100 ease-out">
             <Flex className="items-center gap-x-2">
-              <PiFileCsvLight className="w-8 h-8 group-hover:fill-accent transition-all duration-100 ease-out" />
+              <PiFileCsvLight className="w-8 h-8 group-hover:fill-ghost transition-all duration-100 ease-out" />
               <Flex className="flex-col">
                 <Typography variant="p" className="font-light">
-                  {file.title}
+                  {btn1.title}
                 </Typography>
                 <Typography variant="p" className="font-thin">
-                  {file.desc}
+                  {btn1.description}
                 </Typography>
               </Flex>
             </Flex>
           </GridCol>
           <GridCol className="max-sm:row-span-1 border-[1px] border-foreground hover:border-accent hover:cursor-pointer rounded-md p-2 group transition-all duration-100 ease-out">
             <Flex className="items-center gap-x-2">
-              <PiPenNib className="w-8 h-8 group-hover:fill-accent transition-all duration-100 ease-out" />
+              <PiPenNib className="w-8 h-8 group-hover:fill-ghost transition-all duration-100 ease-out" />
               <Flex className="flex-col">
-                <Typography className="font-light">{manual.title}</Typography>
-                <Typography className="font-thin">{manual.desc}</Typography>
+                <Typography className="font-light">{btn2.title}</Typography>
+                <Typography className="font-thin">
+                  {btn2.description}
+                </Typography>
               </Flex>
             </Flex>
           </GridCol>
@@ -90,10 +91,10 @@ export default function NewInvoice({ trigger }: NewInvoiceProps) {
 
         <DialogFooter>
           <Button
-            className="w-full bg-accent text-foreground hover:bg-background hover:text-foreground border-[1px] border-accent"
+            className="w-full bg-accent text-foreground hover:bg-background hover:text-foreground border-[1px] border-ghost"
             variant={"default"}
           >
-            {button}
+            {submit}
           </Button>
         </DialogFooter>
       </DialogContent>
