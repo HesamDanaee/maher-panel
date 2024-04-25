@@ -684,4 +684,127 @@ const goods: GoodsTable[] = [
   },
 ];
 
-export { invoices, goods };
+const taxpayers: TaxpayersTable[] = [
+  {
+    name: "نام شخص ۱",
+    kind: "نوع ۱",
+    nationalId: "۱۲۳۴۵۶۷۸۹۰",
+    status: "فعال",
+  },
+  {
+    name: "نام شخص ۲",
+    kind: "نوع ۲",
+    nationalId: "۲۳۴۵۶۷۸۹۱۰",
+    status: "غیرفعال",
+  },
+  {
+    name: "نام شخص ۳",
+    kind: "نوع ۳",
+    nationalId: "۳۴۵۶۷۸۹۱۱۲",
+    status: "فعال",
+  },
+  {
+    name: "نام شخص ۴",
+    kind: "نوع ۴",
+    nationalId: "۴۵۶۷۸۹۱۲۳۴",
+    status: "غیرفعال",
+  },
+  {
+    name: "نام شخص ۵",
+    kind: "نوع ۵",
+    nationalId: "۵۶۷۸۹۱۲۳۴۵",
+    status: "فعال",
+  },
+  {
+    name: "نام شخص ۶",
+    kind: "نوع ۶",
+    nationalId: "۶۷۸۹۱۲۳۴۵۶",
+    status: "غیرفعال",
+  },
+  {
+    name: "نام شخص ۷",
+    kind: "نوع ۷",
+    nationalId: "۷۸۹۱۲۳۴۵۶۷",
+    status: "فعال",
+  },
+  {
+    name: "نام شخص ۸",
+    kind: "نوع ۸",
+    nationalId: "۸۹۱۲۳۴۵۶۷۸",
+    status: "فعال",
+  },
+  {
+    name: "نام شخص ۹",
+    kind: "نوع ۹",
+    nationalId: "۹۱۲۳۴۵۶۷۸۹",
+    status: "غیرفعال",
+  },
+  {
+    name: "نام شخص ۱۰",
+    kind: "نوع ۱۰",
+    nationalId: "۱۲۳۴۵۶۷۸۹۰۱",
+    status: "فعال",
+  },
+  {
+    name: "نام شخص ۱۱",
+    kind: "نوع ۱۱",
+    nationalId: "۲۳۴۵۶۷۸۹۱۰۱",
+    status: "غیرفعال",
+  },
+  {
+    name: "نام شخص ۱۲",
+    kind: "نوع ۱۲",
+    nationalId: "۳۴۵۶۷۸۹۱۱۲۳",
+    status: "فعال",
+  },
+  {
+    name: "نام شخص ۱۳",
+    kind: "نوع ۱۳",
+    nationalId: "۴۵۶۷۸۹۱۲۳۴۵",
+    status: "غیرفعال",
+  },
+  {
+    name: "نام شخص ۱۴",
+    kind: "نوع ۱۴",
+    nationalId: "۵۶۷۸۹۱۲۳۴۵۶",
+    status: "فعال",
+  },
+  {
+    name: "نام شخص ۱۵",
+    kind: "نوع ۱۵",
+    nationalId: "۶۷۸۹۱۲۳۴۵۶۷",
+    status: "فعال",
+  },
+  {
+    name: "نام شخص ۱۶",
+    kind: "نوع ۱۶",
+    nationalId: "۷۸۹۱۲۳۴۵۶۷۸",
+    status: "غیرفعال",
+  },
+  {
+    name: "نام شخص ۱۷",
+    kind: "نوع ۱۷",
+    nationalId: "۸۹۱۲۳۴۵۶۷۸۹",
+    status: "فعال",
+  },
+  {
+    name: "نام شخص ۱۸",
+    kind: "نوع ۱۸",
+    nationalId: "۹۱۲۳۴۵۶۷۸۹۰",
+    status: "فعال",
+  },
+  {
+    name: "نام شخص ۱۹",
+    kind: "نوع ۱۹",
+    nationalId: "۱۲۳۴۵۶۷۸۹۰۱",
+    status: "غیرفعال",
+  },
+  {
+    name: "نام شخص ۲۰",
+    kind: "نوع ۲۰",
+    nationalId: "۲۳۴۵۶۷۸۹۱۰۱",
+    status: "فعال",
+  },
+];
+
+export { invoices, goods, taxpayers };
