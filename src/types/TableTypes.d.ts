@@ -25,7 +25,7 @@ type GoodsTable = {
 
 type CustomersTable = {
   name: string;
-  mobile: number;
+  mobile: string;
   nationalId1: string;
   nationalId2: string;
   postCode: string;
