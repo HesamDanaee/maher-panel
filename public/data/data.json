@@ -209,7 +209,7 @@
     "invoice": {
       "main": {
         "searchInput": {
-          "placeholder": "جستجو بر اساس شماره منحصر به فرد مالیاتی ..."
+          "placeholder": "...جستجو بر اساس شماره منحصر به فرد مالیاتی"
         },
         "newInvoice": {
           "button": "ثبت فاکتور جدید",
@@ -595,6 +595,7 @@
       }
     },
     "setting": {
+      "title": "تنظیمات",
       "tabs": [
         {
           "name": "پوسته",
@@ -801,7 +802,7 @@
     "title": "صفحه مورد نظر یافت نشد",
     "link": {
       "text": "بازگشت به صفحه اصلی",
-      "href": "panel/invoice"
+      "href": "/panel/dashboard/invoice"
     }
   }
 }

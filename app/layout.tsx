@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "../src/styles/globals.css";
 import { ThemeProvider } from "@/src/components/providers/ThemeProvider";
 import { Toaster } from "@/src/components/shadcn/toaster";
+import { TooltipProvider } from "@/src/components/shadcn/tooltip";
 
 const yekanBakh = localFont({ src: "../public/fonts/YekanBakhFaNum-VF.ttf" });
 
@@ -26,10 +27,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SWRProvider>
-            <Toaster />
-            {children}
-          </SWRProvider>
+          <TooltipProvider>
+            <SWRProvider>
+              <Toaster />
+              {children}
+            </SWRProvider>
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>

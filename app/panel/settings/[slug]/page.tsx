@@ -1,11 +1,11 @@
-import Setting from "@/src/containers/panel/settings/Setting";
+import Setting from "@/src/containers/panel/setting/Setting";
 
-interface PanelProps {
+interface SettingPageProps {
   params: {
     slug: PanelSlugs;
   };
 }
 
-export default function PanelPage({ params }: PanelProps) {
+export default function SettingPage({ params }: SettingPageProps) {
   return <Setting />;
 }

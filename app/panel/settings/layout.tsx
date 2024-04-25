@@ -1,5 +1,9 @@
-import React from "react";
+import { ReactNode } from "react";
 
-export default function layout() {
-  return <div>layout</div>;
+interface Props {
+  children: ReactNode;
+}
+
+export default function SettingPageLayout({ children }: Props) {
+  return <div>{children}</div>;
 }

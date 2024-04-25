@@ -1,7 +1,7 @@
 import Customers from "./components/customers/Customers";
 import Footer from "./components/Footer";
 import Goods from "./components/goods/Goods";
-import Header from "./components/header/Header";
+import Header from "../components/header/Header";
 import Invoice from "./components/invoice/Invoice";
 import Taxpayers from "./components/taxpayers/Taxpayers";
 
@@ -11,16 +11,16 @@ interface DashboardProps {
   };
 }
 
-const panelSections = {
-  invoice: <Invoice />,
-  customers: <Customers />,
-  taxpayers: <Taxpayers />,
-  goods: <Goods />,
-};
-
 export default function Dashboard({ params }: DashboardProps) {
+  const panelSections = {
+    invoice: <Invoice tab={params.slug} />,
+    customers: <Customers />,
+    taxpayers: <Taxpayers />,
+    goods: <Goods />,
+  };
+
   return (
-    <main className="w-full h-[93vh] max-sm:max-h-[100dvh] relative overflow-hidden">
+    <main className="w-full h-[100vh] max-sm:max-h-[100dvh] relative overflow-hidden bg-muted/40">
       <Header />
       {panelSections[params.slug]}
       <Footer params={params} />

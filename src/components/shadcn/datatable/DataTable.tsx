@@ -1,15 +1,6 @@
 "use client";
 
-import {
-  ColumnDef,
-  ColumnFiltersState,
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
-
+import { ColumnDef, flexRender, Table as TTable } from "@tanstack/react-table";
 import {
   Table,
   TableBody,
@@ -18,75 +9,44 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/shadcn/Table";
-
-import { DataTablePagination } from "./DataTablePagination";
 import Flex from "../../common/Flex";
-import { DataTableViewOptions } from "./DataTableViewOptions";
-import { Input } from "../input";
-import { useState } from "react";
 import { useIsMobile } from "@/src/hooks/useIsMobile";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  table: TTable<TData>;
 }
 
 export function DataTable<TData, TValue>({
   columns,
-  data,
+  table,
 }: DataTableProps<TData, TValue>) {
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const isMobile = useIsMobile();
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    onColumnFiltersChange: setColumnFilters,
-    getFilteredRowModel: getFilteredRowModel(),
-    state: {
-      columnFilters,
-    },
-  });
 
   return (
     <>
       {!isMobile && (
         <Flex className="flex-col space-y-4">
-          <Flex className="!h-auto">
-            <DataTableViewOptions table={table} />
-
-            <Input
-              placeholder="Filter emails..."
-              value={
-                (table.getColumn("creationDate")?.getFilterValue() as string) ??
-                ""
-              }
-              onChange={(event) =>
-                table
-                  .getColumn("creationDate")
-                  ?.setFilterValue(event.target.value)
-              }
-              className="w-1/3 max-lg:w-2/3 max-sm:w-full placeholder:text-secondary placeholder:font-light"
-            />
-          </Flex>
-          <div className="rounded-md border-[1px] border-muted">
+          <div className="rounded-md border-[1px] border-muted max-h-[70vh] overflow-y-auto">
             <Table>
               <TableHeader>
                 {table.getHeaderGroups().map((headerGroup) => (
-                  <TableRow key={headerGroup.id} className="border-muted ">
+                  <TableRow key={headerGroup.id} className="border-muted">
                     {headerGroup.headers.map((header) => {
                       return (
                         <TableHead
                           key={header.id}
                           className="text-primary font-light text-center py-3"
                         >
-                          {header.isPlaceholder
-                            ? null
-                            : flexRender(
+                          {header.isPlaceholder ? null : (
+                            <Flex className="justify-center items-center">
+                              {flexRender(
                                 header.column.columnDef.header,
                                 header.getContext()
                               )}
+                            </Flex>
+                          )}
                         </TableHead>
                       );
                     })}
@@ -128,7 +88,7 @@ export function DataTable<TData, TValue>({
             </Table>
           </div>
 
-          <DataTablePagination table={table} />
+          {/* <DataTablePagination table={table} /> */}
         </Flex>
       )}
     </>
