@@ -18,13 +18,13 @@ interface NewInvoiceProps {
   trigger: ReactNode;
   data: {
     title: string;
-    description: string;
+    description?: string;
     btns: {
       btn1: {
         title: string;
         description: string;
       };
-      btn2: {
+      btn2?: {
         title: string;
         description: string;
       };
@@ -55,11 +55,16 @@ export default function CreateNewModal({ trigger, data }: NewInvoiceProps) {
               {title}
             </Typography>
           </DialogTitle>
-          <DialogDescription>
-            <Typography variant="p" className="text-start text-ghost font-thin">
-              {description}
-            </Typography>
-          </DialogDescription>
+          {description && (
+            <DialogDescription>
+              <Typography
+                variant="p"
+                className="text-start text-ghost font-thin"
+              >
+                {description}
+              </Typography>
+            </DialogDescription>
+          )}
         </DialogHeader>
 
         <Grid className="max-sm:grid-cols-1 max-sm:grid-rows-2 py-4">
@@ -76,17 +81,20 @@ export default function CreateNewModal({ trigger, data }: NewInvoiceProps) {
               </Flex>
             </Flex>
           </GridCol>
-          <GridCol className="max-sm:row-span-1 border-[1px] border-foreground hover:border-accent hover:cursor-pointer rounded-md p-2 group transition-all duration-100 ease-out">
-            <Flex className="items-center gap-x-2">
-              <PiPenNib className="w-8 h-8 group-hover:fill-ghost transition-all duration-100 ease-out" />
-              <Flex className="flex-col">
-                <Typography className="font-light">{btn2.title}</Typography>
-                <Typography className="font-thin">
-                  {btn2.description}
-                </Typography>
+
+          {btn2 && (
+            <GridCol className="max-sm:row-span-1 border-[1px] border-foreground hover:border-accent hover:cursor-pointer rounded-md p-2 group transition-all duration-100 ease-out">
+              <Flex className="items-center gap-x-2">
+                <PiPenNib className="w-8 h-8 group-hover:fill-ghost transition-all duration-100 ease-out" />
+                <Flex className="flex-col">
+                  <Typography className="font-light">{btn2.title}</Typography>
+                  <Typography className="font-thin">
+                    {btn2.description}
+                  </Typography>
+                </Flex>
               </Flex>
-            </Flex>
-          </GridCol>
+            </GridCol>
+          )}
         </Grid>
 
         <DialogFooter>
