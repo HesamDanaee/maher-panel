@@ -37,33 +37,6 @@ export default function Register({ params: { slug } }: RegisterProps) {
   return (
     <Grid className="grid-cols-8 grid-rows-12">
       <GridCol className="col-start-2 col-end-8 row-start-2 row-end-4">
-        {/* <List
-          className="!flex-row !h-auto items-center justify-center gap-x-1"
-          list={Object.values(steps)}
-          render={(step, x) => (
-            <Flex className="!w-[200px] gap-x-1 items-center !my-0">
-              <Flex className="basis-1/5 flex-col justify-center items-center relative">
-                <Flex className="!w-10 !h-10 bg-foreground rounded-full justify-center items-center">
-                  <Typography variant="p" className="text-background font-bold">
-                    {x + 1}
-                  </Typography>
-                </Flex>
-                <Flex className="w-32 absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-[40px] justify-center items-center">
-                  <Typography
-                    variant="p"
-                    className="font-semibold cursor-pointer hover:text-primary"
-                  >
-                    {step}
-                  </Typography>
-                </Flex>
-              </Flex>
-              {x !== Object.values(steps).length - 1 && (
-                <Separator orientation="horizontal" className="basis-4/5" />
-              )}
-            </Flex>
-          )}
-        /> */}
-
         <Stepper currentStep={steps.indexOf(step) + 1} numberOfSteps={4} />
       </GridCol>
 
