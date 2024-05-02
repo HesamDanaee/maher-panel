@@ -2,7 +2,8 @@ import { redirect } from "next/navigation";
 
 import Grid, { GridCol } from "@/src/components/common/Grid";
 import Image from "next/image";
-import AuthCard from "./components/AuthCard";
+import LoginCard from "./components/LoginCard";
+import SignupCard from "./components/SignupCard";
 import Typography from "@/src/components/common/Typography";
 import data from "@/public/data/data.json";
 import Flex from "@/src/components/common/Flex";
@@ -28,7 +29,7 @@ export default async function Auth({ params: { slug } }: AuthProps) {
   return (
     <Grid className="grid-cols-2 max-lg:grid-cols-1 gap-x-2">
       <GridCol className="flex justify-center items-center">
-        <AuthCard slug={slug} />
+        {slug === "login" ? <LoginCard slug={slug} /> : <SignupCard />}
       </GridCol>
       <GridCol className="flex flex-col justify-center items-center bg-foreground max-lg:hidden relative">
         <Flex className="!w-2/3 max-xl:!w-3/4 !h-auto flex-col items-center text-center space-y-6">
