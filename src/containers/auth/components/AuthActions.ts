@@ -1,88 +1,75 @@
 "use server";
 
+import { authAction } from "@/src/lib/safeAction";
 import APIS from "@/src/constants/apis";
-import { formDataToObject } from "@/src/lib/utils";
-import { signupSchema, loginSchema } from "@/src/lib/validations";
+import { signupSchema, loginSchema } from "@/src/schema/authSchema";
 import { cookies } from "next/headers";
-import data from "@/public/data/data.json";
+import fetcher from "@/src/lib/fetcher";
+import data from "@/public/data/queries.json";
 
-export async function login(
-  _: {
-    success: boolean;
-    signupMessage?: string;
-    error?: string;
-  },
-  formData: FormData
-) {
-  const {
-    auth: {
-      signup: {
-        errors: { unauthorized },
+export const loginAction = authAction(
+  loginSchema,
+  async (schema): Promise<{ status: boolean; message: string }> => {
+    const {
+      auth: {
+        login: { success, error },
       },
-    },
-  } = data;
+    } = data;
 
-  try {
-    await loginSchema.validate(formDataToObject(formData));
+    const payload = new FormData();
 
-    const res = await fetch(APIS.login, {
-      method: "POST",
-      body: formData,
-    });
-
-    const data = await res.json();
-
-    if (res.ok) {
-      cookies().set("token", data.access_token, { maxAge: data.expires_in });
-      return {
-        success: true,
-        signupMessage: data.message,
-      };
-    } else {
-      throw new Error(unauthorized);
+    for (let [key, value] of Object.entries(schema)) {
+      payload.set(key, value);
     }
-  } catch (err) {
-    return {
-      error: (err as { message: string }).message,
-      success: false,
-    };
-  }
-}
 
-export async function signup(
-  _: {
-    success: boolean;
-    signupMessage?: string;
-    error?: string;
-  },
-  formData: FormData
-) {
-  try {
-    await signupSchema.validate(formDataToObject(formData));
+    const res = await fetcher<LoginRes, LoginResErr>(
+      APIS.login,
+      payload,
+      "POST"
+    );
 
-    const res = await fetch(APIS.register, {
-      method: "POST",
-      body: formData,
-    });
+    const { ok } = res;
 
-    const data = await res.json();
+    if (ok) {
+      const { access_token } = res as LoginRes;
 
-    if (data.status) {
-      cookies().set("token", data.access_token, { maxAge: data.expires_in });
+      cookies().set("token", access_token, {
+        maxAge: Date.now() + 7 * 24 * 60 * 60 * 1000,
+      });
+
       return {
-        success: true,
-        signupMessage: data.message,
-      };
-    } else {
-      return {
-        success: false,
-        signupMessage: data.message,
+        status: ok,
+        message: success,
       };
     }
-  } catch (err) {
+
     return {
-      error: (err as { message: string }).message,
-      success: false,
+      status: ok,
+      message: error,
     };
   }
-}
+);
+
+export const signupAction = authAction(
+  signupSchema,
+  async (schema): Promise<{ status: boolean; message: string }> => {
+    const payload = new FormData();
+
+    for (let [key, value] of Object.entries(schema)) {
+      payload.set(key, value);
+    }
+
+    const res = await fetcher<SignupRes, SignupRes>(
+      APIS.register,
+      payload,
+      "POST"
+    );
+
+    const { ok, message } = res;
+
+    return {
+      status: ok,
+      message,
+    };
+  }
+);
