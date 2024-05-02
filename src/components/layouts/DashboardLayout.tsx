@@ -9,8 +9,8 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
-    <Flex className="flex-col">
-      <Tabs defaultValue="all">
+    <Flex className="h-[90vh] flex-col">
+      <Tabs defaultValue="all" className="h-full">
         <Grid className="grid grid-rows-12 items-center p-2 sm:px-6">
           {children}
         </Grid>
