@@ -24,7 +24,9 @@ export default function Navs() {
               <Typography
                 variant="p"
                 className={`hover:cursor-pointer ${
-                  params.slug === href ? "text-foreground" : "text-primary"
+                  params.slug === href
+                    ? "text-foreground"
+                    : "text-muted-foreground"
                 } hover:text-foreground font-[400]`}
               >
                 {text}
