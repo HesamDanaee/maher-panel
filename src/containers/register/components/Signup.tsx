@@ -109,7 +109,7 @@ export default function Signup({ taxpayer }: SignupProps) {
                 list={
                   individual as {
                     placeholder: string;
-                    name: IRegisterFormIndividualNames;
+                    name: keyof TSignupFormIndividualSchema;
                     required: string;
                     type: string;
                   }[]
@@ -150,7 +150,7 @@ export default function Signup({ taxpayer }: SignupProps) {
                 list={
                   legalEnteties as {
                     placeholder: string;
-                    name: IRegisterFormLegalEntetiesNames;
+                    name: keyof TSignupFormLegalEntetiesSchema;
                     required: string;
                     type: string;
                   }[]
