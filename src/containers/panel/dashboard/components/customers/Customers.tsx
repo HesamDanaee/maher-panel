@@ -32,7 +32,6 @@ import Box from "@/src/components/common/Box";
 import { GridCol } from "@/src/components/common/Grid";
 import { DataTable } from "@/src/components/shadcn/datatable/DataTable";
 import CreateNewModal from "@/src/components/common/CreateNewModal";
-import NewCustomerModal from "./components/NewCustomerModal";
 
 interface CustomersProps {
   tab: DashboardSlugs;

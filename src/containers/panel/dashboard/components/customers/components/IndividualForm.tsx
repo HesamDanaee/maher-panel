@@ -28,7 +28,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   individualSchema,
   IndividualSchemaType,
-  LegalEntetiesSchemaType,
 } from "@/src/constants/validations/newCustomerSchema";
 
 interface NewCustomerModalProps {
@@ -42,15 +41,13 @@ interface NewCustomerModalProps {
 }
 interface Inputs {
   options: string[];
-
   enTitles: string[];
-  individual: Individual[];
-  legalEnteties: Individual[];
+  inputs: Individual[];
   submit: string;
 }
 interface Individual {
   placeholder: string;
-  name: string;
+  name: keyof IndividualSchemaType;
   required?: string;
   type: string;
 }
@@ -63,7 +60,7 @@ export default function NewCustomerModal({
     title,
     description,
     submit,
-    inputs: { options, individual, legalEnteties, enTitles },
+    inputs: { options, inputs, enTitles },
   },
 }: NewCustomerModalProps) {
   const [selectedOption, setSelectedOption] =
@@ -75,7 +72,7 @@ export default function NewCustomerModal({
 
   const { control, handleSubmit } = form;
 
-  const onSubmit = (value: LegalEntetiesSchemaType | IndividualSchemaType) => {
+  const onSubmit = (value: IndividualSchemaType) => {
     console.log(value);
   };
 
@@ -135,13 +132,10 @@ export default function NewCustomerModal({
               </Select>
 
               <Flex className="flex-col gap-y-2">
-                {(selectedOption === "individual"
-                  ? individual
-                  : legalEnteties
-                ).map(({ name, placeholder }) => (
+                {inputs.map(({ name, placeholder }) => (
                   <FormField
                     key={name}
-                    name={name as LegalEntetiesNames | IndividualNames}
+                    name={name}
                     control={control}
                     render={({ field }) => (
                       <FormControl>
