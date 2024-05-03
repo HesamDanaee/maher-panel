@@ -1,17 +1,38 @@
+import fetcher from "@/src/lib/fetcher";
 import { ReactNode } from "react";
 
-interface SSRWrapperProps<Payload, Res, ResError> {
-  children: (data: Res) => ReactNode;
-  fetcher: (data: Payload) => Promise<Res | ResError>;
-  payload: Payload;
+interface SSRWrapperProps<Res, ResError> {
+  children: (data: Res | Res[]) => ReactNode;
+  fetchDataBatch:
+    | {
+        url: string;
+        method: HTTPMethods;
+        payload?: BodyInit;
+      }
+    | {
+        url: string;
+        method: HTTPMethods;
+        payload?: BodyInit;
+      }[];
 }
 
-export default async function SSRWrapper<Payload, Res, ResError>({
+export default async function SSRWrapper<Res, ResError>({
   children,
-  payload,
-  fetcher,
-}: SSRWrapperProps<Payload, Res, ResError>) {
-  const data = await fetcher(payload);
+  fetchDataBatch,
+}: SSRWrapperProps<Res, ResError>) {
+  if (!Array.isArray(fetchDataBatch)) {
+    const { url, method, payload } = fetchDataBatch;
 
-  return <>{children(data as Res)}</>;
+    const response = await fetcher(url, payload, method);
+
+    return <>{children(response as Res)}</>;
+  } else {
+    const responses = await Promise.all(
+      fetchDataBatch.map(({ url, method, payload }) =>
+        fetcher(url, payload, method)
+      )
+    );
+
+    return <>{children(responses as Res[])}</>;
+  }
 }
