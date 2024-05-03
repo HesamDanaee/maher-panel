@@ -4,6 +4,11 @@ import Goods from "./components/goods/Goods";
 import Header from "../components/header/Header";
 import Invoice from "./components/invoice/Invoice";
 import Taxpayers from "./components/taxpayers/Taxpayers";
+import SSRWrapper from "@/src/components/HOC/SSRWrapper";
+import APIS from "@/src/constants/apis";
+import { Suspense } from "react";
+import { Skeleton } from "@/src/components/shadcn/skeleton";
+import Flex from "@/src/components/common/Flex";
 
 interface DashboardProps {
   params: {
@@ -12,17 +17,45 @@ interface DashboardProps {
 }
 
 export default function Dashboard({ params }: DashboardProps) {
+  const { slug } = params;
+
   const panelSections = {
-    invoice: <Invoice tab={params.slug} />,
-    customers: <Customers tab={params.slug} />,
-    taxpayers: <Taxpayers tab={params.slug} />,
-    goods: <Goods tab={params.slug} />,
+    invoice: <Invoice tab={slug} />,
+    customers: <Customers tab={slug} />,
+    taxpayers: <Taxpayers tab={slug} />,
+    goods: <Goods tab={slug} />,
   };
 
   return (
     <main className="w-full h-[100vh] max-sm:max-h-[100dvh] relative overflow-hidden bg-muted/40">
       <Header />
-      {panelSections[params.slug]}
+      {slug === "invoice" ? (
+        <Suspense
+          fallback={
+            <Flex className="flex-col space-y-3 justify-center items-center">
+              <Skeleton className="w-64 h-4" />
+              <Skeleton className="w-64 h-4" />
+              <Skeleton className="w-64 h-4" />
+            </Flex>
+          }
+        >
+          <SSRWrapper<IsActiveRes, any>
+            fetchDataBatch={{
+              url: APIS.isActive,
+              method: "POST",
+            }}
+          >
+            {(data) => (
+              <Invoice
+                tab={slug}
+                isActive={(data as IsActiveRes).data.active === 1}
+              />
+            )}
+          </SSRWrapper>
+        </Suspense>
+      ) : (
+        panelSections[slug]
+      )}
       <Footer params={params} />
     </main>
   );
