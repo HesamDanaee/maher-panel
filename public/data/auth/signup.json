@@ -1,0 +1,49 @@
+{
+    "title": " ثبت نام کنید",
+    "inputs": [
+        {
+            "title": "نام و نام خانوادگی",
+            "name": "name",
+            "placeholder": "نام و نام خانوادگی",
+            "required": "1",
+            "type": "text"
+        },
+        {
+            "title": "شماره موبایل",
+            "name": "mobile",
+            "placeholder": "شماره موبایل",
+            "required": "1",
+            "type": "number"
+        },
+        {
+            "title": "رمز عبور",
+            "name": "password",
+            "placeholder": "رمز عبور",
+            "required": "1",
+            "type": "password"
+        },
+        {
+            "title": "تکرار رمز عبور",
+            "name": "confirmPassword",
+            "placeholder": "تکرار رمز عبور",
+            "required": "1",
+            "type": "password"
+        },
+        {
+            "title": "من را به یاد داشته باش",
+            "name": "",
+            "placeholder": "",
+            "required": "0",
+            "type": "checkbox"
+        }
+    ],
+    "notif": {
+        "1": "قبلا ثبت نام کرده اید؟",
+        "2": "وارد شوید.",
+        "3": "رمز عبور خود را فراموش کرده اید؟"
+    },
+    "button": "ثبت نام",
+    "errors": {
+        "unauthorized": "شماره موبایل یا رمز عبور اشتباه می باشد"
+    }
+}

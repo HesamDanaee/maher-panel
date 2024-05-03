@@ -1,0 +1,102 @@
+{
+    "title": "ثبت اطلاعات مؤدی",
+    "button": "مرحله بعد",
+    "inputs": {
+        "titles": [
+            "حقیقی",
+            "حقوقی"
+        ],
+        "enTitles": [
+            "individual",
+            "legalEnteties"
+        ],
+        "individual": [
+            {
+                "placeholder": "نام و نام خانوادگی",
+                "name": "fullName",
+                "required": "1",
+                "type": "string"
+            },
+            {
+                "placeholder": "کد ملی",
+                "name": "naCode",
+                "required": "1",
+                "type": "string"
+            },
+            {
+                "placeholder": "کد اقتصادی",
+                "name": "ecCode",
+                "required": "1",
+                "type": "string"
+            },
+            {
+                "placeholder": "کد پستی",
+                "name": "postCode",
+                "required": "1",
+                "type": "string"
+            },
+            {
+                "placeholder": "عدد شروع فاکتور",
+                "name": "invoice",
+                "required": "1",
+                "type": "string"
+            },
+            {
+                "placeholder": "تاریخ تولد",
+                "name": "birthdate",
+                "required": "1",
+                "type": "string"
+            },
+            {
+                "placeholder": "آدرس",
+                "name": "address",
+                "required": "1",
+                "type": "string"
+            }
+        ],
+        "legalEnteties": [
+            {
+                "placeholder": "نام شرکت",
+                "name": "companyName",
+                "required": "1",
+                "type": "string"
+            },
+            {
+                "placeholder": "شماره ثبت شرکت",
+                "name": "companyRegistrationNumber",
+                "required": "1",
+                "type": "string"
+            },
+            {
+                "placeholder": "کد اقتصادی",
+                "name": "ecCode",
+                "required": "1",
+                "type": "string"
+            },
+            {
+                "placeholder": "کد پستی",
+                "name": "postCode",
+                "required": "1",
+                "type": "string"
+            },
+            {
+                "placeholder": "عدد شروع فاکتور",
+                "name": "invoice",
+                "required": "1",
+                "type": "string"
+            },
+            {
+                "placeholder": "تاریخ ثبت شرکت",
+                "name": "companyRegistrationDate",
+                "required": "1",
+                "type": "string"
+            },
+            {
+                "placeholder": "آدرس",
+                "name": "address",
+                "required": "1",
+                "type": "string"
+            }
+        ]
+    }
+}

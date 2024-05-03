@@ -1,0 +1,25 @@
+{
+    "title": "تنظیمات",
+    "tabs": [
+        {
+            "name": "پوسته",
+            "href": "theme"
+        },
+        {
+            "name": "تنظیمات اعلانات",
+            "href": "notification"
+        },
+        {
+            "name": "زبان",
+            "href": "language"
+        },
+        {
+            "name": "تاریخچه",
+            "href": "history"
+        },
+        {
+            "name": "راهنما",
+            "href": "guide"
+        }
+    ]
+}

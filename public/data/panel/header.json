@@ -1,0 +1,61 @@
+{
+    "navbar": [
+        {
+            "text": "فاکتورهای من",
+            "mobileText": "فاکتورها",
+            "href": "invoice"
+        },
+        {
+            "text": "مشتریان (خریداران)",
+            "mobileText": "مشتریان",
+            "href": "customers"
+        },
+        {
+            "text": "مدیریت مؤدیان",
+            "mobileText": "مؤدیان",
+            "href": "taxpayers"
+        },
+        {
+            "text": "مدیریت کالا و خدمات",
+            "mobileText": "کالا و خدمات",
+            "href": "goods"
+        }
+    ],
+    "setting": {
+        "tooltip": {
+            "dataTip": "تنظیمات"
+        },
+        "modal": {
+            "links": [
+                {
+                    "href": "setting/theme",
+                    "text": "پوسته"
+                },
+                {
+                    "href": "setting/notification",
+                    "text": "تنظیات اعلانات"
+                },
+                {
+                    "href": "setting/language",
+                    "text": "زبان"
+                },
+                {
+                    "href": "setting/history",
+                    "text": "تاریخچه"
+                },
+                {
+                    "href": "setting/guide",
+                    "text": "راهمنا"
+                }
+            ]
+        }
+    },
+    "notification": {
+        "tooltip": {
+            "dataTip": "اعلانات"
+        },
+        "modal": {
+            "emptyMessage": "لیست اعلانات خالی می باشد"
+        }
+    }
+}

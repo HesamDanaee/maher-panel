@@ -1,0 +1,219 @@
+{
+    "main": {
+        "searchInput": {
+            "placeholder": "...جستجو بر اساس شماره منحصر به فرد مالیاتی"
+        },
+        "exportBtn": "استخراج",
+        "newInvoice": {
+            "button": "ثبت فاکتور جدید",
+            "options": [
+                {
+                    "value": "all",
+                    "text": "همه"
+                },
+                {
+                    "value": "successful",
+                    "text": "موفق"
+                },
+                {
+                    "value": "unsuccessful",
+                    "text": "ناموفق"
+                },
+                {
+                    "value": "checkFail",
+                    "text": "خطا هنگام بررسی"
+                },
+                {
+                    "value": "sendFail",
+                    "text": "خطا هنگام ارسال"
+                },
+                {
+                    "value": "waitlist",
+                    "text": "در صف انتظار"
+                }
+            ],
+            "modal": {
+                "title": "ثبت فاکتور جدید",
+                "description": "یکی از روش های زیر را جهت درج فاکتور انتخاب کنید",
+                "btns": {
+                    "btn1": {
+                        "title": "دستی",
+                        "description": "درج فاکتور به صورت دستی با وارد کردن اطلاعات"
+                    },
+                    "btn2": {
+                        "title": "فایل",
+                        "description": "درج فاکتور از طریق ارسال فایل با فرمت CVS"
+                    }
+                },
+                "submit": "ادامه"
+            },
+            "stage1": {
+                "tabTitle": "ایجاد فاکتور تکی",
+                "title": "اطلاعات اصلی",
+                "title2": "اطلاعات خریدار",
+                "form": {
+                    "title": "اطلاعات خریدار",
+                    "searchInput": {
+                        "placeholder": "جستجو خریدار بر اساس نام یا شماره همراه",
+                        "type": "text"
+                    },
+                    "inputs": {
+                        "main": [
+                            {
+                                "title": "نوع صورتحساب",
+                                "name": "billType",
+                                "type": "select",
+                                "options": [
+                                    "نوع اول",
+                                    "نوع دوم"
+                                ]
+                            },
+                            {
+                                "title": "الگو صورتحساب",
+                                "name": "Invoice template",
+                                "type": "select",
+                                "options": [
+                                    "فروش",
+                                    "صورت حساب ط"
+                                ]
+                            },
+                            {
+                                "title": "روش تسویه",
+                                "name": "settlement method",
+                                "type": "select",
+                                "options": [
+                                    "نقدی",
+                                    ""
+                                ]
+                            }
+                        ],
+                        "level2": [
+                            {
+                                "title": "سریال صورتحساب داخلی حافظه مالیاتی",
+                                "name": "timbs",
+                                "type": "string"
+                            },
+                            {
+                                "title": "تاریخ صدور صورت حساب",
+                                "name": "Invoicing date",
+                                "type": "string"
+                            },
+                            {
+                                "title": "مالیات موضوع ماده 17",
+                                "name": "tsta",
+                                "type": "string"
+                            },
+                            {
+                                "title": "تاریخ کوتاژ اظهارنامه گمرکی",
+                                "name": "cdocd",
+                                "type": "string"
+                            }
+                        ]
+                    }
+                },
+                "button": "مرحله بعد"
+            },
+            "stage2": {
+                "title": "اقلام",
+                "form": {
+                    "title": "",
+                    "inputs": [
+                        {
+                            "name": "",
+                            "placeholder": "شناسه",
+                            "title": "شناسه کالا",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "options": [
+                                "عدد"
+                            ],
+                            "title": "",
+                            "type": "select"
+                        },
+                        {
+                            "name": "",
+                            "title": "مبلغ تخفیف",
+                            "placeholder": "ریال",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "title": "تعداد/مقدار",
+                            "placeholder": "0",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "title": "مبلغ واحد",
+                            "placeholder": "0",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "title": "شرح کالا/خدمات",
+                            "placeholder": "شرح کالا و خدمات",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "title": "موضوع سایر مالیات و عوارض",
+                            "placeholder": "موضوع سایر مالیات و عوارض",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "title": "نرخ سایر وجه قانونی",
+                            "placeholder": "نرخ سایر وجه قانونی",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "title": "نرخ سایر مالیات و عوارض",
+                            "placeholder": "0 ریال",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "title": "مبلغ سایر مالیات و عوارض",
+                            "placeholder": "0 ریال",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "title": "موضوع سایر وجه قانونی",
+                            "placeholder": "موضوع سایر وجه قانونی",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "title": "مبلغ سایر وجه قانونی",
+                            "placeholder": "0",
+                            "type": "string"
+                        }
+                    ],
+                    "submit": "ارسال نهایی"
+                }
+            }
+        },
+        "table": {
+            "title": "فاکتورها",
+            "noDataText": "فاکتور ثبت شده ای موجود نمی باشد.",
+            "header": [
+                "ردیف",
+                "تاریخ ثبت",
+                "شماره منحصر به فرد مالیاتی ",
+                "نوع صورت حساب",
+                "موضوع صورت حساب",
+                "موضوع صورت حساب",
+                "وضعیت",
+                "عملیات"
+            ],
+            "modal": {
+                "option1": "چاپ فاکتور",
+                "option2": "تاریخچه فاکتور"
+            }
+        }
+    }
+}

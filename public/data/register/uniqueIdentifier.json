@@ -1,0 +1,30 @@
+{
+    "title": "ثبت شناسه یکتای حافظه مالیاتی",
+    "button": "مرحله بعد",
+    "inputs": [
+        {
+            "placeholder": "شناسه یکتای مالیاتی",
+            "name": "UniqueTaxIdentifier",
+            "required": "1",
+            "type": "string"
+        },
+        {
+            "placeholder": "کلید عمومی",
+            "name": "publicKey",
+            "required": "1",
+            "type": "string"
+        },
+        {
+            "placeholder": "کلید اختصاصی",
+            "name": "personalKey",
+            "required": "1",
+            "type": "string"
+        },
+        {
+            "placeholder": "گواهی امضای الکترونیک",
+            "name": "ElecSigCertificate",
+            "required": "1",
+            "type": "string"
+        }
+    ]
+}

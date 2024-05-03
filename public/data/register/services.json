@@ -1,0 +1,30 @@
+{
+    "title": "انتخاب گروه کالا و خدمات",
+    "button": "مرحله بعد",
+    "inputs": [
+        {
+            "placeholder": "کد کالا",
+            "name": "productCode",
+            "required": "1",
+            "type": "string"
+        },
+        {
+            "placeholder": "نام کالا",
+            "name": "productName",
+            "required": "1",
+            "type": "string"
+        },
+        {
+            "placeholder": "واحد کالا",
+            "name": "unitOfGoods",
+            "required": "1",
+            "type": "string"
+        },
+        {
+            "placeholder": "قیمت",
+            "name": "price",
+            "required": "1",
+            "type": "string"
+        }
+    ]
+}

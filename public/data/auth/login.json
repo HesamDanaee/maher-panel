@@ -1,0 +1,33 @@
+{
+    "title": "وارد حساب کاربری تان شوید",
+    "inputs": [
+        {
+            "title": "شماره موبایل",
+            "name": "mobile",
+            "placeholder": "شماره موبایل",
+            "required": "1",
+            "type": "number"
+        },
+        {
+            "title": "رمز عبور",
+            "name": "password",
+            "placeholder": "رمز عبور",
+            "required": "1",
+            "type": "password"
+        },
+        {
+            "title": "من را به یاد داشته باش",
+            "name": "",
+            "placeholder": "",
+            "required": "0",
+            "type": "checkbox"
+        }
+    ],
+    "notif": {
+        "1": "هنوز ثبت نام نکرده اید؟",
+        "2": "ثبت نام کنید",
+        "3": "وارد شوید",
+        "4": "رمز عبور خود را فراموش کرده اید؟"
+    },
+    "button": "ورود"
+}

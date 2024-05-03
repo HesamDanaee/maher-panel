@@ -1,0 +1,128 @@
+{
+    "searchInput": {
+        "placeholder": "جستجو بر اسای کدملی / شماره اقتصادی"
+    },
+    "exportBtn": "استخراج",
+    "newCustomer": {
+        "button": "ثبت مشتری جدید",
+        "modals": {
+            "modal1": {
+                "title": "ثبت کالای جدید",
+                "description": "",
+                "btns": {
+                    "btn1": {
+                        "title": "دستی",
+                        "description": "درج کالا به صورت دستی با وارد کردن اطلاعات"
+                    },
+                    "btn2": {
+                        "title": "فایل",
+                        "description": "درج کالا از طریق ارسال فایل با فرمت CVS"
+                    }
+                },
+                "submit": "ادامه"
+            },
+            "modal2": {
+                "title": "ثبت مشتری جدید",
+                "submit": "ادامه",
+                "inputs": {
+                    "options": [
+                        "حقیقی",
+                        "حقوقی"
+                    ],
+                    "enTitles": [
+                        "individual",
+                        "legalEnteties"
+                    ],
+                    "individual": [
+                        {
+                            "placeholder": "نام و نام خانوادگی",
+                            "name": "fullName",
+                            "required": "1",
+                            "type": "string"
+                        },
+                        {
+                            "placeholder": "کد ملی",
+                            "name": "naCode",
+                            "required": "1",
+                            "type": "string"
+                        },
+                        {
+                            "placeholder": "کد اقتصادی",
+                            "name": "ecCode",
+                            "type": "string"
+                        },
+                        {
+                            "placeholder": "کد پستی",
+                            "name": "postCode",
+                            "type": "string"
+                        },
+                        {
+                            "placeholder": "عدد شروع فاکتور",
+                            "name": "invoice",
+                            "type": "string"
+                        },
+                        {
+                            "placeholder": "تاریخ تولد",
+                            "name": "birthdate",
+                            "type": "string"
+                        },
+                        {
+                            "placeholder": "آدرس",
+                            "name": "address",
+                            "type": "string"
+                        }
+                    ],
+                    "legalEnteties": [
+                        {
+                            "placeholder": "نام شرکت",
+                            "name": "companyName",
+                            "type": "string"
+                        },
+                        {
+                            "placeholder": "شماره ثبت شرکت",
+                            "name": "companyRegistrationNumber",
+                            "type": "string"
+                        },
+                        {
+                            "placeholder": "کد اقتصادی",
+                            "name": "ecCode",
+                            "type": "string"
+                        },
+                        {
+                            "placeholder": "کد پستی",
+                            "name": "postCode",
+                            "type": "string"
+                        },
+                        {
+                            "placeholder": "عدد شروع فاکتور",
+                            "name": "invoice",
+                            "type": "string"
+                        },
+                        {
+                            "placeholder": "تاریخ ثبت شرکت",
+                            "name": "companyRegistrationDate",
+                            "type": "string"
+                        },
+                        {
+                            "placeholder": "آدرس",
+                            "name": "address",
+                            "type": "string"
+                        }
+                    ],
+                    "submit": "ثبت"
+                }
+            }
+        }
+    },
+    "table": {
+        "noDataText": "فاکتور ثبت شده ای موجود نمی باشد.",
+        "thData": [
+            "",
+            "کد پستی",
+            "کد ملی",
+            "شناسه ملی",
+            "موبایل",
+            "نام"
+        ]
+    }
+}
