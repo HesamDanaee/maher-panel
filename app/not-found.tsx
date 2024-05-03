@@ -1,14 +1,12 @@
 import { NotFoundIllustration } from "@/public/Illustrations/illustrations";
 import Flex from "@/src/components/common/Flex";
 import Typography from "@/src/components/common/Typography";
-import data from "@/public/data/data.json";
+import notFoundData from "@/public/data/404.json";
 import Link from "next/link";
 import { Button } from "@/src/components/shadcn/button";
 
 export default function NotFound() {
-  const {
-    "404": { title, link },
-  } = data;
+  const { title, link } = notFoundData;
   return (
     <main className="w-screen h-screen flex place-content-center items-center">
       <Flex className="!w-auto !h-auto flex-col items-center space-y-4">

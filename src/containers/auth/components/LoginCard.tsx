@@ -24,7 +24,8 @@ import { Separator } from "@/src/components/shadcn/Separator";
 import Flex from "@/src/components/common/Flex";
 import Typography from "@/src/components/common/Typography";
 import { loginAction } from "./AuthActions";
-import data from "@/public/data/data.json";
+import loginData from "@/public/data/auth/login.json";
+import signupData from "@/public/data/auth/signup.json";
 import { useToast } from "@/src/components/shadcn/use-toast";
 import { loginSchema, LoginSchema } from "@/src/schema/authSchema";
 import { useEffect } from "react";
@@ -37,12 +38,8 @@ interface LoginCardProps {
 }
 
 export default function LoginCard({ slug }: LoginCardProps) {
-  const {
-    auth: {
-      login: { button, title, notif, inputs },
-      signup: { button: signupBtn },
-    },
-  } = data;
+  const { button, title, notif, inputs } = loginData;
+  const { button: signupBtn } = signupData;
 
   const { execute, result, status } = useAction(loginAction);
 

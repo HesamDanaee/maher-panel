@@ -1,6 +1,6 @@
 "use client";
 
-import data from "@/public/data/data.json";
+import uniqueIdentifierData from "@/public/data/register/uniqueIdentifier.json";
 import Flex from "@/src/components/common/Flex";
 import Typography from "@/src/components/common/Typography";
 import { useForm, Controller } from "react-hook-form";
@@ -16,11 +16,7 @@ import { Button } from "@/src/components/shadcn/button";
 import Link from "next/link";
 
 export default function UniqueIdentifier() {
-  const {
-    register: {
-      uniqueIdentifier: { title, inputs, button },
-    },
-  } = data;
+  const { title, inputs, button } = uniqueIdentifierData;
 
   const {
     control,

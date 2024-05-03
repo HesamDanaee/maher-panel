@@ -3,7 +3,8 @@
 import { Input } from "@/src/components/shadcn/input";
 import Flex from "@/src/components/common/Flex";
 import { Button } from "@/src/components/shadcn/button";
-import data from "@/public/data/data.json";
+import customersData from "@/public/data/panel/customers.json";
+import headersData from "@/public/data/panel/header.json";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -31,24 +32,22 @@ import Box from "@/src/components/common/Box";
 import { GridCol } from "@/src/components/common/Grid";
 import { DataTable } from "@/src/components/shadcn/datatable/DataTable";
 import CreateNewModal from "@/src/components/common/CreateNewModal";
+import NewCustomerModal from "./components/NewCustomerModal";
 
 interface CustomersProps {
   tab: DashboardSlugs;
 }
 
 export default function Customers({ tab }: CustomersProps) {
+  const { navbar } = headersData;
   const {
-    panel: {
-      header: { navbar },
-      taxpayers: {
-        main: {
-          newTaxPayer: { button, modal },
-          searchInput: { placeholder },
-          exportBtn,
-        },
-      },
+    newCustomer: {
+      button,
+      modals: { modal1, modal2 },
     },
-  } = data;
+    searchInput: { placeholder },
+    exportBtn,
+  } = customersData;
 
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
@@ -65,6 +64,8 @@ export default function Customers({ tab }: CustomersProps) {
       columnFilters,
     },
   });
+
+  const handleModalSubmit = (state: number) => {};
 
   return (
     <DashboardLayout>
@@ -97,6 +98,7 @@ export default function Customers({ tab }: CustomersProps) {
             </Button>
 
             <CreateNewModal
+              onSubmit={handleModalSubmit}
               trigger={
                 <Button size="sm" className="h-8 gap-1">
                   <PiPlus className="h-3.5 w-3.5" />
@@ -105,7 +107,7 @@ export default function Customers({ tab }: CustomersProps) {
                   </Typography>
                 </Button>
               }
-              data={modal}
+              data={modal1}
             />
           </Flex>
         </Flex>

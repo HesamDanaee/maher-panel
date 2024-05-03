@@ -24,7 +24,8 @@ import { Separator } from "@/src/components/shadcn/Separator";
 import Flex from "@/src/components/common/Flex";
 import Typography from "@/src/components/common/Typography";
 import { signupAction } from "./AuthActions";
-import data from "@/public/data/data.json";
+import signupData from "@/public/data/auth/signup.json";
+import loginData from "@/public/data/auth/login.json";
 import { useToast } from "@/src/components/shadcn/use-toast";
 import { signupSchema, SignupSchema } from "@/src/schema/authSchema";
 import { Input } from "@/src/components/shadcn/input";
@@ -33,13 +34,8 @@ import { useEffect } from "react";
 import { redirect } from "next/navigation";
 
 export default function SignupCard() {
-  const {
-    auth: {
-      signup: { title, button, notif, inputs },
-      login: { button: loginBtn },
-    },
-  } = data;
-
+  const { title, button, notif, inputs } = signupData;
+  const { button: loginBtn } = loginData;
   const { execute, result, status } = useAction(signupAction);
   const { toast } = useToast();
 

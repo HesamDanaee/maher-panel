@@ -1,6 +1,6 @@
 "use client";
 
-import data from "@/public/data/data.json";
+import servicesData from "@/public/data/register/services.json";
 import Flex from "@/src/components/common/Flex";
 import Typography from "@/src/components/common/Typography";
 import { useForm, Controller } from "react-hook-form";
@@ -15,11 +15,7 @@ import Container from "@/src/components/common/Container";
 import { Button } from "@/src/components/shadcn/button";
 
 export default function Services() {
-  const {
-    register: {
-      services: { title, inputs, button },
-    },
-  } = data;
+  const { title, inputs, button } = servicesData;
 
   const {
     control,

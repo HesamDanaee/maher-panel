@@ -4,7 +4,7 @@ import List from "../List";
 import Typography from "../Typography";
 import Box from "../Box";
 import Flex from "../Flex";
-import data from "@/public/data/data.json";
+import stepperData from "@/public/data/register/steps.json";
 import { PiCheck } from "react-icons/pi";
 
 interface StepperProps {
@@ -21,11 +21,7 @@ const Stepper = memo(function Stepper({
   const { stepperWrapper, stepperCircle, stepperLine, isActive, btnWrapper } =
     style;
 
-  const {
-    register: {
-      steps: { stepsCount, stepsName },
-    },
-  } = data;
+  const { stepsCount, stepsName } = stepperData;
 
   return (
     <List

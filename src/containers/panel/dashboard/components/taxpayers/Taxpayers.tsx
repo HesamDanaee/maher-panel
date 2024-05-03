@@ -3,7 +3,8 @@
 import { Input } from "@/src/components/shadcn/input";
 import Flex from "@/src/components/common/Flex";
 import { Button } from "@/src/components/shadcn/button";
-import data from "@/public/data/data.json";
+import taxpayersData from "@/public/data/panel/taxpayers.json";
+import headersData from "@/public/data/panel/header.json";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -37,18 +38,14 @@ interface TaxpayersProps {
 }
 
 export default function Taxpayers({ tab }: TaxpayersProps) {
+  const { navbar } = headersData;
   const {
-    panel: {
-      header: { navbar },
-      taxpayers: {
-        main: {
-          newTaxPayer: { button, modal },
-          searchInput: { placeholder },
-          exportBtn,
-        },
-      },
+    main: {
+      newTaxPayer: { button, modal },
+      searchInput: { placeholder },
+      exportBtn,
     },
-  } = data;
+  } = taxpayersData;
 
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
@@ -96,7 +93,7 @@ export default function Taxpayers({ tab }: TaxpayersProps) {
               </Box>
             </Button>
 
-            <CreateNewModal
+            {/* <CreateNewModal
               trigger={
                 <Button size="sm" className="h-8 gap-1">
                   <PiPlus className="h-3.5 w-3.5" />
@@ -105,8 +102,10 @@ export default function Taxpayers({ tab }: TaxpayersProps) {
                   </Typography>
                 </Button>
               }
+              // TODO: Change it later
+              onSubmit={() => {}}
               data={modal}
-            />
+            /> */}
           </Flex>
         </Flex>
       </GridCol>

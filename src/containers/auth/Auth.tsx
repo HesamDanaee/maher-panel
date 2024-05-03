@@ -5,25 +5,21 @@ import Image from "next/image";
 import LoginCard from "./components/LoginCard";
 import SignupCard from "./components/SignupCard";
 import Typography from "@/src/components/common/Typography";
-import data from "@/public/data/data.json";
+import ctaData from "@/public/data/auth/cta.json";
 import Flex from "@/src/components/common/Flex";
 
 interface AuthProps {
   params: {
-    slug: "login" | "signup" | "verify";
+    slug: "login" | "signup";
   };
 }
 
 export default async function Auth({ params: { slug } }: AuthProps) {
-  const {
-    auth: {
-      cta: { title, subtitle },
-    },
-  } = data;
+  const { title, subtitle } = ctaData;
 
   // This path should only be available for this two slugs
-  if (slug !== "signup" && slug !== "login" && slug !== "verify") {
-    redirect("/auth/signup");
+  if (slug !== "signup" && slug !== "login") {
+    redirect("/auth/login");
   }
 
   return (

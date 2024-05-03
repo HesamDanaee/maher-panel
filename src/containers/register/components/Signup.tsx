@@ -1,6 +1,6 @@
 "use client";
 
-import data from "@/public/data/data.json";
+import signupData from "@/public/data/register/signup.json";
 import Flex from "@/src/components/common/Flex";
 import Typography from "@/src/components/common/Typography";
 import { useForm, Controller } from "react-hook-form";
@@ -26,14 +26,10 @@ interface SignupProps {
 
 export default function Signup({ taxpayer }: SignupProps) {
   const {
-    register: {
-      signup: {
-        title,
-        inputs: { enTitles, individual, legalEnteties, titles },
-        button,
-      },
-    },
-  } = data;
+    title,
+    inputs: { enTitles, individual, legalEnteties, titles },
+    button,
+  } = signupData;
 
   const router = useRouter();
 

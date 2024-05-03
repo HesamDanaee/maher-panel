@@ -28,15 +28,11 @@ import {
 import Link from "next/link";
 import Header from "../components/header/Header";
 
-import data from "@/public/data/data.json";
+import settingData from "@/public/data/panel/setting.json";
 import Typography from "@/src/components/common/Typography";
 
 export default function Setting() {
-  const {
-    panel: {
-      setting: { tabs, title },
-    },
-  } = data;
+  const { tabs, title } = settingData;
 
   return (
     <div className="flex min-h-screen w-full flex-col">

@@ -1,5 +1,5 @@
 import { PiList } from "react-icons/pi";
-import data from "@/public/data/data.json";
+import navbarData from "@/public/data/panel/header.json";
 
 import {
   Sheet,
@@ -15,12 +15,6 @@ import Link from "next/link";
 import Typography from "@/src/components/common/Typography";
 
 export default function Sidebar() {
-  const {
-    panel: {
-      header: { navbar },
-    },
-  } = data;
-
   return (
     <Sheet>
       <SheetTrigger className="lg:hidden max-sm:hidden">
@@ -39,7 +33,7 @@ export default function Sidebar() {
 
         <Flex className="flex-col py-10">
           <List
-            list={navbar}
+            list={navbarData.navbar}
             render={({ text, href }) => (
               <Link key={href} href={href}>
                 <Typography variant="p" className="font-light">

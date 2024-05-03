@@ -3,7 +3,8 @@
 import { Input } from "@/src/components/shadcn/input";
 import Flex from "@/src/components/common/Flex";
 import { Button } from "@/src/components/shadcn/button";
-import data from "@/public/data/data.json";
+import goodsData from "@/public/data/panel/goods.json";
+import headersData from "@/public/data/panel/header.json";
 
 import {
   ColumnDef,
@@ -39,17 +40,13 @@ interface GoodsProps {
 }
 
 export default function Goods({ tab }: GoodsProps) {
+  const { navbar } = headersData;
   const {
-    panel: {
-      header: { navbar },
-      goods: {
-        exportBtn,
-        input: { placeholder },
-        newGood: { button, modal, modal2 },
-        table: { thData },
-      },
-    },
-  } = data;
+    exportBtn,
+    input: { placeholder },
+    newGood: { button, modal, modal2 },
+    table: { thData },
+  } = goodsData;
 
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
@@ -106,6 +103,8 @@ export default function Goods({ tab }: GoodsProps) {
                   </Typography>
                 </Button>
               }
+              // TODO: Change it later
+              onSubmit={() => {}}
               data={modal}
             />
           </Flex>
