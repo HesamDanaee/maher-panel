@@ -1,3 +1,5 @@
+import { cookies } from "next/headers";
+
 export default async function fetcher<
   Success extends HttpResponse,
   Error extends HttpResponse
@@ -10,6 +12,7 @@ export default async function fetcher<
   const options: RequestInit = {
     method,
     headers: {
+      Authorization: `Bearer ${cookies().get("token")?.value}`,
       ...headers,
     },
     body: payload,
