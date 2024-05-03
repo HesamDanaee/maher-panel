@@ -2,7 +2,6 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -16,6 +15,7 @@ import Grid, { GridCol } from "@/src/components/common/Grid";
 
 interface NewInvoiceProps {
   trigger: ReactNode;
+  onSubmit: (state: number) => void;
   data: {
     title: string;
     description?: string;
@@ -24,7 +24,7 @@ interface NewInvoiceProps {
         title: string;
         description: string;
       };
-      btn2?: {
+      btn2: {
         title: string;
         description: string;
       };
@@ -33,11 +33,14 @@ interface NewInvoiceProps {
   };
 }
 
-export default function CreateNewModal({ trigger, data }: NewInvoiceProps) {
+export default function CreateNewModal({
+  trigger,
+  data,
+  onSubmit,
+}: NewInvoiceProps) {
   const {
     title,
     description,
-    submit,
     btns: { btn1, btn2 },
   } = data;
 
@@ -69,7 +72,7 @@ export default function CreateNewModal({ trigger, data }: NewInvoiceProps) {
 
         <Grid className="max-sm:grid-cols-1 max-sm:grid-rows-2 py-4">
           <GridCol className="max-sm:row-span-1 border-[1px] border-foreground hover:border-accent hover:cursor-pointer rounded-md p-2 group transition-all duration-100 ease-out">
-            <Flex className="items-center gap-x-2">
+            <Flex className="items-center gap-x-2" onClick={() => onSubmit(1)}>
               <PiFileCsvLight className="w-8 h-8 group-hover:fill-ghost transition-all duration-100 ease-out" />
               <Flex className="flex-col">
                 <Typography variant="p" className="font-light">
@@ -82,29 +85,28 @@ export default function CreateNewModal({ trigger, data }: NewInvoiceProps) {
             </Flex>
           </GridCol>
 
-          {btn2 && (
-            <GridCol className="max-sm:row-span-1 border-[1px] border-foreground hover:border-accent hover:cursor-pointer rounded-md p-2 group transition-all duration-100 ease-out">
-              <Flex className="items-center gap-x-2">
-                <PiPenNib className="w-8 h-8 group-hover:fill-ghost transition-all duration-100 ease-out" />
-                <Flex className="flex-col">
-                  <Typography className="font-light">{btn2.title}</Typography>
-                  <Typography className="font-thin">
-                    {btn2.description}
-                  </Typography>
-                </Flex>
+          <GridCol className="max-sm:row-span-1 border-[1px] border-foreground hover:border-accent hover:cursor-pointer rounded-md p-2 group transition-all duration-100 ease-out">
+            <Flex className="items-center gap-x-2">
+              <PiPenNib className="w-8 h-8 group-hover:fill-ghost transition-all duration-100 ease-out" />
+              <Flex className="flex-col" onClick={() => onSubmit(2)}>
+                <Typography className="font-light">{btn2.title}</Typography>
+                <Typography className="font-thin">
+                  {btn2.description}
+                </Typography>
               </Flex>
-            </GridCol>
-          )}
+            </Flex>
+          </GridCol>
         </Grid>
 
-        <DialogFooter>
+        {/* <DialogFooter>
           <Button
+            onClick={() => onSubmit(state)}
             className="w-full bg-accent text-foreground hover:bg-background hover:text-foreground border-[1px] border-ghost"
             variant={"default"}
           >
             {submit}
           </Button>
-        </DialogFooter>
+        </DialogFooter> */}
       </DialogContent>
     </Dialog>
   );
