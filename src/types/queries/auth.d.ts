@@ -15,3 +15,8 @@ interface LoginRes extends HttpResponse {
 interface LoginResErr extends HttpResponse {
   error: string;
 }
+
+interface ResetCodeRes extends HttpResponse {
+  status: number;
+  message: string;
+}

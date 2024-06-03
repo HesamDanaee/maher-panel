@@ -1,4 +1,4 @@
-import { ObjectSchema, string, InferType, ref } from "yup";
+import { ObjectSchema, string, number, InferType, ref } from "yup";
 const passPattern =
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
 const namePattern = /^.{4,21}$/;
@@ -40,7 +40,24 @@ const signupSchema = new ObjectSchema({
     .required("رمز عبور الزامی می باشد"),
 });
 
-export { loginSchema, signupSchema };
+const resetSchema = new ObjectSchema({
+  mobile: string()
+    .min(10, "شماره موبایل باید حداقل 10 کاراکتر باشد")
+    .max(11, "شماره موبایل باید حداکثر 11 کاراکتر باشد")
+    .required("شماره موبایل الزامی می باشد"),
+});
+
+const codeSchema = new ObjectSchema({
+  mobile: string()
+    .min(10, "شماره موبایل باید حداقل 10 کاراکتر باشد")
+    .max(11, "شماره موبایل باید حداکثر 11 کاراکتر باشد")
+    .required("شماره موبایل الزامی می باشد"),
+  code: string().required(""),
+});
+
+export { loginSchema, signupSchema, resetSchema, codeSchema };
 
 export type LoginSchema = InferType<typeof loginSchema>;
 export type SignupSchema = InferType<typeof signupSchema>;
+export type ResetSchema = InferType<typeof resetSchema>;
+export type CodeSchema = InferType<typeof codeSchema>;

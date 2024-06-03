@@ -4,6 +4,8 @@ const APIS = (() => {
     base,
     register: base + "/register",
     login: base + "/auth/login",
+    reset: base + "/auth/forgotPass",
+    resetCode: base + "/resetPassLink",
     isActive: base + "/panel/isActive",
     sendSMS: base + "/panel/sendSms",
     verify: base + "/panel/verify",

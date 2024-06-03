@@ -7,25 +7,36 @@ import SignupCard from "./components/SignupCard";
 import Typography from "@/src/components/common/Typography";
 import ctaData from "@/public/data/auth/cta.json";
 import Flex from "@/src/components/common/Flex";
+import SendCodeCard from "./components/SendCodeCard";
+import OTPCard from "./components/OTPCard";
 
 interface AuthProps {
   params: {
-    slug: "login" | "signup";
+    slug: "login" | "signup" | "sendCode" | "OTP";
   };
 }
 
 export default async function Auth({ params: { slug } }: AuthProps) {
   const { title, subtitle } = ctaData;
 
+  const slugs = ["signup", "login", "sendCode", "OTP"];
+
+  const cards = {
+    signup: <SignupCard />,
+    login: <LoginCard />,
+    sendCode: <SendCodeCard />,
+    OTP: <OTPCard />,
+  };
+
   // This path should only be available for this two slugs
-  if (slug !== "signup" && slug !== "login") {
+  if (!slugs.find((item) => item === slug)) {
     redirect("/auth/login");
   }
 
   return (
     <Grid className="grid-cols-2 max-lg:grid-cols-1 gap-x-2">
       <GridCol className="flex justify-center items-center">
-        {slug === "login" ? <LoginCard slug={slug} /> : <SignupCard />}
+        {cards[slug]}
       </GridCol>
       <GridCol className="flex flex-col justify-center items-center bg-foreground max-lg:hidden relative">
         <Flex className="!w-2/3 max-xl:!w-3/4 !h-auto flex-col items-center text-center space-y-6">

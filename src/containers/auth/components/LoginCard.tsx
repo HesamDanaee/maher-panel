@@ -33,11 +33,7 @@ import { Checkbox } from "@/src/components/shadcn/checkbox";
 import { Input } from "@/src/components/shadcn/input";
 import { redirect } from "next/navigation";
 
-interface LoginCardProps {
-  slug: "login" | "signup" | "verify";
-}
-
-export default function LoginCard({ slug }: LoginCardProps) {
+export default function LoginCard() {
   const { button, title, notif, inputs } = loginData;
   const { button: signupBtn } = signupData;
 
@@ -83,14 +79,27 @@ export default function LoginCard({ slug }: LoginCardProps) {
                   name={name as keyof LoginSchema}
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel />
                       <FormControl>
                         {type === "checkbox" ? (
-                          <Flex className="items-center gap-x-4" key={name}>
-                            <Checkbox />
-                            <label className="text-foreground text-xs">
-                              {title}
-                            </label>
+                          <Flex className="items-center justify-between py-3">
+                            <Flex
+                              className="!w-auto items-center gap-x-2"
+                              key={name}
+                            >
+                              <Checkbox />
+                              <label className="text-foreground text-xs">
+                                {title}
+                              </label>
+                            </Flex>
+
+                            <Link href={"/auth/sendCode"}>
+                              <Typography
+                                variant="p"
+                                className="text-xs hover:underline"
+                              >
+                                {notif[4]}
+                              </Typography>
+                            </Link>
                           </Flex>
                         ) : (
                           <Input
@@ -107,35 +116,35 @@ export default function LoginCard({ slug }: LoginCardProps) {
               ))}
             </Flex>
           </CardContent>
-          <CardFooter>
-            <Flex className={`flex-col gap-y-4 items-center`}>
-              <Button
-                className="w-full bg-foreground hover:bg-background text-background hover:text-foreground border-[1px] hover:border-foreground font-bold"
-                variant={"default"}
-                type="submit"
-              >
-                {button}
-              </Button>
 
-              <Separator orientation="horizontal" className="relative my-3">
-                <Typography
-                  variant="p"
-                  className="max-md:w-2/3 text-foreground flex justify-center items-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-2"
-                >
-                  {notif[1]}
-                </Typography>
-              </Separator>
-              <Link
-                href={slug === "login" ? "signup" : "login"}
-                className="w-full"
-              >
+          <CardFooter>
+            <Flex className="flex-col space-y-4">
+              <Flex className={`flex-col gap-y-4 items-center`}>
                 <Button
-                  className="w-full bg-background hover:bg-foreground text-foreground hover:text-background border-[1px] border-foreground font-bold"
+                  className="w-full bg-foreground hover:bg-background text-background hover:text-foreground border-[1px] hover:border-foreground font-bold"
                   variant={"default"}
+                  type="submit"
                 >
-                  {signupBtn}
+                  {button}
                 </Button>
-              </Link>
+
+                <Separator orientation="horizontal" className="relative my-3">
+                  <Typography
+                    variant="p"
+                    className="max-md:w-2/3 text-foreground flex justify-center items-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-2"
+                  >
+                    {notif[1]}
+                  </Typography>
+                </Separator>
+                <Link href={"signup"} className="w-full">
+                  <Button
+                    className="w-full bg-background hover:bg-foreground text-foreground hover:text-background border-[1px] border-foreground font-bold"
+                    variant={"default"}
+                  >
+                    {signupBtn}
+                  </Button>
+                </Link>
+              </Flex>
             </Flex>
           </CardFooter>
         </form>

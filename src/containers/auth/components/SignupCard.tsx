@@ -77,7 +77,7 @@ export default function SignupCard() {
                   name={name as keyof SignupSchema}
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel />
+
                       <FormControl>
                         {type === "checkbox" ? (
                           <Flex className="items-center gap-x-4" key={name}>

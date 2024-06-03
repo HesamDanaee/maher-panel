@@ -1,0 +1,23 @@
+{
+    "title": "بازیابی رمز عبور",
+    "inputs": {
+        "sendCode": {
+            "title": "شماره موبایل",
+            "name": "mobile",
+            "placeholder": "شماره موبایل",
+            "required": "1",
+            "type": "number"
+        },
+        "validateCode": {
+            "title": "کد تایید",
+            "name": "OTP-Code",
+            "placeholder": "کد تایید",
+            "required": "1",
+            "type": "number"
+        }
+    },
+    "button": "ارسال کد",
+    "confirmBtn": "تایید کد",
+    "resendCode": "ارسال مجدد کد",
+    "toLogin": "بازگشت به صفحه ورود"
+}
