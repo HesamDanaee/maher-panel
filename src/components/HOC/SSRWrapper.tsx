@@ -1,4 +1,5 @@
 import fetcher from "@/src/lib/fetcher";
+import { ReadonlyURLSearchParams } from "next/navigation";
 import { ReactNode } from "react";
 
 interface SSRWrapperProps<Res, ResError> {
@@ -6,13 +7,25 @@ interface SSRWrapperProps<Res, ResError> {
   fetchDataBatch:
     | {
         url: string;
-        method: HTTPMethods;
-        payload?: BodyInit;
+        method?: HTTPMethods;
+        payload?: Object;
+        headers?: HeadersInit;
+        urlParams?: {
+          searchParams: ReadonlyURLSearchParams | { [key: string]: string };
+          params: { name: string; value: string }[];
+        };
+        requestOptions?: RequestInit;
       }
     | {
         url: string;
-        method: HTTPMethods;
-        payload?: BodyInit;
+        method?: HTTPMethods;
+        payload?: Object;
+        headers?: HeadersInit;
+        urlParams?: {
+          searchParams: ReadonlyURLSearchParams;
+          params: { name: string; value: string }[];
+        };
+        requestOptions?: RequestInit;
       }[];
 }
 
@@ -21,15 +34,31 @@ export default async function SSRWrapper<Res, ResError>({
   fetchDataBatch,
 }: SSRWrapperProps<Res, ResError>) {
   if (!Array.isArray(fetchDataBatch)) {
-    const { url, method, payload } = fetchDataBatch;
+    const { url, method, payload, headers, requestOptions, urlParams } =
+      fetchDataBatch;
 
-    const response = await fetcher(url, payload, method);
+    const response = await fetcher(
+      url,
+      method,
+      JSON.stringify(payload),
+      headers,
+      urlParams,
+      requestOptions
+    );
 
     return <>{children(response as Res)}</>;
   } else {
     const responses = await Promise.all(
-      fetchDataBatch.map(({ url, method, payload }) =>
-        fetcher(url, payload, method)
+      fetchDataBatch.map(
+        ({ url, method, payload, headers, urlParams, requestOptions }) =>
+          fetcher(
+            url,
+            method,
+            JSON.stringify(payload),
+            headers,
+            urlParams,
+            requestOptions
+          )
       )
     );
 

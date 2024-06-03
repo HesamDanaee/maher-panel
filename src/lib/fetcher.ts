@@ -1,24 +1,41 @@
+"use server";
+
 import { cookies } from "next/headers";
+import { createQueryString } from "@/src/lib/utils";
+import { ReadonlyURLSearchParams } from "next/navigation";
 
 export default async function fetcher<
   Success extends HttpResponse,
   Error extends HttpResponse
 >(
   url: string,
-  payload?: BodyInit | null,
   method: string = "GET",
-  headers: HeadersInit = {}
+  payload?: BodyInit | null,
+  headers: HeadersInit = {},
+  urlParams?: {
+    searchParams: ReadonlyURLSearchParams | { [key: string]: string };
+    params: { name: string; value: string }[];
+  },
+  requestOptions?: RequestInit
 ): Promise<Success | Error> {
   const options: RequestInit = {
+    ...requestOptions,
     method,
     headers: {
-      Authorization: `Bearer ${cookies().get("token")?.value}`,
+      Authorization: `Bearer ${cookies().get("token")?.value ?? ""}`,
       ...headers,
     },
     body: payload,
   };
 
-  const res = await fetch(url, options);
+  const { params, searchParams } = urlParams ?? {};
+
+  const reqURL =
+    urlParams && searchParams && params
+      ? url + "?" + createQueryString(searchParams, params, "add")
+      : url;
+
+  const res = await fetch(reqURL, options);
   const { ok, status } = res;
   const data = await res.json();
 
