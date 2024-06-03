@@ -13,25 +13,22 @@ import {
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-
-import { PiPlus, PiFile } from "react-icons/pi";
+import { PiFile } from "react-icons/pi";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@/src/components/shadcn/card";
-
 import { DataTableViewOptions } from "@/src/components/shadcn/datatable/DataTableViewOptions";
 import dataTables from "@/public/data/dataTables.json";
 import { customers } from "@/src/constants/mockData";
 import { useState } from "react";
 import DashboardLayout from "@/src/components/layouts/DashboardLayout";
-import Typography from "@/src/components/common/Typography";
 import Box from "@/src/components/common/Box";
 import { GridCol } from "@/src/components/common/Grid";
 import { DataTable } from "@/src/components/shadcn/datatable/DataTable";
-import CreateNewModal from "@/src/components/common/CreateNewModal";
+import CreateNewCustomer from "./components/CreateNewCustomer";
 
 interface CustomersProps {
   tab: DashboardSlugs;
@@ -39,11 +36,8 @@ interface CustomersProps {
 
 export default function Customers({ tab }: CustomersProps) {
   const { navbar } = headersData;
+
   const {
-    newCustomer: {
-      button,
-      modals: { modal1, modal2 },
-    },
     searchInput: { placeholder },
     exportBtn,
   } = customersData;
@@ -63,8 +57,6 @@ export default function Customers({ tab }: CustomersProps) {
       columnFilters,
     },
   });
-
-  const handleModalSubmit = (state: number) => {};
 
   return (
     <DashboardLayout>
@@ -89,6 +81,8 @@ export default function Customers({ tab }: CustomersProps) {
 
             <DataTableViewOptions table={table} />
 
+            {/* Export Button */}
+
             <Button size="sm" variant="outline" className="h-8 gap-1">
               <PiFile className="h-3.5 w-3.5" />
               <Box className="sr-only sm:not-sr-only sm:whitespace-nowrap">
@@ -96,18 +90,9 @@ export default function Customers({ tab }: CustomersProps) {
               </Box>
             </Button>
 
-            <CreateNewModal
-              onSubmit={handleModalSubmit}
-              trigger={
-                <Button size="sm" className="h-8 gap-1">
-                  <PiPlus className="h-3.5 w-3.5" />
-                  <Typography className="text-background sr-only sm:not-sr-only sm:whitespace-nowrap">
-                    {button}
-                  </Typography>
-                </Button>
-              }
-              data={modal1}
-            />
+            {/* Create new customer button */}
+
+            <CreateNewCustomer />
           </Flex>
         </Flex>
       </GridCol>
