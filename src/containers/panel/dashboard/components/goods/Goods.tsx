@@ -33,8 +33,7 @@ import Typography from "@/src/components/common/Typography";
 import Box from "@/src/components/common/Box";
 import { GridCol } from "@/src/components/common/Grid";
 import { DataTable } from "@/src/components/shadcn/datatable/DataTable";
-import CreateNewModal from "@/src/components/common/CreateNewModal";
-
+import NewGood from "./components/NewGood";
 interface GoodsProps {
   tab: DashboardSlugs;
 }
@@ -44,8 +43,6 @@ export default function Goods({ tab }: GoodsProps) {
   const {
     exportBtn,
     input: { placeholder },
-    newGood: { button, modal, modal2 },
-    table: { thData },
   } = goodsData;
 
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -87,6 +84,7 @@ export default function Goods({ tab }: GoodsProps) {
 
             <DataTableViewOptions table={table} />
 
+            {/* Export Button */}
             <Button size="sm" variant="outline" className="h-8 gap-1">
               <PiFile className="h-3.5 w-3.5" />
               <Box className="sr-only sm:not-sr-only sm:whitespace-nowrap">
@@ -94,19 +92,7 @@ export default function Goods({ tab }: GoodsProps) {
               </Box>
             </Button>
 
-            <CreateNewModal
-              trigger={
-                <Button size="sm" className="h-8 gap-1">
-                  <PiPlus className="h-3.5 w-3.5" />
-                  <Typography className="text-background sr-only sm:not-sr-only sm:whitespace-nowrap">
-                    {button}
-                  </Typography>
-                </Button>
-              }
-              // TODO: Change it later
-              onSubmit={() => {}}
-              data={modal}
-            />
+            <NewGood />
           </Flex>
         </Flex>
       </GridCol>
