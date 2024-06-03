@@ -14,7 +14,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import { PiPlus, PiFile } from "react-icons/pi";
+import { PiFile } from "react-icons/pi";
 import {
   Card,
   CardContent,
@@ -32,12 +32,11 @@ import dataTables from "@/public/data/dataTables.json";
 import { invoices } from "@/src/constants/mockData";
 import { useState } from "react";
 import DashboardLayout from "@/src/components/layouts/DashboardLayout";
-import Typography from "@/src/components/common/Typography";
 import Box from "@/src/components/common/Box";
 import { GridCol } from "@/src/components/common/Grid";
 import { DataTable } from "@/src/components/shadcn/datatable/DataTable";
-import CreateNewModal from "@/src/components/common/CreateNewModal";
 import VerifyCard from "./components/VerifyCard";
+import NewInvoice from "./components/NewInvoice";
 
 interface InvoiceProps {
   tab: DashboardSlugs;
@@ -115,19 +114,7 @@ export default function Invoice({ tab, isActive = false }: InvoiceProps) {
                   </Box>
                 </Button>
 
-                <CreateNewModal
-                  trigger={
-                    <Button size="sm" className="h-8 gap-1">
-                      <PiPlus className="h-3.5 w-3.5" />
-                      <Typography className="text-background sr-only sm:not-sr-only sm:whitespace-nowrap">
-                        {button}
-                      </Typography>
-                    </Button>
-                  }
-                  // TODO: Change it later
-                  onSubmit={() => {}}
-                  data={modal}
-                />
+                <NewInvoice />
               </Flex>
             </Flex>
           </GridCol>

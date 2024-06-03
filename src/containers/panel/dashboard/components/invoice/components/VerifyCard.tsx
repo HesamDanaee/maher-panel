@@ -83,7 +83,6 @@ export default function VerifyCard() {
                 name={name as keyof VerifySchema}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel />
                     <FormControl>
                       {type === "checkbox" ? (
                         <Flex className="items-center gap-x-4" key={name}>

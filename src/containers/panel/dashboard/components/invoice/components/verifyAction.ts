@@ -17,8 +17,8 @@ export const verifyAction = authAction(
 
     const res = await fetcher<SignupRes, SignupRes>(
       APIS.register,
-      payload,
-      "POST"
+      "POST",
+      payload
     );
 
     const { ok, message } = res;
