@@ -12,8 +12,15 @@ import {
   FormLabel,
   FormField,
   FormItem,
-  FormMessage,
 } from "@/src/components/shadcn/form";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/src/components/shadcn/select";
 
 import {
   Table,
@@ -33,7 +40,11 @@ import { Separator } from "@/src/components/shadcn/Separator";
 import Grid, { GridCol } from "@/src/components/common/Grid";
 import Box from "@/src/components/common/Box";
 
-export default function NewGoodForm() {
+interface NewGoodFormProps {
+  goodsResult: Goods[][];
+}
+
+export default function NewGoodForm({ goodsResult }: NewGoodFormProps) {
   const [goods, setGoods] = useState<NewGoodSchemaType[]>([]);
 
   const {
@@ -70,7 +81,7 @@ export default function NewGoodForm() {
           <form onSubmit={handleSubmit(onSubmit)} className="w-full">
             <Flex className="w-full flex-col space-y-4 py-4">
               <Grid className="grid-cols-2 max-md:grid-cols-1">
-                {inputs.map(({ name, label, type, options }, z) => (
+                {inputs.map(({ name, label, type }, z) => (
                   <GridCol key={name} className="col-span-auto !row-auto">
                     <FormField
                       control={control}
@@ -78,9 +89,28 @@ export default function NewGoodForm() {
                       render={({ field }) => (
                         <FormItem className="relative">
                           <FormLabel value={field.value}>{label}</FormLabel>
-                          <FormControl>
-                            <Input type={type} {...field} />
-                          </FormControl>
+                          {name === "type" ? (
+                            <Select onValueChange={field.onChange}>
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                {goodsResult[0].map(
+                                  ({ ID, DescriptionOfID }) => (
+                                    <SelectItem key={ID} value={ID}>
+                                      {DescriptionOfID}
+                                    </SelectItem>
+                                  )
+                                )}
+                              </SelectContent>
+                            </Select>
+                          ) : (
+                            <FormControl>
+                              <Input type={type} {...field} />
+                            </FormControl>
+                          )}
                         </FormItem>
                       )}
                     />

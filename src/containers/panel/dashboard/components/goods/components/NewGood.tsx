@@ -19,9 +19,13 @@ import {
   DialogTrigger,
 } from "@/src/components/shadcn/dialog";
 import goodsData from "@/public/data/panel/goods.json";
-import Box from "@/src/components/common/Box";
 import NewGoodForm from "./NewGoodForm";
-export default function NewGood() {
+
+interface NewGoodProps {
+  goodsResult: Goods[][];
+}
+
+export default function NewGood({ goodsResult }: NewGoodProps) {
   const {
     newGood: {
       button,
@@ -73,7 +77,7 @@ export default function NewGood() {
       </DropdownMenu>
 
       <DialogContent className="!min-w-[800px] !h-auto">
-        <NewGoodForm />
+        <NewGoodForm goodsResult={goodsResult} />
 
         <DialogFooter>
           <Button className="w-full" variant="default">

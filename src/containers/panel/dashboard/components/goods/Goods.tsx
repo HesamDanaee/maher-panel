@@ -36,9 +36,10 @@ import { DataTable } from "@/src/components/shadcn/datatable/DataTable";
 import NewGood from "./components/NewGood";
 interface GoodsProps {
   tab: DashboardSlugs;
+  goodsResult: Goods[][];
 }
 
-export default function Goods({ tab }: GoodsProps) {
+export default function Goods({ tab, goodsResult }: GoodsProps) {
   const { navbar } = headersData;
   const {
     exportBtn,
@@ -92,7 +93,7 @@ export default function Goods({ tab }: GoodsProps) {
               </Box>
             </Button>
 
-            <NewGood />
+            <NewGood goodsResult={goodsResult} />
           </Flex>
         </Flex>
       </GridCol>

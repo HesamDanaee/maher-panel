@@ -16,42 +16,37 @@
     "exportBtn": "استخراج",
     "newGood": {
         "button": "ثبت کالای جدید",
-        "modal": {
-            "title": "ثبت کالای جدید",
-            "description": "",
-            "btns": {
-                "btn1": {
-                    "title": "دستی",
-                    "description": "درج کالا به صورت دستی با وارد کردن اطلاعات"
-                },
-                "btn2": {
-                    "title": "فایل",
-                    "description": "درج کالا از طریق ارسال فایل با فرمت CVS"
-                }
+        "options": [
+            {
+                "title": "دستی",
+                "icon": "manual"
             },
-            "submit": "ادامه"
-        },
-        "modal2": {
+            {
+                "title": "فایل",
+                "icon": "file"
+            }
+        ],
+        "newGoodForm": {
             "title": "ثبت کالا به صورت تکی",
             "inputs": [
                 {
-                    "name": "good",
+                    "name": "type",
                     "label": "انتخاب کالا",
                     "type": "select",
                     "options": []
                 },
                 {
-                    "name": "goodName",
+                    "name": "name",
                     "label": "نام کالا",
                     "type": "string"
                 },
                 {
-                    "name": "goodCount",
-                    "label": "تعداد کالا",
-                    "type": "number"
+                    "name": "unit",
+                    "label": "واحد کالا",
+                    "type": "string"
                 },
                 {
-                    "name": "goodPrice",
+                    "name": "price",
                     "label": "قبمت کالا",
                     "type": "number"
                 }
@@ -59,12 +54,13 @@
             "addButton": "افزودن کالا",
             "table": {
                 "thData": [
-                    "عملیات",
-                    "شناسه کالا",
                     "قیمت",
                     "واحد کالا",
-                    "نام کالا"
-                ]
+                    "نام کالا",
+                    "نوع کالا"
+                ],
+                "caption": "لیست کالاهای اضافه شده اخیر",
+                "emptyList": "هیچ کالایی اضافه نشده است"
             },
             "submit": "ثبت نهایی"
         }

@@ -20,16 +20,16 @@ export default function Dashboard({ params }: DashboardProps) {
   const { slug } = params;
 
   const panelSections = {
-    invoice: <Invoice tab={slug} />,
     customers: <Customers tab={slug} />,
     taxpayers: <Taxpayers tab={slug} />,
-    goods: <Goods tab={slug} />,
   };
 
   return (
     <main className="w-full h-[100vh] max-sm:max-h-[100dvh] relative overflow-hidden bg-muted/40">
       <Header />
       {slug === "invoice" ? (
+        <Invoice tab={slug} isActive={true} />
+      ) : slug === "goods" ? (
         <Suspense
           fallback={
             <Flex className="flex-col space-y-3 justify-center items-center">
@@ -39,21 +39,40 @@ export default function Dashboard({ params }: DashboardProps) {
             </Flex>
           }
         >
-          <SSRWrapper<IsActiveRes, any>
+          <SSRWrapper<GetAllGoodsRes, GetAllGoodsRes>
             fetchDataBatch={{
-              url: APIS.isActive,
-              method: "POST",
+              url: APIS.getAllGoods,
             }}
           >
             {(data) => (
-              <Invoice
-                tab={slug}
-                isActive={(data as IsActiveRes).data.active === 1}
-              />
+              <Goods tab={slug} goodsResult={(data as GetAllGoodsRes).data} />
             )}
           </SSRWrapper>
         </Suspense>
       ) : (
+        // <Suspense
+        //   fallback={
+        //     <Flex className="flex-col space-y-3 justify-center items-center">
+        //       <Skeleton className="w-64 h-4" />
+        //       <Skeleton className="w-64 h-4" />
+        //       <Skeleton className="w-64 h-4" />
+        //     </Flex>
+        //   }
+        // >
+        //   <SSRWrapper<IsActiveRes, any>
+        //     fetchDataBatch={{
+        //       url: APIS.isActive,
+        //       method: "POST",
+        //     }}
+        //   >
+        //     {(data) => (
+        // <Invoice
+        //   tab={slug}
+        //   isActive={(data as IsActiveRes).data.active === 1}
+        // />
+        //     )}
+        //   </SSRWrapper>
+        // </Suspense>
         panelSections[slug]
       )}
       <Footer params={params} />
