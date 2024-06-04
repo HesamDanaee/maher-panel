@@ -7,7 +7,6 @@ import {
   DialogTrigger,
 } from "@/src/components/shadcn/dialog";
 import { ReactNode } from "react";
-import { Button } from "@/src/components/shadcn/button";
 import Flex from "@/src/components/common/Flex";
 import Typography from "@/src/components/common/Typography";
 import { PiFileCsvLight, PiPenNib } from "react-icons/pi";
@@ -15,6 +14,7 @@ import Grid, { GridCol } from "@/src/components/common/Grid";
 
 interface NewInvoiceProps {
   trigger: ReactNode;
+
   onSubmit: (state: number) => void;
   data: {
     title: string;
@@ -97,16 +97,6 @@ export default function CreateNewModal({
             </Flex>
           </GridCol>
         </Grid>
-
-        {/* <DialogFooter>
-          <Button
-            onClick={() => onSubmit(state)}
-            className="w-full bg-accent text-foreground hover:bg-background hover:text-foreground border-[1px] border-ghost"
-            variant={"default"}
-          >
-            {submit}
-          </Button>
-        </DialogFooter> */}
       </DialogContent>
     </Dialog>
   );
