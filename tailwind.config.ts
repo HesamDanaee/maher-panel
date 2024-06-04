@@ -19,7 +19,7 @@ const config = {
     },
     extend: {
       backgroundImage: {
-        "pattern": "url('/public/Illustrations/pattern2.svg')",
+        pattern: "url('/public/Illustrations/pattern2.svg')",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -27,6 +27,10 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        gray: {
+          DEFAULT: "hsl(var(--gray))",
+          foreground: "hsl(var(--gray-foreground))",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
