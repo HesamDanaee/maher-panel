@@ -50,7 +50,7 @@ const Stepper = memo(function Stepper({
               </Typography>
               <Typography
                 className={`text-md font-normal ${
-                  currentStep >= index + 1 ? "text-accent" : "text-foreground"
+                  currentStep >= index + 1 ? "text-ghost" : "text-muted"
                 }`}
                 variant="h4"
               >
