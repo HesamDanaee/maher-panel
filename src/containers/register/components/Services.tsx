@@ -13,17 +13,42 @@ import List from "@/src/components/common/List";
 import { Input } from "@/src/components/shadcn/input";
 import Container from "@/src/components/common/Container";
 import { Button } from "@/src/components/shadcn/button";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/src/components/shadcn/select";
 
-export default function Services() {
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/src/components/shadcn/form";
+
+interface ServicesProps {
+  goods: Goods[][];
+}
+
+export default function Services({ goods }: ServicesProps) {
   const { title, inputs, button } = servicesData;
+
+  const form = useForm<TServicesSchema>({
+    resolver: yupResolver(servicesSchema),
+  });
 
   const {
     control,
     formState: { errors },
     handleSubmit,
-  } = useForm<TServicesSchema>({
-    resolver: yupResolver(servicesSchema),
-  });
+  } = form;
 
   const submitForm = (data: TServicesSchema) => {};
 
@@ -34,58 +59,49 @@ export default function Services() {
       </Typography>
 
       <Container className="!max-w-xl flex-col space-y-3">
-        <form onSubmit={handleSubmit(submitForm)} className="w-full">
-          <Flex className="flex-col space-y-3">
-            <List
-              className="space-y-3"
-              list={
-                inputs as {
-                  placeholder: string;
-                  name: IServicesFormNames;
-                  required: string;
-                  type: string;
-                }[]
-              }
-              render={({ name, type, placeholder }, x) => (
-                <Controller
-                  control={control}
-                  name={name}
-                  render={(field) => (
-                    <Input
-                      {...field}
-                      placeholder={
-                        errors[name]
-                          ? (errors[name]?.message as string)
-                          : placeholder
-                      }
-                      aria-invalid={errors[name] ? "true" : "false"}
-                      autoComplete="on"
-                      className={`placeholder:text-secondary text-primary ${
-                        type === "checkbox"
-                          ? "checkbox checkbox-primary checkbox-xs"
-                          : `input ${
-                              errors[name] &&
-                              "input-error placeholder:text-destructive"
-                            } w-full`
-                      }  
-                 
-                ${errors[name]}
-                `}
-                    />
-                  )}
-                />
-              )}
-            />
-
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(submitForm)} className=" space-y-6">
+            {inputs.map(({ name, placeholder, type }) => (
+              <FormField
+                key={name}
+                control={control}
+                name={name as keyof TServicesSchema}
+                render={({ field }) => (
+                  <FormItem className="relative">
+                    <FormLabel value={field.value}>{placeholder}</FormLabel>
+                    {name === "productName" ? (
+                      <Select onValueChange={field.onChange}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            {goods[0].map(({ ID, DescriptionOfID }) => (
+                              <SelectItem key={ID} value={DescriptionOfID}>
+                                {DescriptionOfID}
+                              </SelectItem>
+                            ))}
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    ) : (
+                      <FormControl>
+                        <Input type={type} {...field} />
+                      </FormControl>
+                    )}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            ))}
             <Button
-              className="w-full bg-foreground hover:bg-background text-background hover:text-foreground border-[1px] hover:border-foreground font-bold"
+              className="w-full bg-background hover:bg-foreground text-foreground hover:text-background border-[1px] border-foreground font-bold"
               variant={"default"}
-              type="submit"
             >
               {button}
             </Button>
-          </Flex>
-        </form>
+          </form>
+        </Form>
       </Container>
     </Flex>
   );
