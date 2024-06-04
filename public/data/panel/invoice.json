@@ -5,7 +5,19 @@
         },
         "exportBtn": "استخراج",
         "newInvoice": {
-            "button": "ثبت فاکتور جدید",
+            "button": {
+                "text": "ثبت فاکتور جدید",
+                "options": [
+                    {
+                        "title": "دستی",
+                        "icon": "manual"
+                    },
+                    {
+                        "title": "فایل",
+                        "icon": "file"
+                    }
+                ]
+            },
             "options": [
                 {
                     "value": "all",
