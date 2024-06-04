@@ -10,10 +10,18 @@ import {
   useFormContext,
 } from "react-hook-form";
 
-import { cn } from "@/src/lib/utils";
+import { cn, isEmpty } from "@/src/lib/utils";
 import { Label } from "@/src/components/shadcn/label";
 
 const Form = FormProvider;
+
+interface ILabelProps {
+  className?: string;
+  children: React.ReactNode | React.ReactNode[];
+  htmlFor?: string;
+  value: string | number;
+  variant?: "dynamic" | "static";
+}
 
 type FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
@@ -84,21 +92,44 @@ const FormItem = React.forwardRef<
 });
 FormItem.displayName = "FormItem";
 
-const FormLabel = React.forwardRef<
-  React.ElementRef<typeof LabelPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
->(({ className, ...props }, ref) => {
-  const { error, formItemId } = useFormField();
+const FormLabel = React.forwardRef<HTMLLabelElement, ILabelProps>(
+  (
+    { className, children, htmlFor, value, variant = "dynamic", ...props },
+    ref
+  ) => {
+    const { error, formItemId } = useFormField();
 
-  return (
-    <Label
-      ref={ref}
-      className={cn(error && "text-destructive", className)}
-      htmlFor={formItemId}
-      {...props}
-    />
-  );
-});
+    const dS1 =
+      variant === "dynamic"
+        ? "absolute z-[6] !transition-all duration-75 ease-easeInOutBack"
+        : "";
+
+    const dS2 =
+      value && !isEmpty(value)
+        ? "top-0 -translate-y-[120%] text-xs text-primary"
+        : "top-1/2 -translate-y-1/2";
+
+    const dS3 = value && !isEmpty(value) ? "right-[5%]" : "right-[7%]";
+
+    return (
+      <Label
+        ref={ref}
+        className={cn(
+          className,
+          error && "text-destructive",
+          dS1,
+          variant === "dynamic" ? dS2 : "",
+          variant === "dynamic" ? dS3 : ""
+        )}
+        htmlFor={formItemId}
+        {...props}
+      >
+        {children}
+      </Label>
+    );
+  }
+);
+
 FormLabel.displayName = "FormLabel";
 
 const FormControl = React.forwardRef<
