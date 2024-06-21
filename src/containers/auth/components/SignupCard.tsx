@@ -1,15 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import useSWRMutation from "swr/mutation";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/src/components/shadcn/form";
-import { useAction } from "next-safe-action/hooks";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -23,20 +22,27 @@ import { Button } from "@/src/components/shadcn/button";
 import { Separator } from "@/src/components/shadcn/Separator";
 import Flex from "@/src/components/common/Flex";
 import Typography from "@/src/components/common/Typography";
-import { signupAction } from "./AuthActions";
 import signupData from "@/public/data/auth/signup.json";
 import loginData from "@/public/data/auth/login.json";
 import { useToast } from "@/src/components/shadcn/use-toast";
 import { signupSchema, SignupSchema } from "@/src/schema/authSchema";
 import { Input } from "@/src/components/shadcn/input";
 import { Checkbox } from "@/src/components/shadcn/checkbox";
-import { useEffect } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import fetcher from "@/src/lib/clientFetcher";
+import APIS from "@/src/constants/apis";
 
 export default function SignupCard() {
+  const router = useRouter();
+
   const { title, button, notif, inputs } = signupData;
   const { button: loginBtn } = loginData;
-  const { execute, result, status } = useAction(signupAction);
+  const { trigger } = useSWRMutation(
+    APIS.register,
+    async (url, { arg }: { arg: FormData }) =>
+      await fetcher<SignupRes, SignupRes>(url, "POST", arg)
+  );
+
   const { toast } = useToast();
 
   const form = useForm<SignupSchema>({
@@ -45,21 +51,22 @@ export default function SignupCard() {
 
   const { control, handleSubmit } = form;
 
-  const submitSignup = (value: SignupSchema) => execute(value);
+  const submitSignup = async (value: SignupSchema) => {
+    const payload = new FormData();
+    for (let [key, v] of Object.entries(value)) {
+      payload.set(key, v);
+    }
 
-  useEffect(() => {
-    const { message, status } = result.data ?? {
-      message: "",
-    };
+    const { ok, message } = await trigger(payload);
 
     if (message) {
       toast({
         title: message,
       });
 
-      if (status) redirect("/auth/login");
+      if (ok) router.push("/auth/login");
     }
-  }, [result, toast]);
+  };
 
   return (
     <Card className="xl:w-2/3 max-xl:w-3/4 max-lg:w-1/2 max-md:w-2/3 max-sm:w-full flex flex-col justify-between pt-4 border-none">
@@ -77,7 +84,6 @@ export default function SignupCard() {
                   name={name as keyof SignupSchema}
                   render={({ field }) => (
                     <FormItem>
-
                       <FormControl>
                         {type === "checkbox" ? (
                           <Flex className="items-center gap-x-4" key={name}>

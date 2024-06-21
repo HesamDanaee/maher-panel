@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useAction } from "next-safe-action/hooks";
+import useSWRMutation from "swr/mutation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -9,7 +9,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/src/components/shadcn/form";
 import {
@@ -23,23 +22,27 @@ import { Button } from "@/src/components/shadcn/button";
 import { Separator } from "@/src/components/shadcn/Separator";
 import Flex from "@/src/components/common/Flex";
 import Typography from "@/src/components/common/Typography";
-import { loginAction } from "./AuthActions";
 import loginData from "@/public/data/auth/login.json";
 import signupData from "@/public/data/auth/signup.json";
-import { useToast } from "@/src/components/shadcn/use-toast";
 import { loginSchema, LoginSchema } from "@/src/schema/authSchema";
-import { useEffect } from "react";
 import { Checkbox } from "@/src/components/shadcn/checkbox";
 import { Input } from "@/src/components/shadcn/input";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import fetcher from "@/src/lib/clientFetcher";
+import { setCookie } from "@/src/lib/utils";
+import APIS from "@/src/constants/apis";
 
 export default function LoginCard() {
+  const router = useRouter();
+
   const { button, title, notif, inputs } = loginData;
   const { button: signupBtn } = signupData;
 
-  const { execute, result, status } = useAction(loginAction);
-
-  const { toast } = useToast();
+  const { trigger } = useSWRMutation(
+    APIS.login,
+    async (url: string, { arg }: { arg: FormData }) =>
+      await fetcher<LoginRes, LoginRes>(url, "POST", arg)
+  );
 
   const form = useForm<LoginSchema>({
     resolver: yupResolver(loginSchema),
@@ -47,21 +50,19 @@ export default function LoginCard() {
 
   const { control, handleSubmit } = form;
 
-  const submitLogin = (value: LoginSchema) => execute(value);
-
-  useEffect(() => {
-    const { status, message } = result.data ?? {
-      message: "",
-    };
-
-    if (message) {
-      toast({
-        title: message,
-      });
-
-      if (status) redirect("/panel/dashboard/invoice");
+  const submitLogin = async (value: LoginSchema) => {
+    const payload = new FormData();
+    for (let [key, v] of Object.entries(value)) {
+      payload.set(key, v);
     }
-  }, [result, toast]);
+
+    const { status, access_token, expires_in } = await trigger(payload);
+
+    if (status && access_token) {
+      setCookie("token", access_token, expires_in);
+      if (status) router.push("/panel/dashboard/invoice");
+    }
+  };
 
   return (
     <Card className="xl:w-2/3 max-xl:w-3/4 max-lg:w-1/2 max-md:w-2/3 max-sm:w-full flex flex-col justify-between pt-4 border-none">

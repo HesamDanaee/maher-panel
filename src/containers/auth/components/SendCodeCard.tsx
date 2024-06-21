@@ -1,9 +1,8 @@
 "use client";
 
-import { useAction } from "next-safe-action/hooks";
+import useSWRMutation from "swr/mutation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import {
   Form,
   FormControl,
@@ -20,18 +19,18 @@ import {
 } from "@/src/components/shadcn/card";
 import { Button } from "@/src/components/shadcn/button";
 import Flex from "@/src/components/common/Flex";
-import { sendCodeAction } from "./AuthActions";
 import resetData from "@/public/data/auth/reset.json";
-
 import { useToast } from "@/src/components/shadcn/use-toast";
 import { resetSchema, ResetSchema } from "@/src/schema/authSchema";
 import { Input } from "@/src/components/shadcn/input";
-import { useEffect } from "react";
 import Link from "next/link";
-
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import APIS from "@/src/constants/apis";
+import fetcher from "@/src/lib/clientFetcher";
 
 export default function SendCodeCard() {
+  const router = useRouter();
+
   const {
     button,
     toLogin,
@@ -39,31 +38,33 @@ export default function SendCodeCard() {
     inputs: { sendCode },
   } = resetData;
 
-  const { execute, result } = useAction(sendCodeAction);
+  const { trigger } = useSWRMutation(
+    APIS.reset,
+    async (url: string, { arg }: { arg: FormData }) =>
+      await fetcher<ResetCodeRes, ResetCodeRes>(url, "POST", arg)
+  );
 
   const { toast } = useToast();
 
-  const form = useForm<ResetSchema>({
+  const form = useForm({
     resolver: yupResolver(resetSchema),
   });
 
   const { handleSubmit, control, getValues } = form;
 
-  const onSubmit = (value: ResetSchema) => execute(value);
-
-  useEffect(() => {
-    const { status, message } = result.data ?? {
-      message: "",
-    };
+  const onSubmit = async (value: ResetSchema) => {
+    const payload = new FormData();
+    payload.set("mobile", value.mobile);
+    const { ok, message } = await trigger(payload);
 
     if (message) {
       toast({
         title: message,
       });
 
-      if (status) redirect(`/auth/OTP?mobile=${getValues("mobile")}`);
+      if (ok) router.push(`/auth/OTP?mobile=${getValues("mobile")}`);
     }
-  }, [result, toast, getValues]);
+  };
 
   return (
     <Card className="xl:w-2/3 max-xl:w-3/4 max-lg:w-1/2 max-md:w-2/3 max-sm:w-full flex flex-col justify-between pt-4 border-none">

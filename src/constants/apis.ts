@@ -1,11 +1,13 @@
 const APIS = (() => {
   const base = process.env.BASE_URL;
+  const clientBaseURL = process.env.NEXT_PUBLIC_BASE_URL;
+
   return {
     base,
-    register: base + "/register",
-    login: base + "/auth/login",
-    reset: base + "/auth/forgotPass",
-    resetCode: base + "/resetPassLink",
+    register: clientBaseURL + "/register",
+    login: clientBaseURL + "/auth/login",
+    reset: clientBaseURL + "/auth/forgotPass",
+    resetCode: clientBaseURL + "/resetPassLink",
     isActive: base + "/panel/isActive",
     sendSMS: base + "/panel/sendSms",
     verify: base + "/panel/verify",
