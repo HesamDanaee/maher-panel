@@ -55,9 +55,14 @@ const codeSchema = new ObjectSchema({
   code: string().required(""),
 });
 
-export { loginSchema, signupSchema, resetSchema, codeSchema };
+const verifySchema = new ObjectSchema({
+  code: string().required(""),
+});
+
+export { loginSchema, signupSchema, resetSchema, codeSchema, verifySchema };
 
 export type LoginSchema = InferType<typeof loginSchema>;
 export type SignupSchema = InferType<typeof signupSchema>;
 export type ResetSchema = InferType<typeof resetSchema>;
 export type CodeSchema = InferType<typeof codeSchema>;
+export type VerifySchema = InferType<typeof verifySchema>;

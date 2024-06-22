@@ -9,23 +9,25 @@ import ctaData from "@/public/data/auth/cta.json";
 import Flex from "@/src/components/common/Flex";
 import SendCodeCard from "./components/SendCodeCard";
 import OTPCard from "./components/OTPCard";
+import VerifyCard from "./components/VerifyCard";
 
 interface AuthProps {
   params: {
-    slug: "login" | "signup" | "sendCode" | "OTP";
+    slug: "login" | "signup" | "sendCode" | "OTP" | "verify";
   };
 }
 
 export default async function Auth({ params: { slug } }: AuthProps) {
   const { title, subtitle } = ctaData;
 
-  const slugs = ["signup", "login", "sendCode", "OTP"];
+  const slugs = ["signup", "login", "sendCode", "OTP", "verify"];
 
   const cards = {
     signup: <SignupCard />,
     login: <LoginCard />,
     sendCode: <SendCodeCard />,
     OTP: <OTPCard />,
+    verify: <VerifyCard />,
   };
 
   // This path should only be available for this two slugs
