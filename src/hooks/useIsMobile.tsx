@@ -6,14 +6,14 @@ export const useIsMobile = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      const isMobileQuery = window.matchMedia("(max-width: 640px)"); // Adjust breakpoint as needed
+      const isMobileQuery = window?.matchMedia("(max-width: 640px)");
       setIsMobile(isMobileQuery.matches);
     };
 
     handleResize();
-    window.addEventListener("resize", handleResize);
+    window?.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window?.removeEventListener("resize", handleResize);
   }, []);
 
   return isMobile;

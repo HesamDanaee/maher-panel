@@ -14,37 +14,25 @@
         "individual": [
             {
                 "placeholder": "نام و نام خانوادگی",
-                "name": "fullName",
+                "name": "name",
                 "required": "1",
                 "type": "string"
             },
             {
                 "placeholder": "کد ملی",
-                "name": "naCode",
+                "name": "national_code",
                 "required": "1",
                 "type": "string"
             },
             {
                 "placeholder": "کد اقتصادی",
-                "name": "ecCode",
+                "name": "economic_code",
                 "required": "1",
                 "type": "string"
             },
             {
                 "placeholder": "کد پستی",
-                "name": "postCode",
-                "required": "1",
-                "type": "string"
-            },
-            {
-                "placeholder": "عدد شروع فاکتور",
-                "name": "invoice",
-                "required": "1",
-                "type": "string"
-            },
-            {
-                "placeholder": "تاریخ تولد",
-                "name": "birthdate",
+                "name": "postal_code",
                 "required": "1",
                 "type": "string"
             },

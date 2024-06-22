@@ -50,29 +50,6 @@ export default function Dashboard({ params }: DashboardProps) {
           </SSRWrapper>
         </Suspense>
       ) : (
-        // <Suspense
-        //   fallback={
-        //     <Flex className="flex-col space-y-3 justify-center items-center">
-        //       <Skeleton className="w-64 h-4" />
-        //       <Skeleton className="w-64 h-4" />
-        //       <Skeleton className="w-64 h-4" />
-        //     </Flex>
-        //   }
-        // >
-        //   <SSRWrapper<IsActiveRes, any>
-        //     fetchDataBatch={{
-        //       url: APIS.isActive,
-        //       method: "POST",
-        //     }}
-        //   >
-        //     {(data) => (
-        // <Invoice
-        //   tab={slug}
-        //   isActive={(data as IsActiveRes).data.active === 1}
-        // />
-        //     )}
-        //   </SSRWrapper>
-        // </Suspense>
         panelSections[slug]
       )}
       <Footer params={params} />

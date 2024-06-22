@@ -15,7 +15,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import { PiPlus, PiFile } from "react-icons/pi";
+import { PiFile } from "react-icons/pi";
 import {
   Card,
   CardContent,

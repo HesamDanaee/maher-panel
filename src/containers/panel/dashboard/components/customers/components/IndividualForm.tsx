@@ -5,7 +5,15 @@ import Flex from "@/src/components/common/Flex";
 
 import { Input } from "@/src/components/shadcn/input";
 import { useForm } from "react-hook-form";
-import { Form, FormControl, FormField } from "@/src/components/shadcn/form";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/src/components/shadcn/form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   individualSchema,
@@ -13,6 +21,10 @@ import {
 } from "@/src/constants/validations/newCustomerSchema";
 
 import inputsData from "@/public/data/register/signup.json";
+import useSWRMutation from "swr/mutation";
+import APIS from "@/src/constants/apis";
+import fetcher from "@/src/lib/clientFetcher";
+import { useToast } from "@/src/components/shadcn/use-toast";
 
 interface Inputs {
   options: string[];
@@ -33,14 +45,29 @@ export default function IndividualForm() {
     submit,
   } = inputsData;
 
+  const { toast } = useToast();
+  const { trigger: addCustomer } = useSWRMutation(
+    APIS.addCustomer,
+    async (url: string, { arg }: { arg: FormData }) =>
+      await fetcher<AddCustomersRes, AddCustomersRes>(url, "POST", arg)
+  );
+
   const form = useForm({
     resolver: yupResolver(individualSchema),
   });
 
   const { control, handleSubmit } = form;
 
-  const onSubmit = (value: IndividualSchemaType) => {
-    console.log(value);
+  const onSubmit = async (value: IndividualSchemaType) => {
+    const payload = new FormData();
+    for (let [key, v] of Object.entries(value)) {
+      payload.set(key, v);
+    }
+    const { message } = (await addCustomer(payload)) ?? {};
+
+    toast({
+      title: message,
+    });
   };
 
   return (
@@ -54,9 +81,13 @@ export default function IndividualForm() {
                 name={name as keyof IndividualSchemaType}
                 control={control}
                 render={({ field }) => (
-                  <FormControl>
-                    <Input placeholder={placeholder} {...field} />
-                  </FormControl>
+                  <FormItem>
+                    <FormControl>
+                      <Input placeholder={placeholder} {...field} />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
                 )}
               />
             ))}

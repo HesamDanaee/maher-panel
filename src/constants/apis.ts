@@ -12,6 +12,8 @@ const APIS = (() => {
     sendSMS: clientBaseURL + "/panel/sendSms",
     verify: clientBaseURL + "/panel/verify",
     completeUser: base + "/panel/completeUser",
+    addCustomer: clientBaseURL + "/panel/customers/add",
+    updateCustomer: clientBaseURL + "/panel/customers/update",
     uploadScv: base + "/panel/goods/upload-csv",
     getAllGoods: base + "/panel/goods/getAll",
     goods: base + "/panel/goods/add",
