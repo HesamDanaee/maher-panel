@@ -11,7 +11,10 @@ export async function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.match(authRegex)) {
     if (token) {
       const { data } =
-        (await fetcher<IsActiveRes, IsActiveRes>(APIS.isActive, "POST")) ?? {};
+        (await fetcher<IsActiveRes, IsActiveRes>(
+          APIS.panel.isActive,
+          "POST"
+        )) ?? {};
 
       if (data.active === 0) {
         return Response.redirect(new URL("/auth/verify", request.url));

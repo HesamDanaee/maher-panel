@@ -18,17 +18,11 @@ import Flex from "@/src/components/common/Flex";
 import staticData from "@/public/data/auth/verify.json";
 import loginData from "@/public/data/auth/login.json";
 import { useToast } from "@/src/components/shadcn/use-toast";
-import {
-  signupSchema,
-  SignupSchema,
-  verifySchema,
-  VerifySchema,
-} from "@/src/schema/authSchema";
+import { verifySchema, VerifySchema } from "@/src/schema/authSchema";
 import { useRouter } from "next/navigation";
 import fetcher from "@/src/lib/clientFetcher";
 import APIS from "@/src/constants/apis";
 import { useEffect, useState } from "react";
-
 import {
   InputOTP,
   InputOTPGroup,
@@ -45,14 +39,14 @@ export default function VerifyCard() {
   const router = useRouter();
 
   const { title, description, button, input, resendCode, toLogin } = staticData;
-  const { button: loginBtn } = loginData;
+
   const { trigger } = useSWRMutation(
-    APIS.sendSMS,
+    APIS.panel.sendSMS,
     async (url) => await fetcher<SendSMSRes, SendSMSRes>(url, "POST")
   );
 
   const { trigger: verfyCode } = useSWRMutation(
-    APIS.verify,
+    APIS.panel.verify,
     async (url: string, { arg }: { arg: FormData }) =>
       await fetcher<SendSMSRes, SendSMSRes>(url, "POST", arg)
   );

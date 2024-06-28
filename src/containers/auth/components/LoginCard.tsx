@@ -31,7 +31,6 @@ import { useRouter } from "next/navigation";
 import fetcher from "@/src/lib/clientFetcher";
 import { setCookie } from "@/src/lib/utils";
 import APIS from "@/src/constants/apis";
-import useSWR from "swr";
 
 export default function LoginCard() {
   const router = useRouter();
@@ -40,13 +39,13 @@ export default function LoginCard() {
   const { button: signupBtn } = signupData;
 
   const { trigger } = useSWRMutation(
-    APIS.login,
+    APIS.auth.login,
     async (url: string, { arg }: { arg: FormData }) =>
       await fetcher<LoginRes, LoginRes>(url, "POST", arg)
   );
 
   const { trigger: triggerIsActive } = useSWRMutation(
-    APIS.isActive,
+    APIS.panel.isActive,
     async (url: string) => await fetcher<IsActiveRes, IsActiveRes>(url, "POST")
   );
 

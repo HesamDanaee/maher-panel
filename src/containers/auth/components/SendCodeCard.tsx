@@ -39,7 +39,7 @@ export default function SendCodeCard() {
   } = resetData;
 
   const { trigger } = useSWRMutation(
-    APIS.reset,
+    APIS.auth.reset,
     async (url: string, { arg }: { arg: FormData }) =>
       await fetcher<ResetCodeRes, ResetCodeRes>(url, "POST", arg)
   );

@@ -50,7 +50,7 @@ export default function Register({ params: { slug } }: RegisterProps) {
         {step === "services" ? (
           <SSRWrapper<GetAllGoodsRes, GetAllGoodsRes>
             fetchDataBatch={{
-              url: APIS.getAllGoods,
+              url: APIS.panel.goods.goodsList,
             }}
           >
             {(data) => <Services goods={(data as GetAllGoodsRes).data} />}

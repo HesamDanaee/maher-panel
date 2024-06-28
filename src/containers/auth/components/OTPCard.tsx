@@ -55,7 +55,7 @@ export default function OTPCard() {
   const code = form.watch("code");
 
   const { trigger: sendOTP } = useSWRMutation(
-    APIS.reset,
+    APIS.auth.reset,
     async (url: string, { arg }: { arg: FormData }) =>
       await fetcher<ResetCodeRes, ResetCodeRes>(url, "POST", arg)
   );

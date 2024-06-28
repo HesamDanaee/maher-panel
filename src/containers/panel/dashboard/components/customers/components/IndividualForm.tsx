@@ -8,10 +8,8 @@ import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/src/components/shadcn/form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -47,7 +45,7 @@ export default function IndividualForm() {
 
   const { toast } = useToast();
   const { trigger: addCustomer } = useSWRMutation(
-    APIS.addCustomer,
+    APIS.panel.customer.add,
     async (url: string, { arg }: { arg: FormData }) =>
       await fetcher<AddCustomersRes, AddCustomersRes>(url, "POST", arg)
   );
