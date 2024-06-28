@@ -46,37 +46,37 @@
         "legalEnteties": [
             {
                 "placeholder": "نام شرکت",
-                "name": "companyName",
+                "name": "name",
                 "required": "1",
                 "type": "string"
             },
             {
-                "placeholder": "شماره ثبت شرکت",
-                "name": "companyRegistrationNumber",
+                "placeholder": "شماره تلفن",
+                "name": "phone",
                 "required": "1",
                 "type": "string"
             },
             {
                 "placeholder": "کد اقتصادی",
-                "name": "ecCode",
+                "name": "economic_code",
                 "required": "1",
                 "type": "string"
             },
             {
                 "placeholder": "کد پستی",
-                "name": "postCode",
+                "name": "postal_code",
                 "required": "1",
                 "type": "string"
             },
             {
-                "placeholder": "عدد شروع فاکتور",
-                "name": "invoice",
+                "placeholder": "شعبه",
+                "name": "branch",
                 "required": "1",
                 "type": "string"
             },
             {
-                "placeholder": "تاریخ ثبت شرکت",
-                "name": "companyRegistrationDate",
+                "placeholder": "شناسه ملی",
+                "name": "shenase_meli",
                 "required": "1",
                 "type": "string"
             },
