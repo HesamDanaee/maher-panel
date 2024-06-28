@@ -57,5 +57,10 @@
         "modal": {
             "emptyMessage": "لیست اعلانات خالی می باشد"
         }
+    },
+    "profile": {
+        "profile": "پروفایل",
+        "settings": "تنظیمات",
+        "logout": "خروج از حساب"
     }
 }

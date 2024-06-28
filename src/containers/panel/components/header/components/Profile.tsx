@@ -1,5 +1,6 @@
 import Flex from "@/src/components/common/Flex";
 import Typography from "@/src/components/common/Typography";
+import staticData from "@/public/data/panel/header.json";
 import {
   Avatar,
   AvatarImage,
@@ -13,7 +14,19 @@ import {
 } from "@/src/components/shadcn/popover";
 import { PiGearFine, PiUser } from "react-icons/pi";
 
-export default function Profile() {
+interface ProfileProps {
+  data: ProfileRes;
+}
+
+export default function Profile({ data }: ProfileProps) {
+  const {
+    profile: { profile, settings, logout },
+  } = staticData;
+
+  const {
+    data: { name, mobile, email },
+  } = data;
+
   return (
     <Popover>
       <PopoverTrigger>
@@ -31,24 +44,30 @@ export default function Profile() {
         {/* Header */}
         <Flex className="flex-col border-b-[1px] border-secondary py-2 px-4">
           <Typography variant="p" className="font-light">
-            حسام دانائی
+            {name}
           </Typography>
           <Typography variant="p" className="text-ghost font-extralight">
-            HesamDanaey@outlook.com
+            {mobile}
           </Typography>
+
+          {email && (
+            <Typography variant="p" className="text-ghost font-extralight">
+              {email}
+            </Typography>
+          )}
         </Flex>
 
         {/* Body */}
         <Flex className="flex-col py-2 px-1">
           <Flex className="justify-between items-center py-1 hover:cursor-pointer hover:bg-muted px-2 rounded-sm bgTransition">
             <Typography variant="p" className="text-foreground font-extralight">
-              پروفایل
+              {profile}
             </Typography>
             <PiUser className="w-5 h-5" />
           </Flex>
           <Flex className="justify-between items-center py-1 hover:cursor-pointer hover:bg-muted px-2 rounded-sm bgTransition group">
             <Typography variant="p" className="text-foreground font-extralight">
-              تنظیمات
+              {settings}
             </Typography>
             <PiGearFine className="w-5 h-5 group-hover:rotate-45 transition duration-100 ease-out" />
           </Flex>
@@ -58,7 +77,7 @@ export default function Profile() {
         <Flex className="border-t-[1px] border-secondary py-2 px-1">
           <Flex className="py-1 hover:cursor-pointer hover:bg-muted px-2 rounded-sm bgTransition">
             <Typography variant="p" className="text-foreground font-extralight">
-              خروج از حساب
+              {logout}
             </Typography>
           </Flex>
         </Flex>
