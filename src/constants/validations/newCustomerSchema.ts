@@ -14,17 +14,20 @@ const individualSchema = new ObjectSchema({
   economic_code: string().required("فیلد کد اقتصادی الزامی می باشد"),
   postal_code: string().required("فیلد کد پستی الزامی می باشد"),
   address: string().required("فیلد آدرس الزامی می باشد"),
+  branch: string().required("فیلد شعبه اجباری می باشد"),
 });
 
 const legalEntetiesSchema = new ObjectSchema({
-  customer: string(),
-  companyName: string(),
-  companyRegistrationNumber: string(),
-  ecCode: number(),
-  postCode: string(),
-  invoice: string(),
-  companyRegistrationDate: string(),
-  address: string(),
+  type: string().default("legal"),
+  name: string().required("فیلد نام و نام خانوادگی الزامی می باشد"),
+  shenase_meli: string()
+    .matches(nationalCodePattern, "کد ملی معتبر نمی باشد")
+    .required("فیلد کد ملی الزامی می باشد"),
+  economic_code: string().required("فیلد کد اقتصادی الزامی می باشد"),
+  postal_code: string().required("فیلد کد پستی الزامی می باشد"),
+  address: string().required("فیلد آدرس الزامی می باشد"),
+  branch: string().required("فیلد شعبه اجباری می باشد"),
+  phone: string().required("فیلد شماره موبایل الزامی می باشد"),
 });
 
 export type IndividualSchemaType = InferType<typeof individualSchema>;

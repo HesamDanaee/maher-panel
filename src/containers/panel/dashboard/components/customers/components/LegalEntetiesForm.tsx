@@ -1,10 +1,8 @@
 "use client";
 
-import { ReactNode } from "react";
 import { Button } from "@/src/components/shadcn/button";
-
+import { DialogClose } from "@/src/components/shadcn/dialog";
 import Flex from "@/src/components/common/Flex";
-
 import { Input } from "@/src/components/shadcn/input";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField } from "@/src/components/shadcn/form";
@@ -13,21 +11,11 @@ import {
   legalEntetiesSchema,
   LegalEntetiesSchemaType,
 } from "@/src/constants/validations/newCustomerSchema";
+import useSWRMutation from "swr/mutation";
+import APIS from "@/src/constants/apis";
+import fetcher from "@/src/lib/clientFetcher";
+import { useToast } from "@/src/components/shadcn/use-toast";
 import inputsData from "@/public/data/register/signup.json";
-
-interface Inputs {
-  options: string[];
-  enTitles: string[];
-  inputs: LegalEnteties[];
-  submit: string;
-}
-
-interface LegalEnteties {
-  placeholder: string;
-  name: keyof LegalEntetiesSchemaType;
-  required?: string;
-  type: string;
-}
 
 export default function LegalEntetiesForm() {
   const {
@@ -38,10 +26,26 @@ export default function LegalEntetiesForm() {
     resolver: yupResolver(legalEntetiesSchema),
   });
 
+  const { toast } = useToast();
+  const { trigger: addCustomer } = useSWRMutation(
+    APIS.panel.customer.add,
+    async (url: string, { arg }: { arg: FormData }) =>
+      await fetcher<AddLegalRes, AddLegalRes>(url, "POST", arg)
+  );
+
   const { control, handleSubmit } = form;
 
-  const onSubmit = (value: LegalEntetiesSchemaType) => {
-    console.log(value);
+  const onSubmit = async (value: LegalEntetiesSchemaType) => {
+    const payload = new FormData();
+    for (let [key, v] of Object.entries(value)) {
+      payload.set(key, v);
+    }
+
+    const { data, message } = await addCustomer(payload);
+
+    toast({
+      title: message,
+    });
   };
 
   return (
@@ -62,12 +66,16 @@ export default function LegalEntetiesForm() {
               />
             ))}
           </Flex>
-          <Button
-            className="w-full bg-accent text-foreground hover:bg-background hover:text-foreground border-[1px] border-ghost"
-            variant={"default"}
-          >
-            {submit}
-          </Button>
+
+          <DialogClose>
+            <Button
+              className="w-full bg-accent text-foreground hover:bg-background hover:text-foreground border-[1px] border-ghost"
+              variant={"default"}
+              type="submit"
+            >
+              {submit}
+            </Button>
+          </DialogClose>
         </Flex>
       </form>
     </Form>
