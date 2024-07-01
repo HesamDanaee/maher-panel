@@ -132,7 +132,7 @@ export default function Invoice({ tab, isActive = false }: InvoiceProps) {
                   <DataTable
                     table={table}
                     columns={table._getColumnDefs()}
-                    data={invoices}
+
                   />
                 </CardContent>
               </Card>

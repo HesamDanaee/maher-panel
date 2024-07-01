@@ -14,7 +14,6 @@ import { useIsMobile } from "@/src/hooks/useIsMobile";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
   table: TTable<TData>;
 }
 

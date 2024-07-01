@@ -122,7 +122,7 @@ export default function Taxpayers({ tab }: TaxpayersProps) {
             <DataTable
               table={table}
               columns={table._getColumnDefs()}
-              data={taxpayers}
+
             />
           </CardContent>
         </Card>
