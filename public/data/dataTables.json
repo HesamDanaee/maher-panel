@@ -1,46 +1,82 @@
 {
   "customers": [
     {
+      "accessorKey": "created_at",
+      "header": "ایجاد شده در"
+    },
+    {
+      "accessorKey": "updated_at",
+      "header": "آپدیت شده در"
+    },
+    {
+      "accessorKey": "type",
+      "header": "نوع مشتری"
+    },
+    {
+      "accessorKey": "national_code",
+      "header": "کدملی"
+    },
+    {
       "accessorKey": "name",
-      "header": "نام"
+      "header": "نام و نام خانوادگی"
     },
     {
-      "accessorKey": "mobile",
-      "header": "موبایل"
+      "accessorKey": "economic_code",
+      "header": "کد اقتصادی"
     },
     {
-      "accessorKey": "nationalId1",
+      "accessorKey": "shenase_meli",
       "header": "شناسه ملی"
     },
     {
-      "accessorKey": "nationalId2",
-      "header": "کد ملی"
+      "accessorKey": "postal_code",
+      "header": "کد پستی"
     },
     {
-      "accessorKey": "postCode",
-      "header": "کد پستی"
+      "accessorKey": "address",
+      "header": "آدرس"
+    },
+    {
+      "accessorKey": "phone",
+      "header": "موبایل"
+    },
+    {
+      "accessorKey": "branch",
+      "header": "شعبه"
     }
   ],
   "goods": [
     {
-      "accessorKey": "goodsUnit",
+      "accessorKey": "updated_at",
+      "header": "آپدیت شده در"
+    },
+    {
+      "accessorKey": "created_at",
+      "header": "ایجاد شده در"
+    },
+    {
+      "accessorKey": "good_id",
+      "header": "آیدی کالا"
+    },
+    {
+      "accessorKey": "user_creator",
+      "header": "ایجاد شده توسط"
+    },
+    {
+      "accessorKey": "id",
+      "header": "آیدی"
+    },
+    {
+      "accessorKey": "unit",
       "header": "واحد کالا"
     },
     {
-      "accessorKey": "goodsName",
+      "accessorKey": "title",
       "header": "نام کالا"
     },
     {
-      "accessorKey": "price",
-      "header": "قیمت"
-    },
-    {
-      "accessorKey": "taxPercent",
-      "header": "درصد مالیات"
-    },
-    {
-      "accessorKey": "taxStatus",
-      "header": "وضعیت مالیات"
+      "accessorKey": "number",
+      "header": "تعداد"
     }
   ],
   "invoice": [

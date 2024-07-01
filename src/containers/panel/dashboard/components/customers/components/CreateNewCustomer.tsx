@@ -16,7 +16,7 @@ import {
 } from "@/src/components/shadcn/Dropdown-menu";
 
 import IndividualForm from "./IndividualForm";
-import LegalEntetiesForm from "./LegalEntetiesForm";
+import LegalEntitiesForm from "./LegalEntitiesForm";
 import {
   Dialog,
   DialogContent,
@@ -28,7 +28,7 @@ import Box from "@/src/components/common/Box";
 
 export default function CreateNewCustomer() {
   const [selectedForm, setSelectedForm] = useState<
-    "individual" | "legalEnteties"
+    "individual" | "legalEntities"
   >("individual");
 
   const {
@@ -78,7 +78,7 @@ export default function CreateNewCustomer() {
                               setSelectedForm(
                                 icon === "individual"
                                   ? "individual"
-                                  : "legalEnteties"
+                                  : "legalEntities"
                               )
                             }
                           >
@@ -141,7 +141,7 @@ export default function CreateNewCustomer() {
           {selectedForm === "individual" ? (
             <IndividualForm />
           ) : (
-            <LegalEntetiesForm />
+            <LegalEntitiesForm />
           )}
         </Box>
       </DialogContent>
