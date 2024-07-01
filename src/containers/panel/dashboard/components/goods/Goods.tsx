@@ -1,10 +1,13 @@
 "use client";
 
+
+
 import { Input } from "@/src/components/shadcn/input";
 import Flex from "@/src/components/common/Flex";
 import { Button } from "@/src/components/shadcn/button";
 import goodsData from "@/public/data/panel/goods.json";
 import headersData from "@/public/data/panel/header.json";
+import {format} from 'date-fns-jalali'
 
 import {
   ColumnDef,
@@ -36,22 +39,25 @@ import { DataTable } from "@/src/components/shadcn/datatable/DataTable";
 import NewGood from "./components/NewGood";
 interface GoodsProps {
   tab: DashboardSlugs;
-  goodsResult: Goods[][];
+  goodsResult?: Goods[][];
+  userGoodsList:UserGoodsData[][]
 }
 
-export default function Goods({ tab, goodsResult }: GoodsProps) {
+export default function Goods({ tab, goodsResult, userGoodsList }: GoodsProps) {
   const { navbar } = headersData;
   const {
     exportBtn,
     input: { placeholder },
   } = goodsData;
 
+  const mappedGoods = userGoodsList.flat(1).map(good => ({...good,updated_at:format(good.updated_at,"yyyy/m/d"),created_at:format(good.created_at,"yyyy/m/d")}))
+
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
-  const column: ColumnDef<GoodsTable>[] = dataTables.goods;
+  const column: ColumnDef<UserGoodsData>[] = dataTables.goods;
 
   const table = useReactTable({
-    data: goods,
+    data: mappedGoods,
     columns: column,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -61,6 +67,7 @@ export default function Goods({ tab, goodsResult }: GoodsProps) {
       columnFilters,
     },
   });
+
 
   return (
     <DashboardLayout>
@@ -72,12 +79,12 @@ export default function Goods({ tab, goodsResult }: GoodsProps) {
             <Input
               placeholder={placeholder}
               value={
-                (table.getColumn("creationDate")?.getFilterValue() as string) ??
+                (table.getColumn("title")?.getFilterValue() as string) ??
                 ""
               }
               onChange={(event) =>
                 table
-                  .getColumn("creationDate")
+                  .getColumn("title")
                   ?.setFilterValue(event.target.value)
               }
               className="md:min-w-[400px] max-sm:w-full placeholder:text-secondary placeholder:font-light text-end"
@@ -93,7 +100,7 @@ export default function Goods({ tab, goodsResult }: GoodsProps) {
               </Box>
             </Button>
 
-            <NewGood goodsResult={goodsResult} />
+            <NewGood goodsResult={goodsResult ?? []} />
           </Flex>
         </Flex>
       </GridCol>
@@ -110,7 +117,7 @@ export default function Goods({ tab, goodsResult }: GoodsProps) {
             <DataTable
               table={table}
               columns={table._getColumnDefs()}
-              data={goods}
+
             />
           </CardContent>
         </Card>

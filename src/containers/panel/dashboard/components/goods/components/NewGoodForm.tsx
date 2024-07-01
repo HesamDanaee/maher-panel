@@ -2,9 +2,7 @@
 import Flex from "@/src/components/common/Flex";
 import Typography from "@/src/components/common/Typography";
 import React, { useState } from "react";
-
 import { useForm } from "react-hook-form";
-
 import goodsData from "@/public/data/panel/goods.json";
 import {
   Form,
@@ -31,7 +29,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/src/components/shadcn/Table";
-
 import { Input } from "@/src/components/shadcn/input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { newGoodSchema, NewGoodSchemaType } from "@/src/schema/goodsSchema";
@@ -42,10 +39,11 @@ import Box from "@/src/components/common/Box";
 
 interface NewGoodFormProps {
   goodsResult: Goods[][];
+  goodsList:NewGoodSchemaType[];
+  handleSelectGood:(goods:NewGoodSchemaType[]) => void
 }
 
-export default function NewGoodForm({ goodsResult }: NewGoodFormProps) {
-  const [goods, setGoods] = useState<NewGoodSchemaType[]>([]);
+export default function NewGoodForm({ goodsResult,goodsList, handleSelectGood }: NewGoodFormProps) {
 
   const {
     newGood: {
@@ -65,7 +63,8 @@ export default function NewGoodForm({ goodsResult }: NewGoodFormProps) {
   const { handleSubmit, control } = form;
 
   const onSubmit = (value: NewGoodSchemaType) =>
-    setGoods((prev) => [...prev, value]);
+      handleSelectGood([...goodsList, value]);
+
 
   return (
     <Flex className="flex-col items-center space-y-4">
@@ -89,7 +88,7 @@ export default function NewGoodForm({ goodsResult }: NewGoodFormProps) {
                       render={({ field }) => (
                         <FormItem className="relative">
                           <FormLabel value={field.value}>{label}</FormLabel>
-                          {name === "type" ? (
+                          {name === "title" ? (
                             <Select onValueChange={field.onChange}>
                               <FormControl>
                                 <SelectTrigger>
@@ -99,7 +98,7 @@ export default function NewGoodForm({ goodsResult }: NewGoodFormProps) {
                               <SelectContent>
                                 {goodsResult[0].map(
                                   ({ ID, DescriptionOfID }) => (
-                                    <SelectItem key={ID} value={ID}>
+                                    <SelectItem key={ID} value={DescriptionOfID}>
                                       {DescriptionOfID}
                                     </SelectItem>
                                   )
@@ -128,7 +127,7 @@ export default function NewGoodForm({ goodsResult }: NewGoodFormProps) {
       {/* Table to display added goods */}
 
       <Box className="w-full max-h-[300px] overflow-y-auto">
-        {goods.length > 0 ? (
+        {goodsList.length > 0 ? (
           <Table className="overflow-hidden">
             <TableCaption>{caption}</TableCaption>
             <TableHeader>
@@ -141,7 +140,7 @@ export default function NewGoodForm({ goodsResult }: NewGoodFormProps) {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {goods.map((good, x) => (
+              {goodsList.map((good, x) => (
                 <TableRow key={x} className="text-center">
                   {Object.values(good).map((value, z) => (
                     <TableCell key={z}>{value}</TableCell>

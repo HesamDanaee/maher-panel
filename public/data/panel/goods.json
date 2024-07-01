@@ -30,15 +30,15 @@
             "title": "ثبت کالا به صورت تکی",
             "inputs": [
                 {
-                    "name": "type",
-                    "label": "انتخاب کالا",
+                    "name": "title",
+                    "label": "اسم کالا",
                     "type": "select",
                     "options": []
                 },
                 {
-                    "name": "name",
-                    "label": "نام کالا",
-                    "type": "string"
+                    "name": "number",
+                    "label": "تعداد کالا",
+                    "type": "number"
                 },
                 {
                     "name": "unit",
@@ -46,8 +46,8 @@
                     "type": "string"
                 },
                 {
-                    "name": "price",
-                    "label": "قبمت کالا",
+                    "name": "good_id",
+                    "label": "آیدی کالا",
                     "type": "number"
                 }
             ],

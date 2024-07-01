@@ -6,53 +6,94 @@ import Invoice from "./components/invoice/Invoice";
 import Taxpayers from "./components/taxpayers/Taxpayers";
 import SSRWrapper from "@/src/components/HOC/SSRWrapper";
 import APIS from "@/src/constants/apis";
-import { Suspense } from "react";
-import { Skeleton } from "@/src/components/shadcn/skeleton";
+import {ReactNode, Suspense} from "react";
 import Flex from "@/src/components/common/Flex";
+import Typography from "@/src/components/common/Typography";
+import {cookies} from "next/headers";
+import {redirect} from "next/navigation";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/src/components/shadcn/card"
 
 interface DashboardProps {
-  params: {
-    slug: DashboardSlugs;
-  };
+    params: {
+        slug: DashboardSlugs;
+    };
 }
 
-export default function Dashboard({ params }: DashboardProps) {
-  const { slug } = params;
+export default function Dashboard({params}: DashboardProps) {
+    const {slug} = params;
 
-  const panelSections = {
-    customers: <Customers tab={slug} />,
-    taxpayers: <Taxpayers tab={slug} />,
-  };
+    if (!cookies().get("token")) redirect("/auth/login")
 
-  return (
-    <main className="w-full h-[100vh] max-sm:max-h-[100dvh] relative overflow-hidden bg-muted/40">
-      <Header />
-      {slug === "invoice" ? (
-        <Invoice tab={slug} isActive={true} />
-      ) : slug === "goods" ? (
-        <Suspense
-          fallback={
-            <Flex className="flex-col space-y-3 justify-center items-center">
-              <Skeleton className="w-64 h-4" />
-              <Skeleton className="w-64 h-4" />
-              <Skeleton className="w-64 h-4" />
-            </Flex>
-          }
-        >
-          <SSRWrapper<GetAllGoodsRes, GetAllGoodsRes>
-            fetchDataBatch={{
-              url: APIS.getAllGoods,
-            }}
-          >
-            {(data) => (
-              <Goods tab={slug} goodsResult={(data as GetAllGoodsRes).data} />
-            )}
-          </SSRWrapper>
-        </Suspense>
-      ) : (
-        panelSections[slug]
-      )}
-      <Footer params={params} />
-    </main>
-  );
+
+    // const tabs: { [key in DashboardSlugs]: ReactNode } = {
+    //     goods: <Goods tab={slug}/>,
+    //     customers: <Customers tab={slug}/>,
+    //     invoice: <Invoice tab={slug}/>,
+    //     taxpayers: <Taxpayers tab={slug}/>
+    // }
+
+
+    return (
+        <main className="w-full h-[100vh] max-sm:max-h-[100dvh] relative overflow-hidden bg-muted/40">
+            <Header/>
+
+            <Suspense
+                fallback={
+                    <Flex className="justify-center items-center">
+                        <Typography variant="h4">درحال بارگیری...</Typography>
+                    </Flex>
+                }
+            >
+                <SSRWrapper
+                    fetchDataBatch={[
+                        {
+                            url: APIS.panel.goods.goodsList,
+                        },
+                        {
+                            url: APIS.panel.customer.getCustomerList,
+                        },
+                        {
+                            url: APIS.panel.goods.userGoodsList,
+                        },
+                        {
+                            url: APIS.panel.isAdmin,
+                            method: "POST",
+                        }
+                    ]}
+                >
+                    {(data) =>
+                        slug === "goods" ? (
+                            <Goods
+                                tab={slug}
+                                goodsResult={(data as [GetAllGoodsRes, GetAllGoodsRes])[0].data}
+                                userGoodsList={(data as [GetAllGoodsRes, any, UserGoodsRes,IsAdminRes])[2].data}
+                            />
+                        ) : slug === "customers" ? (
+                            <Customers tab={slug} customerList={(data as [GetAllGoodsRes, CustomerListRes, UserGoodsRes,IsAdminRes])[1].data} />
+                        ) : slug === "invoice" ? (
+                            <Invoice tab={slug} isActive={true}/>
+                        ) : (data as [GetAllGoodsRes, any, any,IsAdminRes])[3].data.is_admin === 0 ?
+                            (<Flex className="items-center justify-center">
+                                <Card>
+                                    <CardHeader className={"text-center gap-y-4"}>
+                                        <CardTitle>خطای دسترسی</CardTitle>
+                                        <CardDescription>فقط ادمین میتواند به این بخش دسترسی داشته باشد</CardDescription>
+                                    </CardHeader>
+                                </Card>
+                            </Flex>) : <Taxpayers tab={slug}/>
+
+
+                    }
+                </SSRWrapper>
+            </Suspense>
+            <Footer params={params}/>
+        </main>
+    );
 }
