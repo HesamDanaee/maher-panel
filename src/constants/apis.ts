@@ -3,8 +3,8 @@ const APIS = (() => {
   const clientBaseURL = process.env.NEXT_PUBLIC_BASE_URL;
   const authBaseURL = clientBaseURL + "/auth/";
   const panelBaseURL = clientBaseURL + "/panel/";
-  const goodsBaseURL = panelBaseURL + "/goods/";
-  const customerBaseURL = clientBaseURL + "/customers/";
+  const goodsBaseURL = panelBaseURL + "goods/";
+  const customerBaseURL = panelBaseURL + "customers/";
 
   return {
     base,
@@ -18,11 +18,11 @@ const APIS = (() => {
       sendSMS: panelBaseURL + "sendSms",
       verify: panelBaseURL + "verify",
       completeUser: panelBaseURL + "completeUser",
-      addCustomer: panelBaseURL + "customers/add",
       goods: {
         csv: goodsBaseURL + "upload-csv",
         goodsList: goodsBaseURL + "getAll",
-        add: goodsBaseURL + "add",
+        userGoodsList: panelBaseURL + "userGoods/getAll",
+        add: panelBaseURL  + "userGoods/add",
         addByFile: goodsBaseURL + "addByFile",
       },
       customer: {
