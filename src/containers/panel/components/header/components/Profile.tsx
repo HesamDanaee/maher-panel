@@ -1,3 +1,5 @@
+"use client"
+
 import Flex from "@/src/components/common/Flex";
 import Typography from "@/src/components/common/Typography";
 import staticData from "@/public/data/panel/header.json";
@@ -13,6 +15,8 @@ import {
   PopoverTrigger,
 } from "@/src/components/shadcn/popover";
 import { PiGearFine, PiUser } from "react-icons/pi";
+import {useRouter} from "next/navigation";
+import {setCookie} from "@/lib/utils";
 
 interface ProfileProps {
   data: ProfileRes;
@@ -26,6 +30,8 @@ export default function Profile({ data }: ProfileProps) {
   const {
     data: { name, mobile, email },
   } = data;
+
+  const router = useRouter()
 
   return (
     <Popover>
@@ -75,7 +81,10 @@ export default function Profile({ data }: ProfileProps) {
 
         {/* Footer */}
         <Flex className="border-t-[1px] border-secondary py-2 px-1">
-          <Flex className="py-1 hover:cursor-pointer hover:bg-muted px-2 rounded-sm bgTransition">
+          <Flex className="py-1 hover:cursor-pointer hover:bg-muted px-2 rounded-sm bgTransition" onClick={() => {
+              setCookie("token","",0,"/")
+              router.refresh()
+          }}>
             <Typography variant="p" className="text-foreground font-extralight">
               {logout}
             </Typography>
