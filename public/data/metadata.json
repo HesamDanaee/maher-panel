@@ -1,0 +1,31 @@
+{
+    "auth": {
+        "login": {
+            "title": "ورود",
+            "description": ""
+        },
+        "signup": {
+            "title": "ثبت نام",
+            "description": ""
+        }
+    },
+    "panel": {
+        "goods": {
+            "title": "پنل کاربری - مدیریت کالا و خدمات",
+            "description": ""
+        },
+        "taxpayers": {
+            "title": " پنل کاربری - مدیریت مؤدیان",
+            "description": ""
+        },
+        "customers": {
+            "title": "پنل کاربری - مشتریان",
+            "description": ""
+        },
+        "invoice": {
+            "title": "پنل کاربری - فاکتورهای من",
+            "description": ""
+        }
+    },
+    "register": {}
+}
