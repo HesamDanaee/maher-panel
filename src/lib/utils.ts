@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { ReadonlyURLSearchParams } from "next/navigation";
+
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -59,23 +60,23 @@ export const getCookie = (name: string): string | null => {
  * Set a cookie
  * @param name - The name of the cookie
  * @param value - The value of the cookie
- * @param days - Optional number of days until the cookie expires
- * @param path - Optional cookie path (default is '/')
+ * @param seconds - Optional number of seconds until the cookie expires
+ * @param path - Optional cookie path (default is '/').
  * @param domain - Optional cookie domain
  * @param secure - Optional secure flag
  */
 export const setCookie = (
-  name: string,
-  value: string,
-  days?: number,
-  path: string = "/",
-  domain?: string,
-  secure?: boolean
+    name: string,
+    value: string,
+    seconds?: number,
+    path: string = "/",
+    domain?: string,
+    secure?: boolean
 ): void => {
   let expires = "";
-  if (days) {
+  if (seconds) {
     const date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    date.setTime(date.getTime() + seconds * 1000);
     expires = "; expires=" + date.toUTCString();
   }
   const cookieValue = encodeURIComponent(value);
@@ -88,3 +89,4 @@ export const setCookie = (
   }
   document.cookie = cookie;
 };
+
